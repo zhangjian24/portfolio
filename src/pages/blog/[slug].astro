@@ -21,6 +21,32 @@ const post: BlogSchema = entry.data;
 const { Content } = await entry.render();
 ---
 
+<style>
+
+  :global(.prose nav.toc .toc-level,.prose nav.toc .toc-item){
+        margin-top: 0.25rem; /* 4px */
+        margin-bottom: 2px;
+  }
+  :global(.prose nav.toc){
+      border-style: dashed;
+      border-width: 2px;
+      font-size: 0.75rem; /* 12px */
+      line-height: 1rem; /* 16px */
+  }
+  :global(.prose nav.toc a.toc-link){
+      color: rgb(100 116 139);
+  }
+  :global(.prose nav.toc a.toc-link:hover){
+      text-decoration-color: #1d4ed8;
+      color: rgb(29 78 216);
+  }
+
+  :global(.prose nav.toc .toc-item::marker){
+        content: '';
+  }
+
+</style>
+
 <PostLayout
   title={post.title}
   description={post.description}

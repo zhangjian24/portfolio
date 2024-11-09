@@ -32,6 +32,15 @@ importers:
       dayjs:
         specifier: ^1.11.9
         version: 1.11.13
+      rehype-autolink-headings:
+        specifier: ^7.1.0
+        version: 7.1.0
+      rehype-slug:
+        specifier: ^6.0.0
+        version: 6.0.0
+      rehype-toc:
+        specifier: ^3.0.2
+        version: 3.0.2
       sharp:
         specifier: ^0.32.6
         version: 0.32.6
@@ -457,6 +466,10 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@jsdevtools/rehype-toc@3.0.2':
+    resolution: {integrity: sha512-n5JEf16Wr4mdkRMZ8wMP/wN9/sHmTjRPbouXjJH371mZ2LEGDl72t8tEsMRNFerQN/QJtivOxqK1frdGa4QK5Q==}
+    engines: {node: '>=10'}
 
   '@mdx-js/mdx@3.1.0':
     resolution: {integrity: sha512-/QxEhPAvGwbQmy1Px8F899L5Uc2KZ6JtXwlCgJmjSTBedwOZkByYcBG4GceIGPXRDsmfxhHazuS+hlOShRLeDw==}
@@ -1165,6 +1178,9 @@ packages:
   hast-util-has-property@3.0.0:
     resolution: {integrity: sha512-MNilsvEKLFpV604hwfhVStK0usFY/QmM5zX16bo7EjnAEGofr5YyI37kzopBlZJkHD4t887i+q/C8/tr5Q94cA==}
 
+  hast-util-heading-rank@3.0.0:
+    resolution: {integrity: sha512-EJKb8oMUXVHcWZTDepnr+WNbfnXKFNf9duMesmr4S8SXTJBJ9M4Yok08pu9vxdJwdlGRhVumk9mEhkEvKGifwA==}
+
   hast-util-is-element@3.0.0:
     resolution: {integrity: sha512-Val9mnv2IWpLbNPqc/pUem+a7Ipj2aHacCwgNfTiK0vJKl0LF+4Ba4+v1oPHFpf3bLYmreq0/l3Gud9S5OH42g==}
 
@@ -1847,6 +1863,9 @@ packages:
   regex@4.4.0:
     resolution: {integrity: sha512-uCUSuobNVeqUupowbdZub6ggI5/JZkYyJdDogddJr60L764oxC2pMZov1fQ3wM9bdyzUILDG+Sqx6NAKAz9rKQ==}
 
+  rehype-autolink-headings@7.1.0:
+    resolution: {integrity: sha512-rItO/pSdvnvsP4QRB1pmPiNHUskikqtPojZKJPPPAVx9Hj8i8TwMBhofrrAYRhYOOBZH9tgmG5lPqDLuIWPWmw==}
+
   rehype-expressive-code@0.38.1:
     resolution: {integrity: sha512-RuSlIIDW2yLNYob4plodem4kzW5kO/mM7FYpZjiEs7T5pPglvcdr67Te0a984nv+OrizK86WCwIm/Zxm+z4yGQ==}
 
@@ -1859,8 +1878,15 @@ packages:
   rehype-recma@1.0.0:
     resolution: {integrity: sha512-lqA4rGUf1JmacCNWWZx0Wv1dHqMwxzsDWYMTowuplHF3xH0N/MmrZ/G3BDZnzAkRmxDadujCjaKM2hqYdCBOGw==}
 
+  rehype-slug@6.0.0:
+    resolution: {integrity: sha512-lWyvf/jwu+oS5+hL5eClVd3hNdmwM1kAC0BUvEGD19pajQMIzcNUd/k9GsfQ+FfECvX+JE+e9/btsKH0EjJT6A==}
+
   rehype-stringify@10.0.1:
     resolution: {integrity: sha512-k9ecfXHmIPuFVI61B9DeLPN0qFHfawM6RsuX48hoqlaKSF61RskNjSm1lI8PhBEM0MRdLxVVm4WmTqJQccH9mA==}
+
+  rehype-toc@3.0.2:
+    resolution: {integrity: sha512-DMt376+4i1KJGgHJL7Ezd65qKkJ7Eqp6JSB47BJ90ReBrohI9ufrornArM6f4oJjP2E2DVZZHufWucv/9t7GUQ==}
+    engines: {node: '>=10'}
 
   rehype@13.0.2:
     resolution: {integrity: sha512-j31mdaRFrwFRUIlxGeuPXXKWQxet52RBQRvCmzl5eCefn/KGbomK5GMHNMsOJf55fgo3qw5tST5neDuarDYR2A==}
@@ -2770,6 +2796,8 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@jsdevtools/rehype-toc@3.0.2': {}
+
   '@mdx-js/mdx@3.1.0(acorn@8.14.0)':
     dependencies:
       '@types/estree': 1.0.6
@@ -3563,6 +3591,10 @@ snapshots:
       web-namespaces: 2.0.1
 
   hast-util-has-property@3.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+
+  hast-util-heading-rank@3.0.0:
     dependencies:
       '@types/hast': 3.0.4
 
@@ -4594,6 +4626,15 @@ snapshots:
 
   regex@4.4.0: {}
 
+  rehype-autolink-headings@7.1.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      '@ungap/structured-clone': 1.2.0
+      hast-util-heading-rank: 3.0.0
+      hast-util-is-element: 3.0.0
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+
   rehype-expressive-code@0.38.1:
     dependencies:
       expressive-code: 0.38.1
@@ -4618,11 +4659,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  rehype-slug@6.0.0:
+    dependencies:
+      '@types/hast': 3.0.4
+      github-slugger: 2.0.0
+      hast-util-heading-rank: 3.0.0
+      hast-util-to-string: 3.0.1
+      unist-util-visit: 5.0.0
+
   rehype-stringify@10.0.1:
     dependencies:
       '@types/hast': 3.0.4
       hast-util-to-html: 9.0.3
       unified: 11.0.5
+
+  rehype-toc@3.0.2:
+    dependencies:
+      '@jsdevtools/rehype-toc': 3.0.2
 
   rehype@13.0.2:
     dependencies:
