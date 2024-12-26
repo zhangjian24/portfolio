@@ -5,88 +5,145 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Profile</div>
+    <div class="text-3xl w-full font-bold">简介</div>
   </div>
 
   <div class="mb-10 text-justify">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-    aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Education</div>
+    <div class="text-3xl w-full font-bold">教育</div>
   </div>
 
   <div class="time-line-container grid gap-4 mb-10">
     <TimeLineElement
+      title="本科"
+      subtitle="2011 - 2015 ,湖北汽车工业学院, 湖北十堰, 中国"
+    />
+    <!-- <TimeLineElement
       title="Title Name"
       subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
-    <TimeLineElement
-      title="Title Name"
-      subtitle="[start year] to [end year] at [Study Center Name], [City], [Country]"
-    />
+    /> -->
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Experience</div>
+    <div class="text-3xl w-full font-bold">经验</div>
   </div>
 
   <div class="time-line-container mb-10">
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="医疗系统"
+      subtitle="2021.11- , 欧克迪科技有限公司, 湖北武汉, 中国"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+    <ul class="flex font-light text-sm"><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringBoot</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">JPA</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Redis</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">PostgreSQL</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">React</li></ul>
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>以全职远程模式参与工作</li>
+    <li>负责需求分析，方案设计，开发及上线</li>
+    </ul>
+    <div>
+      <img src="/image/Snipaste_2022-10-06_12-39-06bc.png"/>
+    </div>
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="视频翻译平台"
+      subtitle="2020.11-2021.10, 译满天下科技有限公司, 湖北武汉, 中国"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+    <ul class="flex font-light text-sm"><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringBoot</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringCloud</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Redis</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mysql</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mybatis</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">FFmpeg</li></ul>
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>进行了接口文档梳理，参与微服务拆分</li>
+    <li>负责视频转码系统开发</li>
+    </ul>
     </TimeLineElement>
     <TimeLineElement
-      title="Job Title at Project or Company Name"
-      subtitle="From [Start Date] to [End Date] at [Company], [City], [Country]"
+      title="K12培训系统"
+      subtitle="2019.07-2020.10, 小聪科技, 湖北武汉, 中国"
     >
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.
+    <ul class="flex font-light text-sm"><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Jira</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Confluence</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringCloud</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Prometheus</li></ul>
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>作为小组负责人，负责开发流程和文档的维护</li>
+    <li>进行了代码重构和性能优化</li>
+    <li>为微服务搭建监控系统</li>
+    </ul>
+    <div><img src="/image/image-20211101195516129.png"/></div>
+    </TimeLineElement>
+    <TimeLineElement
+      title="千聊直播系统"
+      subtitle="2017.03-2019.05, 千聊直播, 广东广州, 中国"
+    >
+    <ul class="flex font-light text-sm">
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringBoot</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mybatis</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Dubbo</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Redis</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mysql</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Elasticsearch</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">RabbitMQ</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Vue</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">ElementUI</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Jenkins</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Docker</li>
+    </ul>
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>负责全文搜索服务的开发与维护，进行了数据同步方案的改造，搜索质量的优化，技术分享</li>
+    <li>涉及微信支付的会员系统方案设计、开发、与维护</li>
+    <li>搭建CI/CD自动化代码构建系统</li>
+    <li>英语口语训练小程序开发</li>
+    </ul>
+    <div><img src="/image/qlive_20221006121143.jpg"/></div>
     </TimeLineElement>
   </div>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Certifications</div>
+    <div class="text-3xl w-full font-bold">证书</div>
   </div>
 
   <ul class="list-disc mx-6 mb-10 grid gap-2">
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="#" target="_blank">2014-5，软件设计师</a>
     </li>
     <li>
-      <a href="#" target="_blank"> Certification Name (with link)</a>
+      <a href="#" target="_blank">2013-12，CET4</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">2013-5，第四届蓝桥杯软件设计大赛湖北省二等奖</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">2013-12，校级东浦信息杯c语言设计大赛一等奖</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">2012-2013学年第一学期二等人民奖学金</a>
+    </li>
+    <li>
+      <a href="#" target="_blank">2012-12，校级东浦信息杯c语言设计大赛二等奖</a>
     </li>
   </ul>
 
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Skills</div>
+    <div class="text-3xl w-full font-bold">技能</div>
   </div>
-
   <ul class="list-disc md:columns-5 columns-2 mx-6">
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
-    <li>Skill Name</li>
+    <li>JAVA</li>
+    <li>Git</li>
+    <li>maven</li>
+    <li>SpringBoot</li>
+    <li>MyBatis</li>
+    <li>Hibernate/JPA</li>
+    <li>SpringCloud</li>
+    <li>Dubbo</li>
+    <li>MySQL</li>
+    <li>PostgreSQL</li>
+    <li>Redis</li>
+    <li>Elasticsearch</li>
+    <li>MongDB</li>
+    <li>RabbitMQ</li>
+    <li>Tomcat</li>
+    <li>Nginx</li>
+    <li>Jenkins</li>
+    <li>Docker</li>
+    <li>Prometheus</li>
+    <li>FFmpeg</li>
+    <li>Rust</li>
+    <li>Solidity</li>
   </ul>
 </BaseLayout>
