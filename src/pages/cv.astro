@@ -1,16 +1,17 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TimeLineElement from "../components/cv/TimeLine.astro";
+import { Image } from 'astro:assets';
 ---
 
 <BaseLayout title="Resume" sideBarActiveItemID="cv">
-  <div class="mb-5">
+  <!-- <div class="mb-5">
     <div class="text-3xl w-full font-bold">简介</div>
   </div>
 
   <div class="mb-10 text-justify">
     
-  </div>
+  </div> -->
 
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">教育</div>
@@ -42,7 +43,7 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <li>负责需求分析，方案设计，开发及上线</li>
     </ul>
     <div>
-      <img src="/image/Snipaste_2022-10-06_12-39-06bc.png"/>
+      <Image height="300" width="700" src="/image/Snipaste_2022-10-06_12-39-06.png" alt="医疗系统"/>
     </div>
     </TimeLineElement>
     <TimeLineElement
@@ -54,9 +55,10 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <li>进行了接口文档梳理，参与微服务拆分</li>
     <li>负责视频转码系统开发</li>
     </ul>
+    <div><Image height="300" width="700" src="/image/ysj_20241226a.png" alt="视频翻译平台"/></div>
     </TimeLineElement>
     <TimeLineElement
-      title="K12培训系统"
+      title="K12教培系统"
       subtitle="2019.07-2020.10, 小聪科技, 湖北武汉, 中国"
     >
     <ul class="flex font-light text-sm"><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Jira</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Confluence</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringCloud</li><li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Prometheus</li></ul>
@@ -65,10 +67,10 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <li>进行了代码重构和性能优化</li>
     <li>为微服务搭建监控系统</li>
     </ul>
-    <div><img src="/image/image-20211101195516129.png"/></div>
+    <div><Image height="200" width="160" src="/image/image-20211101195516129.png" alt="K12教培系统"/></div>
     </TimeLineElement>
     <TimeLineElement
-      title="千聊直播系统"
+      title="千聊直播平台"
       subtitle="2017.03-2019.05, 千聊直播, 广东广州, 中国"
     >
     <ul class="flex font-light text-sm">
@@ -90,7 +92,22 @@ import TimeLineElement from "../components/cv/TimeLine.astro";
     <li>搭建CI/CD自动化代码构建系统</li>
     <li>英语口语训练小程序开发</li>
     </ul>
-    <div><img src="/image/qlive_20221006121143.jpg"/></div>
+    <div><Image height="200" width="160" src="/image/qlive_20221006121143.jpg" alt="千聊直播平台"/></div>
+    </TimeLineElement>
+    <TimeLineElement
+      title="邮件代发平台"
+      subtitle="2015.11-2017.01, 武汉闪达科技, 湖北武汉, 中国"
+    >
+    <ul class="flex font-light text-sm">
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">SpringMVC</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mybatis</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Redis</li>
+      <li class="ml-0.5 px-0.5 rounded-md bg-slate-100">Mysql</li>
+    </ul>
+    <ul class="list-disc mx-6 mb-10 grid gap-2">
+    <li>参与后端开发</li>
+    </ul>
+    <div><Image height="300" width="700" src="/image/Snipaste_2022-10-06_12-21-28.png" alt="邮件代发平台"/></div>
     </TimeLineElement>
   </div>
 
