@@ -1,0 +1,31 @@
+---
+title: 'Cloudflare免费SSL配置'
+pubDate: 2025-03-07
+description: 'Cloudflare免费SSL配置'
+heroImage: '/image/Cloudflare_logo.svg'
+tags: ["后端"]
+---
+
+![](/image/Snipaste_2025-03-07_20-29-20.png)
+选择快速扫描，输入域名，点击“继续”进行添加。
+![](/image/Snipaste_2025-03-07_20-25-54.png)
+
+下一步，可以选择免费计划，如果想要更丰富的功能，也可以选择付费计划。
+![](/image/Snipaste_2025-03-07_20-31-30.png)
+
+最后，在域名服务商将Cloudflare作为DNS解析服务器，添加域名完成。
+
+下面开始配置SSL
+![](/image/Snipaste_2025-03-07_20-52-16.png)
+点击配置
+![](/image/Snipaste_2025-03-07_20-54-29.png)
+加密模式选择“完全”
+![](/image/Snipaste_2025-03-07_20-55-24.png)
+在“边缘证书”下面，打开“始终使用HTTPS”
+![](/image/Snipaste_2025-03-07_20-59-09.png)
+在“源服务器”菜单下，点击“创建证书”
+![](/image/Snipaste_2025-03-07_21-00-43.png)
+按默认配置，点击创建
+![](/image/Snipaste_2025-03-07_21-09-28.png)
+将pem和key配置到站点服务器，即可启用SSL。
+![](/image/Snipaste_2025-03-07_21-12-17.png)
