@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /cv/
 
 Sitemap: https://portfolio.jianzhang.site/sitemap-index.xml
