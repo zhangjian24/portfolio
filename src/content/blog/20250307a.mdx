@@ -1,0 +1,49 @@
+---
+title: '搭建zerotier Moon 进行异地组网'
+pubDate: 2025-03-07
+description: '搭建zerotier Moon 进行异地组网'
+heroImage: '/image/ZeroTier_Logo.png'
+tags: ["后端"]
+---
+
+访问[官网](https://my.zerotier.com)，注册登录之后，点击“Create A Network”按钮创建一个虚拟网络，会生成一个网络ID。
+![](/image/469423-20231102134611130-140108764.png)
+
+需要一台有公网IP的服务器作为Moon节点
+```bash
+#安装zerotier
+curl -s https://install.zerotier.com/ | sudo bash
+#加入网络
+zerotier-cli join [网络ID]
+#列出网络
+zerotier-cli listnetworks
+```
+
+![](/image/Snipaste_2025-03-07_22-42-09.png)
+
+```bash
+#初始化moon配置文件
+cd /var/lib/zerotier-one
+zerotier-idtool initmoon identity.public >> moon.json
+#写入moon节点的IP和端口
+vim moon.json 
+```
+
+![](/image/Snipaste_2025-03-07_23-18-29.png)
+在`stableEndpoints`中填入本机公网IP，并生成moon配置文件
+```bash
+zerotier-idtool genmoon moon.json
+mkdir moons.d
+mv 000000ecefxxxxx.moon moons.d/
+#配置开机启动，重启服务
+systemctl enable zerotier-one
+systemctl restart zerotier-one
+```
+
+从[官网](https://www.zerotier.com/download/)下载windows客户端，点击“Join New Network”并输入上面的网络ID加入网络。
+![](/image/Snipaste_2025-03-07_23-24-57.png)
+输入`ipconfig`查询分配的IP
+![](/image/Snipaste_2025-03-07_23-27-37.png)
+
+从网络中其他节点PING测试
+![](/image/Snipaste_2025-03-07_23-35-38.png)
