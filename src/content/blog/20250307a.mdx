@@ -6,9 +6,11 @@ heroImage: '/image/ZeroTier_Logo.png'
 tags: ["后端"]
 ---
 
+# 创建虚拟网络
 访问[官网](https://my.zerotier.com)，注册登录之后，点击“Create A Network”按钮创建一个虚拟网络，会生成一个网络ID。
 ![](/image/469423-20231102134611130-140108764.png)
 
+# 配置moon节点
 需要一台有公网IP的服务器作为Moon节点
 ```bash
 #安装zerotier
@@ -40,6 +42,7 @@ systemctl enable zerotier-one
 systemctl restart zerotier-one
 ```
 
+# 配置其他节点
 从[官网](https://www.zerotier.com/download/)下载windows客户端，点击“Join New Network”并输入上面的网络ID加入网络。
 ![](/image/Snipaste_2025-03-07_23-24-57.png)
 输入`ipconfig`查询分配的IP
