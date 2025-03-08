@@ -20,18 +20,12 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.0.3
         version: 5.1.2(astro@4.16.8(rollup@4.24.4)(typescript@5.6.3))(tailwindcss@3.4.14)
-      asciinema-player:
-        specifier: ^3.9.0
-        version: 3.9.0
       astro:
         specifier: ^4.0.2
         version: 4.16.8(rollup@4.24.4)(typescript@5.6.3)
       astro-expressive-code:
         specifier: ^0.38.1
         version: 0.38.1(astro@4.16.8(rollup@4.24.4)(typescript@5.6.3))
-      astro-terminal-player:
-        specifier: ^0.1.5
-        version: 0.1.5
       daisyui:
         specifier: ^4.4.10
         version: 4.12.14(postcss@8.4.47)
@@ -57,6 +51,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.15(tailwindcss@3.4.14)
+      asciinema-player:
+        specifier: ^3.9.0
+        version: 3.9.0
 
 packages:
 
@@ -745,9 +742,6 @@ packages:
     resolution: {integrity: sha512-DWc4u8ACm09uJeRAj76i70qQEPwBMRk/saqlp9ki8QJNO2auUDlB+TxCRcijfPpllsFPbamgsYdPd5VKXF9XpQ==}
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
-
-  astro-terminal-player@0.1.5:
-    resolution: {integrity: sha512-zZaTkSmQanGBnpq5QjKheS79TaHs/q6t1iO2/1xx8IA1f9tmlQzEbtRwqScnR6Gwcjmzr1A7KJuRht5r8DrQog==}
 
   astro@4.16.8:
     resolution: {integrity: sha512-BRWFP0UQ8gkOr90KQW7oooedtgCk/j91pyv1WQUmgZwMUZk/v0HJRiddAZgvGCECOnmZFc9ZqRZnBsAMUgApNQ==}
@@ -3100,11 +3094,6 @@ snapshots:
     dependencies:
       astro: 4.16.8(rollup@4.24.4)(typescript@5.6.3)
       rehype-expressive-code: 0.38.1
-
-  astro-terminal-player@0.1.5:
-    dependencies:
-      asciinema-player: 3.9.0
-      zod: 3.23.8
 
   astro@4.16.8(rollup@4.24.4)(typescript@5.6.3):
     dependencies:

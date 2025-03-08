@@ -1,0 +1,10 @@
+---
+const {recordedCast } = Astro.props;
+---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.9.0/dist/bundle/asciinema-player.min.css">
+<div id="cast-player" ></div>
+{/* https://docs.astro.build/zh-cn/guides/client-side-scripts/#%E9%80%89%E6%8B%A9%E9%80%80%E5%87%BA%E5%A4%84%E7%90%86 */}
+<script is:inline src="https://cdn.jsdelivr.net/npm/asciinema-player@3.9.0/dist/bundle/asciinema-player.min.js"></script>
+<script define:vars={{ recordedCast }} >
+    AsciinemaPlayer.create(recordedCast, document.getElementById('cast-player'));
+</script>
