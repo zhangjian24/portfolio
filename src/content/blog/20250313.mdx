@@ -1,0 +1,91 @@
+---
+title: 'taro多端框架'
+pubDate: 2025-03-13
+description: 'taro多端框架'
+heroImage: '/image/logo.svg'
+tags: ["前端"]
+---
+
+# 安装软件包管理器pnpm
+windows 下安装Chocolatey
+```bash
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+通过Chocolatey安装pnpm
+```bash
+choco install pnpm
+```
+
+# 安装taro，初始化项目
+
+[Taro](https://docs.taro.zone/docs/) 是一个开放式跨端跨框架解决方案，支持使用 React/Vue/Nerv 等框架来开发 微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书 / 快手 小程序 / H5 / RN 等应用。
+
+```bash
+pnpm.exe install -g @tarojs/cli
+taro.cmd init myApp
+#进入项目根目录
+cd myApp
+
+# 使用 pnpm 安装依赖
+pnpm.exe install
+
+```
+
+微信小程序编译预览
+```bash
+pnpm.exe run dev:weapp
+```
+用微信开发者工具打开dist文件夹查看效果
+
+# 安装组件库taro-ui
+[Taro UI](https://taro-ui.jd.com/#/docs/quickstart) 是一款基于 Taro 框架开发的多端 UI 组件库。
+
+```bash
+
+pnpm.exe install taro-ui
+```
+H5需要添加额外的配置
+```js ins={2}
+h5: {
+  esnextModules: ['taro-ui']
+}
+```
+
+在 app.scss 样式文件中 import 组件样式
+```bash
+@import "~taro-ui/dist/style/index.scss"; // 引入组件样式 - 方式二
+```
+
+示例，在 /myApp/src/pages/index/index.tsx 文件添加以下代码
+```js ins={3,12}
+import Taro, { Component, Config } from '@tarojs/taro'
+import { View } from '@tarojs/components'
+import { AtButton } from 'taro-ui'
+import './index.scss'
+export default class Index extends Component {
+  config: Config = {
+    navigationBarTitleText: '首页'
+  }
+  render () {
+    return (
+      <View className='index'>
+         <AtButton type='primary'>按钮文案</AtButton>
+      </View>
+    )
+  }
+}
+```
+
+# 集成tailwindcss
+<p>[tailwindcss](https://docs.taro.zone/en/docs/tailwindcss)是一个无需写CSS的CSS框架；</p>
+<p>[weapp-tailwindcss](https://tw.icebreaker.top/)，将tailwindcss带给小程序。</p>
+
+
+```bash
+pnpm.exe install -D tailwindcss@3 postcss autoprefixer
+pnpm i -D weapp-tailwindcss
+```
+
+完整示例，[github](https://github.com/zhangjian24/jianjianApp)
+
+![](/image/Snipaste_2025-03-17_13-16-11.png)
