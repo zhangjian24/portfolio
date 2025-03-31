@@ -1,0 +1,158 @@
+---
+title: 'n8n-工作流程自动化'
+pubDate: 2025-03-13
+description: 'ComfyUI'
+heroImage: '/image/logo.svg'
+tags: ["AI"]
+---
+
+# 简介
+
+n8n 是一个开源的**工作流程自动化工具**，允许用户通过可视化界面连接不同的应用程序、服务和 API，构建复杂的自动化流程。它的名字源自“nodemation”（节点化自动化），核心设计理念是提供高度灵活、可扩展且透明的自动化解决方案。
+
+## 核心特点
+1. 开源与自托管  
+   - 代码完全开源（基于 MIT 许可），用户可免费使用、修改或自行部署，适合注重数据隐私和定制需求的企业。
+   - 支持本地部署或私有服务器，避免依赖第三方云服务。
+
+2. 可视化工作流设计  
+   - 通过拖放“节点”（Nodes）连接不同工具（如 Slack、Google Sheets、GitHub 等），无需编写代码即可设计自动化流程。
+   - 节点代表具体操作（如触发事件、数据处理、API 调用等），用户可自定义逻辑分支。
+
+3. 广泛集成支持  
+   - 内置数百个预集成应用（CRM、数据库、云存储等），同时支持自定义 API 请求，可连接几乎所有具备 API 的服务。
+   - 社区贡献的节点持续增加，生态扩展性强。
+
+4. 灵活性与开发友好  
+   - 支持 JavaScript 代码嵌入，开发者可编写自定义逻辑或数据处理脚本。
+   - 提供 Webhook、定时触发、错误处理等高级功能，适应复杂场景。
+
+## 典型应用场景
+- **跨平台数据同步**：如自动将电商订单同步至库存管理系统。
+- **通知与提醒**：当服务器异常时，触发 Slack 通知并创建 Jira 工单。
+- **数据加工与报告**：每天抓取网站数据，处理后生成 Excel 报表并邮件发送。
+- **内部流程自动化**：员工提交表单后，自动更新数据库并分配任务。
+
+## 与其他工具的区别
+- **对比 Zapier/Make**：n8n 更强调开发者的控制权和开源透明性，适合需要深度定制或私有化部署的场景。
+- **对比 Airflow**：n8n 更轻量，专注于应用间自动化而非大数据任务调度。
+
+## 使用门槛
+- **非技术用户**：可利用现成节点快速搭建简单流程。
+- **开发者**：可通过代码扩展功能或集成小众 API，适合技术团队深度优化。
+
+## 如何开始
+1. **安装**：支持 Docker、npm 或直接下载可执行文件。
+2. **免费版**：社区版功能完整，适合个人和小团队。
+3. **付费版**：提供企业级支持、团队协作和增强安全功能。
+
+n8n 在 GitHub 上活跃，拥有强大的社区支持，适合追求自主可控且需要复杂自动化的用户。如果你习惯自托管工具或需要高度定制化流程，n8n 是一个高效的选择。
+
+# 私有化部署
+```yaml
+version: '3.8'
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_PROTOCOL=https
+      - N8N_HOST=your-domain.com
+      - N8N_WEBHOOK_URL=https://your-domain.com/
+      - GENERIC_TIMEZONE=Asia/Shanghai
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=youruser
+      - N8N_BASIC_AUTH_PASSWORD=yourpassword
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  n8n_data:
+```
+
+# 定义抓取页面的工作流
+1. 创建工作流
+![](/image/Snipaste_2025-03-31_11-34-36.png)
+2. 添加HTTP Request
+![](/image/Snipaste_2025-03-31_00-08-15.png)
+添加URL 点击test step 
+![](/image/Snipaste_2025-03-31_00-31-59.png)
+3. 添加HTML解析器
+![](/image/Snipaste_2025-03-31_00-33-50.png)
+![](/image/Snipaste_2025-03-31_00-34-08.png)
+填入css选择器
+![](/image/Snipaste_2025-03-31_00-35-49.png)
+4. 可以将内容发送到EMAIL
+![](/image/Snipaste_2025-03-31_00-38-02.png)
+
+# 定义代码解析
+
+在 n8n 的 Function 节点中使用 Cheerio 库进行 HTML 解析时，需要确保该库已在 n8n 环境中正确安装和配置。以下是具体步骤：
+ 1. 安装 Cheerio 库：
+在默认的 n8n Docker 镜像中，通常没有预装 cheerio 库，所以你不能直接在 Function 节点中使用 require(‘cheerio’)。为了解决这个问题，你可以通过构建一个自定义的 Docker 镜像来扩展官方 n8n 镜像，并在其中安装 cheerio。下面是一份简单的 Dockerfile 示例：
+```yaml
+FROM n8nio/n8n:latest
+
+# 切换到 root 用户安装 cheerio
+USER root
+RUN npm install cheerio --save
+#在 n8n 中使用外部模块（如 Cheerio）需要设置环境变量 NODE_FUNCTION_ALLOW_EXTERNAL，并将其值设置为允许的模块名称。 
+ENV NODE_FUNCTION_ALLOW_EXTERNAL=cheerio
+
+# 切换回 node 用户运行 n8n
+USER node
+```
+
+ 2. 以DockerCompose方式启动n8n自定义镜像
+ ```yaml
+services:
+  n8n:
+    container_name: n8n
+    build:
+      #Dockerfile文件放置在n8n目录下
+      context: ./n8n/
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      # - N8N_PROTOCOL=https
+      # - N8N_HOST=your-domain.com
+      # - N8N_WEBHOOK_URL=https://your-domain.com/
+      - GENERIC_TIMEZONE=Asia/Shanghai
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=xxxxx
+      - N8N_BASIC_AUTH_PASSWORD=xxxxxxx
+    volumes:
+      - xxxx/n8n_data:/home/node/.n8n
+```
+
+```bash
+docker-compose up -d --build n8n
+```
+
+ 3. 在 Function 节点中引入 Cheerio：
+ 
+在 n8n 的 Function 节点中，您可以使用以下代码引入 Cheerio 并进行 HTML 解析：
+```javascript
+const cheerio = require('cheerio');
+// $input.item.json.data 中是html代码
+const html = $input.item.json.data;
+const ht = cheerio.load(html);
+
+// 例如：同时提取所有 <a> 标签的文本内容和 href 属性
+const results = [];
+ht('li.module-list-item').each((i, elem) => {
+    results.push({
+      text: ht(elem).find('a').text(),
+      href: ht(elem).find('a').attr('href')
+    });
+});
+
+return results;
+```
+
+![](/image/Snipaste_2025-03-31_11-36-31.png)
+![](/image/Snipaste_2025-03-31_11-45-07.png)
+
+通过以上步骤，您应能在 n8n 的 Function 节点中成功引入并使用 Cheerio 库进行 HTML 解析。
