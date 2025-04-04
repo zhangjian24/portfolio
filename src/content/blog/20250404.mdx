@@ -1,0 +1,67 @@
+---
+title: 'ComfyUI容器化部署'
+pubDate: 2025-04-04
+description: 'ComfyUI 是一个开源的、基于节点的用户界面工具，专为控制和自定义扩散模型（如 Stable Diffusion）而设计'
+heroImage: '/image/logo.svg'
+tags: ["ComfyUI"]
+---
+
+# 在容器中访问宿主机NVIDIA GPU显卡
+在容器中访问显卡需要NVIDIA Container Runtime
+```bash
+curl -s -L https://nvidia.github.io/nvidia-container-runtime/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-container-runtime/$distribution/nvidia-container-runtime.list | sudo tee /etc/apt/sources.list.d/nvidia-container-runtime.list
+
+sudo apt-get update
+sudo apt-get install nvidia-container-runtime
+```
+修改docker配置文件 `vim /etc/docker/daemon.json`
+```json title = "daemon.json"
+{
+"default-runtime": "nvidia",
+    "runtimes": {
+        "nvidia": {
+            "path": "nvidia-container-runtime",
+            "runtimeArgs": []
+        }
+    },
+}
+```
+然后重启Docker，启动容器时携带标志 `--runtime=nvidia` 即可使用宿主机GPU
+# 编写Dockerfile
+```dockerfile
+FROM pytorch/pytorch:2.6.0-cuda12.4-cudnn9-runtime
+LABEL authors="jianzhang"
+
+#更换为国内软件源
+COPY source.list /etc/apt/sources.list
+#安装需要的软件包
+RUN apt update && apt install -y software-properties-common && add-apt-repository ppa:deadsnakes/ppa && apt update && DEBIAN_FRONTEND=noninteractive apt install -y build-essential libcurl4-openssl-dev gnutls-bin git-all wget curl
+#设置git
+RUN git config --global http.version HTTP/1.1;git config --global http.sslVerify false;git config --global http.postBuffer 1048576000
+#下载ComfyUI并安装依赖
+#RUN cd /workspace && git clone git://github.com/comfyanonymous/ComfyUI.git
+COPY ComfyUI /workspace/ComfyUI
+RUN cd /workspace/ComfyUI && pip install xformers insightface diffusers ultralytics -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --extra-index-url https://download.pytorch.org/whl/cu124 --extra-index-url https://pypi.python.org/simple --trusted-host mirrors.aliyun.com
+#下载ComfyUI-Manager并安装依赖
+#RUN cd /workspace/ComfyUI/custom_nodes && git clone git://github.com/ltdrdata/ComfyUI-Manager.git
+COPY ComfyUI-Manager /workspace/ComfyUI/custom_nodes/ComfyUI-Manager
+RUN cd /workspace/ComfyUI/custom_nodes/ComfyUI-Manager && pip install -r requirements.txt -i http://mirrors.aliyun.com/pypi/simple/ --extra-index-url https://pypi.python.org/simple --trusted-host mirrors.aliyun.com
+
+VOLUME /workspace/ComfyUI/models/
+VOLUME /workspace/ComfyUI/custom_nodes/
+
+EXPOSE 8188
+ENTRYPOINT ["python","/workspace/ComfyUI/main.py"]
+HEALTHCHECK --interval=8s --timeout=5s CMD curl -fs http://localhost:8188/ || exit 1
+```
+# 构建镜像
+```bash
+docker buildx build --no-cache  -t jianzhang/comfyui:2.6.0-cuda12.4-cudnn9-runtime ./
+```
+# 运行容器
+```bash
+docker run --runtime=nvidia -p 8188:8188  -d jianzhang/comfyui:2.6.0-cuda12.4-cudnn9-runtime
+```
+
