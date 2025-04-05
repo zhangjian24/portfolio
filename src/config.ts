@@ -4,5 +4,5 @@
 export const SITE = 'https://portfolio.jianzhang.site';
 export const SITE_TITLE = '健兼';
 export const SITE_DESCRIPTION = '健兼';
-export const GENERATE_SLUG_FROM_TITLE = true
+export const GENERATE_SLUG_FROM_TITLE = false
 export const TRANSITION_API = true
