@@ -1,0 +1,6 @@
+---
+const { lists } = Astro.props;
+---
+{lists.map((item) => (
+  <p>{item.period}&nbsp;&nbsp;{item.name}</p>
+))}
