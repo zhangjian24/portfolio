@@ -1,0 +1,17 @@
+image: node:16  # 指定 Node.js 版本
+stages:
+  - install
+  - build
+  - deploy
+
+install:
+  script:
+    - npm install
+
+build:
+  script:
+    - npm run build  # Astro 默认构建命令，生成静态文件到 dist 目录
+
+deploy:
+  artifacts:
+    - dist  # 指定构建产物目录
