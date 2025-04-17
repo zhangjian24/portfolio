@@ -44,6 +44,27 @@ const { Content } = await entry.render();
   :global(.prose nav.toc .toc-item::marker){
         content: '';
   }
+  :global(.prose h1.title){
+      @apply text-6xl;
+  }
+  :global(.prose h1){
+      @apply text-5xl;
+  }
+  :global(.prose h2){
+      @apply text-4xl;
+  }
+  :global(.prose h3){
+      @apply text-3xl;
+  }
+  :global(.prose h4){
+      @apply text-2xl;
+  }
+  :global(.prose h5){
+      @apply text-xl;
+  }
+  :global(.prose h6){
+      @apply text-lg;
+  }
 
 </style>
 
