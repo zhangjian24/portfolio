@@ -1,0 +1,14 @@
+---
+const { lists } = Astro.props;
+---
+{lists.map((item) => (
+<div class="w3-container">
+  <h5 class="w3-opacity"><a href={item.link}><b>{item.name}</b></a></h5>
+  <ul style="padding-left: 3em;">
+    {item.description.map((i)=>(
+      <li style="list-style: circle;">{i}</li>
+    ))}
+  </ul>
+  <hr>
+</div>
+))}

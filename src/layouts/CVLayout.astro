@@ -7,6 +7,7 @@ import Skills from '../components/cv/Skills.astro';
 import Languages from '../components/cv/Languages.astro';
 import Certificates from '../components/cv/Certificates.astro';
 import Experience from '../components/cv/Experience.astro';
+import Projects from '../components/cv/Projects.astro';
 import Education from '../components/cv/Education.astro';
 import Social from '../components/cv/Social.astro';
 const { frontmatter } = Astro.props;
@@ -63,6 +64,10 @@ const { frontmatter } = Astro.props;
       <div class="w3-container w3-card w3-white w3-margin-bottom">
         <Title text="工作经验" icon="fa-suitcase" />
         <Experience lists={frontmatter.experiences}/>
+      </div>
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <Title text="个人项目" icon="fa-suitcase" />
+        <Projects lists={frontmatter.projects}/>
       </div>
 
       <div class="w3-container w3-card w3-white">
