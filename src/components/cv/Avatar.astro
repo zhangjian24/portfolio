@@ -2,11 +2,11 @@
 const { name, image,qrcode } = Astro.props;
 ---
 <div class="w3-display-container ml-5 mb-5">
-  <div class="flex">
-    <img src={image} style="max-height: 20rem;" alt="Avatar">
-    <img src={qrcode} style="max-height: 20rem;" alt="Avatar">
-  </div>
-  <div class="w3-display-bottomleft w3-container w3-text-black">
-    <h2>{name}</h2>
-  </div>
+    <img src={image} class="max-h-[24rem]">
+    <div class="w3-display-bottomleft w3-container w3-text-black">
+      <h2>{name}</h2>
+    </div>
+    <div class="w3-display-topleft">
+      <img src={qrcode} class="max-h-[5rem]">
+    </div>
 </div>
