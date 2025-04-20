@@ -16,6 +16,7 @@
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.1",
     "@astrojs/tailwind": "^5.0.3",
+    "@expressive-code/plugin-line-numbers": "^0.41.1",
     "astro": "^4.0.2",
     "astro-expressive-code": "^0.38.1",
     "daisyui": "^4.4.10",

@@ -7,11 +7,14 @@ import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 import expressiveCode from 'astro-expressive-code';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://portfolio.jianzhang.site',
-  integrations: [expressiveCode(), mdx(), sitemap(), tailwind(), ],
+  integrations: [expressiveCode({
+    plugins: [pluginLineNumbers()],
+  }), mdx(), sitemap(), tailwind(), ],
   markdown: {
 		rehypePlugins: [
       rehypeSlug,
