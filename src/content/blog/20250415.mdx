@@ -1,0 +1,557 @@
+---
+title: 'java面试-基础'
+pubDate: 2025-04-15
+description: 'java-基础'
+heroImage: '/image/logo.svg'
+tags: ["Java"]
+---
+
+### **面向对象的基本特征？**
+
+面向对象的基本特征有三个：封装、继承、多态；
+
+继承：子类继承父类，从而使子类具有父类相同的特征和行为；
+
+封装：隐藏部分属性和实现细节，只能通过公开接口访问，从一定程度上防止意外的访问和修改；
+
+多态：同一个行为，不同的子类会有不同的实现细节；多态存在的条件：继承、重写、父类引用指向子类对象。
+
+### **Java 与 C++ 区别**
+1. Java 不能直接访问内存，有自动内存管理，内存安全；
+2. Java 类只能单继承
+3. C++ 支持操作符重载
+
+### **继承和组合的区别？**
+
+继承和组合都是代码复用的方式；
+
+继承方式父类的部分细节对子类可见，组合方式内部细节不可见；
+
+继承关系在编译期就指定了父类，组合关系一般在运行期指定；
+
+继承强调的是is关系，组合强调的是has关系；
+
+### **继承和组合的优缺点？**
+
+继承：
+
+* 优点：
+
+   * 可以直接通过子类访问复用的属性和方法；
+
+   * 创建子类对象时，无需创建父类对象；
+
+* 缺点：
+
+   * 破坏了封装性，耦合度较高；
+
+   * 无法在运行期动态变更；
+
+组合：
+
+* 优点：
+
+   * 封装性好，耦合度较低；
+
+   * 运行期动态变更；
+
+* 缺点：
+
+   * 创建整体对象时，要创建所有局部对象；
+
+### **访问修饰符的区别？**
+
+|修饰符|当前类|同一个包其他类|其他包子类|其他包其他类|
+|:----|:----|:----|:----|:----|
+|public|可|可|可|可|
+|protected|可|可|可|否|
+|不写|可|可|否|否|
+|private|可|否|否|否|
+
+### **`&` 与`&&` 的区别？**
+
+&& 是逻辑与运算，具有短路性；
+
+& 当操作数是数字时是位与运算，当操作数是布尔值时是逻辑与，但是不具有短路行。
+
+### **final 的含义？**
+
+final 修饰类，类不能被继承；修饰方法，方法不能被子类覆盖；修饰变量，基础类型不能被修改，引用类型指向不能修改。
+
+### **基本数据类型有哪些？**
+
+8种基本数据类型：
+
+- 6种数字类型，包括4种整型：byte、short、int、long，2种浮点；float、double；
+
+- 1种字符型：char；
+
+- 1种布尔型：boolean
+
+### **下面两个代码块能正常执行吗？**
+
+![image.png](https://oss.jianzhang.cc/images/20250421122646934.png)
+
+代码块1，`s1+1` 是整形，赋值给`short` 会有损失，报错；
+
+代码块2，等价于`s1=（short)(s1+1)`，有强制转换成`short`。
+
+### **用最有效率的方法计算2乘以8？**
+
+答案是 `2<<3`
+
+通常情况下，位运算比算术运算性能高。
+
+### **基本类型和包装类型的区别**
+1. 用途：常量和局部变量用基本类型；参数和成员变量用包装类型。
+2. 存储方式：基本类型的局部变量存储在虚拟机栈的局部变量表种；基本类型的常量存储在方法区；包装类型除优化后的栈上分配，基本都在堆上。
+3. 占用空间：基本类型占用空间小。
+4. 默认值：包装类型的默认值为NULL。
+5. 比较方式：`"=="` 对于基本类型是比较内容，对于包装类型是比较地址。
+
+### **包装类型的缓存机制是什么**
+包装类型通过缓存机制提升性能，自动装箱时，在某个范围内的值每次都返回缓存中的同一个对象，超过的则创建新对象；
+Byte,Short,Integer,Long 这 4 种包装类默认创建了数值 [-128，127] 的相应类型的缓存数据，Character 创建了数值在 [0,127] 范围的缓存数据，Boolean 直接返回 TRUE or FALSE。
+```java
+public static Integer valueOf(int i) {
+    if (i >= IntegerCache.low && i <= IntegerCache.high)
+        return IntegerCache.cache[i + (-IntegerCache.low)];
+    return new Integer(i);
+}
+```
+
+### **浮点数运算为什么会有精读损失，怎么解决？**
+十进制小数在转换成二进制过程为，不断乘以 2，直到不存在小数为止，会发生无限循环。可以使用BigDecimal避免精读损失。
+
+###  **超过long的整数怎么表示**
+可以用BigInteger表示，其内部通过`int[]` 处理，性能稍差。
+
+14. **对象引用和对象实例**
+- 对象实例在堆区
+- 对象引用在栈区
+- 一个引用对应一个实例，一个实例可以对应多个引用
+
+### **String、StringBuilder 和 StringBuffer 的区别？**
+
+String 对象是不可变的，任何修改都会生成新的对象；
+
+StringBuilder 是可变的，用 synchronized 来保证线程安全；
+
+StringBuffer 是StringBuilder 的非线程安全的，性能更高。
+
+### `String s = "xyz"`**和**`String s = new String("xyz")`**的区别？**
+
+都会去常量池检查是否已经存在 "xyz" ，如果不存在就在常量池中创建 "xyz" ，然后  `String s = "xyz"` 会直接使用常量池中的对象， `String s = new String("xyz")` 还会在堆中创建一个与常量池一样的对象。
+
+### **`==`和`equals`的区别?**
+
+对于基本类型，只能用 `==` 表示比较值是否相等；
+
+对于引用类型， `==` 表示对象的地址是否相同； `equals` 表示对象的值是否相同。
+
+### **字符串拼接使用`+`还是`StringBuilder` 的 `append` 的方法**
+字符串对象通过`+`的字符串拼接方式，实际上是通过 StringBuilder 调用 append() 方法实现的，拼接完成之后调用 toString() 得到一个 String 对象。
+在循环内使用`+`会频繁创建StringBuilder，所以在循环外创建StringBuilder，再调用append方法拼接
+```java title="源码" showLineNumbers
+package com.zhangjian;
+
+import org.junit.Test;
+
+public class SimpleTesta {
+
+    /**
+     * This test method is a placeholder for future unit tests.
+     *
+     * @throws Exception if any unexpected error occurs during execution
+     */
+    @Test
+    public void test() throws Exception {
+        String s = "a";
+        for (int i = 0; i < 9; i++) {
+            s += 'a' + i;
+        }
+        System.out.println(s);
+    }
+}
+```
+
+```java title="字节码" showLineNumbers {37,41,45,46,47,51}
+// class version 52.0 (52)
+// access flags 0x21
+public class com/zhangjian/SimpleTesta {
+
+  // compiled from: SimpleTesta.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 5 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/zhangjian/SimpleTesta; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public test()V throws java/lang/Exception 
+  @Lorg/junit/Test;()
+   L0
+    LINENUMBER 14 L0
+    LDC "a"//加载常量"a"
+    ASTORE 1//将栈顶常量存入局部变量1，即s
+   L1
+    LINENUMBER 15 L1
+    ICONST_0//常量0入栈
+    ISTORE 2//将栈顶0存入局部变量2，即i
+   L2
+   FRAME APPEND [java/lang/String I]//创建临时变量，存放'a' + i的结果
+    ILOAD 2//入栈循环变量i
+    BIPUSH 9//入栈常量9
+    IF_ICMPGE L3//大于等于9就跳转到L3
+   L4
+    LINENUMBER 16 L4
+    NEW java/lang/StringBuilder//创建StringBuilder对象实例
+    DUP
+    INVOKESPECIAL java/lang/StringBuilder.<init> ()V
+    ALOAD 1
+    INVOKEVIRTUAL java/lang/StringBuilder.append (Ljava/lang/String;)Ljava/lang/StringBuilder;//append(s)
+    BIPUSH 97
+    ILOAD 2
+    IADD
+    INVOKEVIRTUAL java/lang/StringBuilder.append (I)Ljava/lang/StringBuilder;//append('a'+i)
+    INVOKEVIRTUAL java/lang/StringBuilder.toString ()Ljava/lang/String;//转换成String对象
+    ASTORE 1//赋值给局部变量1，即s
+   L5
+    LINENUMBER 15 L5
+    IINC 2 1
+    GOTO L2//进行下一轮循环
+   L3
+    LINENUMBER 18 L3
+   FRAME CHOP 1
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    ALOAD 1
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L6
+    LINENUMBER 19 L6
+    RETURN
+   L7
+    LOCALVARIABLE i I L2 L3 2//局部变量i
+    LOCALVARIABLE this Lcom/zhangjian/SimpleTesta; L0 L7 0
+    LOCALVARIABLE s Ljava/lang/String; L1 L7 1//局部变量s
+    MAXSTACK = 3
+    MAXLOCALS = 3
+}
+```
+
+### **String#intern 方法有什么作用?**
+返回与字符串对象内容一致的常量池引用，如果常量池中不存在就先创建。
+```java
+// s1 指向字符串常量池中的 "Java" 对象
+String s1 = "Java";
+// s2 也指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
+String s2 = s1.intern();
+// 在堆中创建一个新的 "Java" 对象，s3 指向它
+String s3 = new String("Java");
+// s4 指向字符串常量池中的 "Java" 对象，和 s1 是同一个对象
+String s4 = s3.intern();
+// s1 和 s2 指向的是同一个常量池中的对象
+System.out.println(s1 == s2); // true
+// s3 指向堆中的对象，s4 指向常量池中的对象，所以不同
+System.out.println(s3 == s4); // false
+// s1 和 s4 都指向常量池中的同一个对象
+System.out.println(s1 == s4); // true
+```
+
+### **为什么重写equals()必须重写hashCode()**
+因为对象相等时，哈希值必须相等，但哈希值一样时，对象未必相等。
+
+### **什么是反射？**
+
+在运行期间，能够动态的获取类的结构信息，动态的访问对象字段和调用对象的方法。
+
+### **深拷贝和浅拷贝的区别？**
+- 引用拷贝：拷贝一份引用，但指向不变；
+- 浅拷贝：对象会被拷贝，但对象内引用的对象不会拷贝；
+- 深拷贝：对象及其引用的对象都会被拷贝；
+
+![image.png](https://oss.jianzhang.cc/images/20250421135800700.png)
+
+### **构造方法有哪些特点？是否可被 重写(override)? 可以没有构造方法吗？？**
+特点：
+- 方法名和类名一致
+- 没有返回值
+- 自动执行
+
+构造方法不能被重写，但是可以重载
+
+如果没有写构造方法，会提供默认无参构造方法
+
+### **java中方法的参数是值传递还是引用传递**
+
+值传递，被调函数内部无法通过传入参数，改变调用方法中对应变量的指向。
+
+### **java 中实例变量和静态变量的区别？**
+
+实例变量存储在堆中，静态变量存储在方法区；
+
+实例变量与对象共存亡，静态变量与类共存亡；
+
+实例变量只能通过对象访问，静态变量即可以通过对象，也可以通过类访问。
+
+### **初始化考察，请给出下面程序的运行结果**
+
+![image.png](https://oss.jianzhang.cc/images/20250421122935434.png)
+
+
+答案是 ABabab
+
+初始化顺序为：父类静态变量、父类静态代码块、子类静态变量、子类静态代码块、父类非静态变量、父类非静态代码块、父类构造函数、子类非静态变量、子类非静态代码块、子类构造函数
+
+### **重载和重写的区别？**
+
+重载是在同一个类中，方法名相同，参数列表不同；
+
+重写是在父子类方法间，方法名和参数列表不变，子类的返回值和异常范围小于父类，子类的访问权限大于父类；
+
+重载是编译时多态，重写是运行时多态。
+
+### **为什么不能通过返回类型区分重载？**
+
+当不关注返回值时，编译器无法确定调用的是哪个方法。
+
+### **抽象类和接口有什么区别？**
+
+抽象类只能单继承，接口可以多实现；
+
+抽象类可以有构造函数，接口不能有构造函数；
+
+抽象类中可以成员变量，接口中只能有常量(public static final)；
+
+抽象类中可以包含非抽象方法，java7 以前的接口不能包含非抽象方法，java8以后可以有非抽象方法、default方法、静态方法，java9可以包含私有方法和私有静态方法；
+
+抽象类中的方法可以用任意访问修饰符修饰，java8以前接口中方法只能是public，java9以后接口中方法可以是private;
+
+### **非静态内部类和静态内部类的主要区别是什么？**
+- 非静态内部类：
+    
+    - 隐式持有外部类实例的引用，可直接访问外部类的静态和实例成员（包括私有）。
+        
+    - 实例化依赖外部类对象：`Outer.Inner inner = outer.new Inner();`
+        
+- 静态内部类：
+    
+    - 不持有外部类实例的引用，只能访问外部类的静态成员。
+        
+    - 可直接实例化：`Outer.StaticInner inner = new Outer.StaticInner();`
+
+### **Java泛型是什么？有什么好处？**
+
+泛型是JDK5引入的==参数化类型==机制，允许在类、接口、方法中使用类型参数，增强代码的通用性和类型安全。  
+优点：
+
+- 编译时类型检查：避免运行时`ClassCastException`。
+
+- 代码复用：编写通用代码处理多种数据类型，如集合框架中的`List<T>`。
+
+- 减少强制转换：自动隐式转换，提升代码可读性。
+
+### **类型擦除（Type Erasure）是什么？**
+
+泛型通过==类型擦除==实现，编译器在编译时擦除泛型类型信息，运行时仅保留原始类型（如`List<String>`变为`List`）。  
+原因：兼容旧版本Java代码，避免JVM层面的改动138。  
+问题：
+- 运行时无法获取泛型具体类型（如`instanceof List<String>`无效）。
+- 通过反射可绕过泛型限制（如向`List<Integer>`插入`String`）。
+
+### **泛型类、泛型接口、泛型方法的区别**
+
+- 泛型类/接口：在类/接口定义时声明类型参数（如`class Box<T>`），实例化时指定具体类型。
+    
+- 泛型方法：在方法上独立声明类型参数（如`<T> T getValue(T param)`），与类是否泛型无关；静态方法常需独立声明泛型。
+
+### **Error和Exception的区别？**
+
+Error是指系统级错误，程序无法处理；常见Error ：
+
+* OutOfMemoryError 堆溢出，可用内存不够分配给一个对象时；
+
+* StackOverflowError 栈溢出，递归调用层次太深；
+
+* NoSuchMethodError 方法不存在；
+
+* NoSuchFieldError 字段不存在；
+
+Exception是指程序可以捕捉处理，以保证程序可以继续运行的异常。常见异常：
+
+* IOException
+
+* ClassNotFoundException
+
+* SQLException
+
+### **Checked和UnChecked异常的区别？**
+
+Checked异常是指程序应该显示捕捉或抛出的异常；
+
+UnChecked异常是指无需捕获或抛出的运行时异常，通常可以通过编码规避
+
+* NullPointerException
+
+* ArrayIndexOutOfBoundsException
+
+* ArithmeticException
+
+### **try 或 catch 与finally中均有 return 语句时会怎样？**
+
+```java title="源码" showLineNumbers
+package com.zhangjian;
+
+import org.junit.Test;
+
+public class SimpleTesta {
+
+    /**
+     * This test method is a placeholder for future unit tests.
+     *
+     * @throws Exception if any unexpected error occurs during execution
+     */
+    @Test
+    public void test() throws Exception {
+        System.out.println(str());//输出：c
+    }
+
+    public static String str(){
+        try {
+            return "a";//会被忽略
+        }catch (Exception e){
+            e.printStackTrace();
+            return "b";
+        }finally {
+            return "c";
+        }
+    }
+}
+```
+
+```java title="字节码" showLineNumbers {47,63,68}
+// class version 52.0 (52)
+// access flags 0x21
+public class com/zhangjian/SimpleTesta {
+
+  // compiled from: SimpleTesta.java
+
+  // access flags 0x1
+  public <init>()V
+   L0
+    LINENUMBER 5 L0
+    ALOAD 0
+    INVOKESPECIAL java/lang/Object.<init> ()V
+    RETURN
+   L1
+    LOCALVARIABLE this Lcom/zhangjian/SimpleTesta; L0 L1 0
+    MAXSTACK = 1
+    MAXLOCALS = 1
+
+  // access flags 0x1
+  public test()V throws java/lang/Exception 
+  @Lorg/junit/Test;()
+   L0
+    LINENUMBER 14 L0
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    INVOKESTATIC com/zhangjian/SimpleTesta.str ()Ljava/lang/String;
+    INVOKEVIRTUAL java/io/PrintStream.println (Ljava/lang/String;)V
+   L1
+    LINENUMBER 15 L1
+    RETURN
+   L2
+    LOCALVARIABLE this Lcom/zhangjian/SimpleTesta; L0 L2 0
+    MAXSTACK = 2
+    MAXLOCALS = 1
+
+  // access flags 0x9
+  public static str()Ljava/lang/String;
+    TRYCATCHBLOCK L0 L1 L2 java/lang/Exception
+    TRYCATCHBLOCK L0 L1 L3 null
+    TRYCATCHBLOCK L2 L4 L3 null
+   L0
+    LINENUMBER 19 L0
+    LDC "a"
+    ASTORE 0
+   L1
+    LINENUMBER 24 L1
+    LDC "c"
+    ARETURN//只有finally中的return 有效
+   L2
+    LINENUMBER 20 L2
+   FRAME SAME1 java/lang/Exception
+    ASTORE 0
+   L5
+    LINENUMBER 21 L5
+    ALOAD 0
+    INVOKEVIRTUAL java/lang/Exception.printStackTrace ()V
+   L6
+    LINENUMBER 22 L6
+    LDC "b"
+    ASTORE 1
+   L4
+    LINENUMBER 24 L4
+    LDC "c"
+    ARETURN//只有finally中的return 有效
+   L3
+   FRAME SAME1 java/lang/Throwable
+    ASTORE 2
+    LDC "c"
+    ARETURN//只有finally中的return 有效
+    LOCALVARIABLE e Ljava/lang/Exception; L5 L3 0
+    MAXSTACK = 1
+    MAXLOCALS = 3
+}
+```
+
+### **try，catch，finally考察2，指出下面的运行结果？**
+
+![image.png](https://oss.jianzhang.cc/images/20250421123026853.png)
+
+
+答案为 2
+
+return 的字节码，会先暂存变量i到栈，再执行finally中的语句，最后return 的是暂存的变量值为2。
+
+![image.png](https://oss.jianzhang.cc/images/20250421123058167.png)
+
+### **finally 中的代码一定会执行吗？**
+程序所在的线程死亡，就不会执行
+
+### **什么是反射（Reflection）？它的主要作用是什么？**
+
+- 定义：反射是Java在运行时动态==获取类信息==并==操作类==的能力。
+- 核心作用：
+    - 动态加载类（如通过类名字符串创建对象）。  
+    - 运行时分析类的结构（字段、方法、注解等）。
+    - 绕过访问控制（如调用私有方法或访问私有字段）。
+
+### **反射的优缺点是什么？**
+
+- 优点：
+    - 灵活性：动态加载类、实现通用逻辑（如JSON序列化）。
+    - 突破封装：访问私有成员（常用于测试或框架）。
+- 缺点：
+    - 性能开销：反射操作比直接调用慢（但现代JVM优化后差距缩小）。 
+    - 安全问题：可能绕过权限检查，破坏封装性。
+    - 代码可读性差：反射代码通常难以维护。
+
+### **怎么限制反射**
+
+使用`SecurityManager`限制反射权限
+```java
+System.setSecurityManager(new SecurityManager() {
+    @Override
+    public void checkPermission(Permission perm) {
+        if (perm instanceof ReflectPermission && "suppressAccessChecks".equals(perm.getName())) {
+            throw new SecurityException("Reflection access denied!");
+        }
+    }
+});
+```
