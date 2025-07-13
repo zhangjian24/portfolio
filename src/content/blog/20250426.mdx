@@ -1,0 +1,932 @@
+---
+title: "Spring AI 深度解析：Spring生态的AI集成框架"
+description: "深入探讨Spring AI框架，了解如何在Spring应用中集成AI能力，包括配置、使用和最佳实践"
+pubDate: "2025-04-26"
+tags: ["Spring", "AI", "Java", "后端", "框架"]
+---
+
+# Spring AI 深度解析：Spring生态的AI集成框架
+
+## 什么是Spring AI？
+
+Spring AI是Spring生态系统中的AI集成框架，旨在简化AI功能的集成和使用。它提供了统一的API来与各种AI服务（如OpenAI、Anthropic、DeepSeek等）进行交互，让开发者能够轻松地在Spring应用中集成AI能力。
+
+## 核心特性
+
+### 1. 统一的AI抽象层
+Spring AI提供了统一的抽象接口，屏蔽了不同AI服务商的差异：
+
+```java
+// 统一的AI客户端接口
+public interface AiClient {
+    AiResponse generate(AiRequest request);
+    AiResponse chat(AiRequest request);
+}
+```
+
+### 2. 向量数据库集成
+内置对主流向量数据库的支持：
+
+```java
+// Pinecone集成示例
+@Configuration
+public class VectorConfig {
+    @Bean
+    public VectorStore pineconeVectorStore() {
+        return new PineconeVectorStore(
+            PineconeApi.builder()
+                .apiKey(apiKey)
+                .environment(environment)
+                .build()
+        );
+    }
+}
+```
+
+### 3. 提示工程支持
+提供强大的提示模板和工程工具：
+
+```java
+// 提示模板示例
+@Component
+public class CodeReviewPromptTemplate {
+    private final PromptTemplate template = new PromptTemplate("""
+        你是一个经验丰富的代码审查专家。
+        请审查以下代码并提供改进建议：
+        
+        代码语言：{language}
+        代码内容：
+        {code}
+        
+        请从以下方面进行审查：
+        1. 代码质量和可读性
+        2. 性能优化
+        3. 安全性考虑
+        4. 最佳实践建议
+        """);
+}
+```
+
+### 4. Spring Boot自动配置
+开箱即用的自动配置支持：
+
+```yaml
+# application.yml
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      chat:
+        options:
+          model: gpt-4
+          temperature: 0.7
+          max-tokens: 2000
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-3-sonnet-20240229
+          temperature: 0.7
+          max-tokens: 2000
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+      base-url: https://api.deepseek.com/v1
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.7
+          max-tokens: 2000
+```
+
+### 5. 多模型支持
+支持动态切换不同的AI模型：
+
+```java
+// 模型枚举
+public enum AiModel {
+    GPT_4("gpt-4", "OpenAI"),
+    GPT_3_5_TURBO("gpt-3.5-turbo", "OpenAI"),
+    CLAUDE_3_SONNET("claude-3-sonnet-20240229", "Anthropic"),
+    CLAUDE_3_HAIKU("claude-3-haiku-20240307", "Anthropic"),
+    DEEPSEEK_CHAT("deepseek-chat", "DeepSeek"),
+    DEEPSEEK_CODER("deepseek-coder", "DeepSeek");
+    
+    private final String modelName;
+    private final String provider;
+    
+    AiModel(String modelName, String provider) {
+        this.modelName = modelName;
+        this.provider = provider;
+    }
+    
+    // getters...
+}
+```
+
+## 项目结构示例
+
+```
+spring-ai-demo/
+├── pom.xml
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/example/springai/
+│   │   │       ├── SpringAiApplication.java
+│   │   │       ├── config/
+│   │   │       │   ├── AiConfig.java
+│   │   │       │   └── VectorConfig.java
+│   │   │       ├── service/
+│   │   │       │   ├── AiService.java
+│   │   │       │   └── CodeReviewService.java
+│   │   │       ├── controller/
+│   │   │       │   └── AiController.java
+│   │   │       └── model/
+│   │   │           ├── ChatRequest.java
+│   │   │           └── ChatResponse.java
+│   │   └── resources/
+│   │       ├── application.yml
+│   │       └── prompts/
+│   │           └── code-review.st
+│   └── test/
+│       └── java/
+│           └── com/example/springai/
+│               └── AiServiceTest.java
+└── docker-compose.yml
+```
+
+## Maven依赖配置
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.0</version>
+    </parent>
+    
+    <groupId>com.example</groupId>
+    <artifactId>spring-ai-demo</artifactId>
+    <version>1.0.0</version>
+    
+    <properties>
+        <java.version>17</java.version>
+        <spring-ai.version>0.8.0</spring-ai.version>
+    </properties>
+    
+    <dependencies>
+        <!-- Spring Boot Starters -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        
+        <!-- Spring AI -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-openai-spring-boot-starter</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-anthropic-spring-boot-starter</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-pinecone-spring-boot-starter</artifactId>
+        </dependency>
+        
+        <!-- 其他依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+## 核心代码实现
+
+### 1. 主应用类
+
+```java
+package com.example.springai;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringAiApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SpringAiApplication.class, args);
+    }
+}
+```
+
+### 2. AI配置类
+
+```java
+package com.example.springai.config;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.embedding.EmbeddingClient;
+import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
+@Configuration
+public class AiConfig {
+    
+    @Bean
+    @Primary
+    public ChatClient chatClient(ChatClient.Builder builder) {
+        return builder.build();
+    }
+    
+    @Bean("openaiChatClient")
+    public ChatClient openaiChatClient(ChatClient.Builder builder) {
+        return builder.build();
+    }
+    
+    @Bean("anthropicChatClient")
+    public ChatClient anthropicChatClient(ChatClient.Builder builder) {
+        return builder.build();
+    }
+    
+    @Bean("deepseekChatClient")
+    public ChatClient deepseekChatClient(ChatClient.Builder builder) {
+        return builder.build();
+    }
+    
+    @Bean
+    public EmbeddingClient embeddingClient(EmbeddingClient.Builder builder) {
+        return builder.build();
+    }
+}
+```
+
+### 3. AI服务类
+
+```java
+package com.example.springai.service;
+
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
+@Service
+public class AiService {
+    
+    private final ChatClient chatClient;
+    private final PromptTemplate codeReviewTemplate;
+    private final Map<String, ChatClient> modelClients;
+    
+    public AiService(ChatClient chatClient, 
+                    @Qualifier("openaiChatClient") ChatClient openaiClient,
+                    @Qualifier("anthropicChatClient") ChatClient anthropicClient,
+                    @Qualifier("deepseekChatClient") ChatClient deepseekClient) {
+        this.chatClient = chatClient;
+        this.modelClients = Map.of(
+            "openai", openaiClient,
+            "anthropic", anthropicClient,
+            "deepseek", deepseekClient
+        );
+        this.codeReviewTemplate = new PromptTemplate("""
+            你是一个经验丰富的代码审查专家。
+            请审查以下代码并提供改进建议：
+            
+            代码语言：{language}
+            代码内容：
+            {code}
+            
+            请从以下方面进行审查：
+            1. 代码质量和可读性
+            2. 性能优化
+            3. 安全性考虑
+            4. 最佳实践建议
+            """);
+    }
+    
+    public String chat(String message) {
+        return chat(message, null);
+    }
+    
+    public String chat(String message, String model) {
+        Prompt prompt = new Prompt(message);
+        ChatClient client = getChatClient(model);
+        ChatResponse response = client.call(prompt);
+        return response.getResult().getOutput().getContent();
+    }
+    
+    public String reviewCode(String language, String code) {
+        return reviewCode(language, code, null);
+    }
+    
+    public String reviewCode(String language, String code, String model) {
+        Prompt prompt = codeReviewTemplate.create(Map.of(
+            "language", language,
+            "code", code
+        ));
+        ChatClient client = getChatClient(model);
+        ChatResponse response = client.call(prompt);
+        return response.getResult().getOutput().getContent();
+    }
+    
+    public String generateDocumentation(String code, String framework) {
+        return generateDocumentation(code, framework, null);
+    }
+    
+    public String generateDocumentation(String code, String framework, String model) {
+        PromptTemplate docTemplate = new PromptTemplate("""
+            请为以下{framework}代码生成详细的API文档：
+            
+            {code}
+            
+            请包含：
+            1. 方法/类的功能描述
+            2. 参数说明
+            3. 返回值说明
+            4. 使用示例
+            5. 注意事项
+            """);
+        
+        Prompt prompt = docTemplate.create(Map.of(
+            "framework", framework,
+            "code", code
+        ));
+        
+        ChatClient client = getChatClient(model);
+        ChatResponse response = client.call(prompt);
+        return response.getResult().getOutput().getContent();
+    }
+    
+    private ChatClient getChatClient(String model) {
+        if (model == null || model.isEmpty()) {
+            return chatClient; // 使用默认客户端
+        }
+        return modelClients.getOrDefault(model.toLowerCase(), chatClient);
+    }
+    
+    public List<String> getAvailableModels() {
+        return List.of("openai", "anthropic", "deepseek");
+    }
+    
+    public Map<String, Object> getModelInfo(String model) {
+        Map<String, Object> info = new HashMap<>();
+        switch (model.toLowerCase()) {
+            case "openai":
+                info.put("provider", "OpenAI");
+                info.put("models", List.of("gpt-4", "gpt-3.5-turbo", "gpt-4-turbo"));
+                info.put("maxTokens", 8192);
+                break;
+            case "anthropic":
+                info.put("provider", "Anthropic");
+                info.put("models", List.of("claude-3-sonnet", "claude-3-haiku", "claude-3-opus"));
+                info.put("maxTokens", 200000);
+                break;
+            case "deepseek":
+                info.put("provider", "DeepSeek");
+                info.put("models", List.of("deepseek-chat", "deepseek-coder"));
+                info.put("maxTokens", 32768);
+                break;
+            default:
+                info.put("error", "Unknown model provider");
+        }
+        return info;
+    }
+}
+```
+
+### 4. 控制器类
+
+```java
+package com.example.springai.controller;
+
+import com.example.springai.model.ChatRequest;
+import com.example.springai.model.ChatResponse;
+import com.example.springai.service.AiService;
+import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/ai")
+public class AiController {
+    
+    private final AiService aiService;
+    
+    public AiController(AiService aiService) {
+        this.aiService = aiService;
+    }
+    
+    @PostMapping("/chat")
+    public ChatResponse chat(@Valid @RequestBody ChatRequest request) {
+        String response = aiService.chat(request.getMessage(), request.getModel());
+        return new ChatResponse(response);
+    }
+    
+    @PostMapping("/review-code")
+    public ChatResponse reviewCode(@RequestParam String language, 
+                                 @RequestParam String code,
+                                 @RequestParam(required = false) String model) {
+        String review = aiService.reviewCode(language, code, model);
+        return new ChatResponse(review);
+    }
+    
+    @PostMapping("/generate-docs")
+    public ChatResponse generateDocs(@RequestParam String code,
+                                   @RequestParam String framework,
+                                   @RequestParam(required = false) String model) {
+        String docs = aiService.generateDocumentation(code, framework, model);
+        return new ChatResponse(docs);
+    }
+    
+    @GetMapping("/models")
+    public Map<String, Object> getAvailableModels() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("models", aiService.getAvailableModels());
+        response.put("timestamp", System.currentTimeMillis());
+        return response;
+    }
+    
+    @GetMapping("/models/{model}")
+    public Map<String, Object> getModelInfo(@PathVariable String model) {
+        return aiService.getModelInfo(model);
+    }
+    
+    @PostMapping("/chat/compare")
+    public Map<String, Object> compareModels(@Valid @RequestBody ChatRequest request) {
+        Map<String, Object> comparison = new HashMap<>();
+        List<String> models = aiService.getAvailableModels();
+        
+        for (String model : models) {
+            try {
+                long startTime = System.currentTimeMillis();
+                String response = aiService.chat(request.getMessage(), model);
+                long endTime = System.currentTimeMillis();
+                
+                Map<String, Object> modelResult = new HashMap<>();
+                modelResult.put("response", response);
+                modelResult.put("responseTime", endTime - startTime);
+                modelResult.put("model", model);
+                
+                comparison.put(model, modelResult);
+            } catch (Exception e) {
+                Map<String, Object> error = new HashMap<>();
+                error.put("error", e.getMessage());
+                error.put("model", model);
+                comparison.put(model, error);
+            }
+        }
+        
+        comparison.put("timestamp", System.currentTimeMillis());
+        return comparison;
+    }
+}
+```
+
+### 5. 模型类
+
+```java
+package com.example.springai.model;
+
+import jakarta.validation.constraints.NotBlank;
+
+public class ChatRequest {
+    @NotBlank(message = "消息不能为空")
+    private String message;
+    
+    private String model; // 可选，指定使用的AI模型
+    
+    // getters and setters
+    public String getMessage() {
+        return message;
+    }
+    
+    public void setMessage(String message) {
+        this.message = message;
+    }
+    
+    public String getModel() {
+        return model;
+    }
+    
+    public void setModel(String model) {
+        this.model = model;
+    }
+}
+
+public class ChatResponse {
+    private String content;
+    private long timestamp;
+    
+    public ChatResponse(String content) {
+        this.content = content;
+        this.timestamp = System.currentTimeMillis();
+    }
+    
+    // getters and setters
+    public String getContent() {
+        return content;
+    }
+    
+    public void setContent(String content) {
+        this.content = content;
+    }
+    
+    public long getTimestamp() {
+        return timestamp;
+    }
+    
+    public void setTimestamp(long timestamp) {
+        this.timestamp = timestamp;
+    }
+}
+```
+
+## 配置文件
+
+```yaml
+# application.yml
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      chat:
+        options:
+          model: gpt-4
+          temperature: 0.7
+          max-tokens: 2000
+    
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-3-sonnet-20240229
+          temperature: 0.7
+          max-tokens: 2000
+    
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+      base-url: https://api.deepseek.com/v1
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.7
+          max-tokens: 2000
+    
+    pinecone:
+      api-key: ${PINECONE_API_KEY}
+      environment: ${PINECONE_ENVIRONMENT}
+      index-name: ${PINECONE_INDEX_NAME}
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    com.example.springai: DEBUG
+```
+
+## API使用示例
+
+### 1. 基础聊天
+
+```bash
+# 使用默认模型
+curl -X POST http://localhost:8080/api/ai/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "请解释什么是Spring Boot自动配置？"
+  }'
+
+# 指定使用OpenAI模型
+curl -X POST http://localhost:8080/api/ai/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "请解释什么是Spring Boot自动配置？",
+    "model": "openai"
+  }'
+
+# 指定使用Anthropic模型
+curl -X POST http://localhost:8080/api/ai/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "请解释什么是Spring Boot自动配置？",
+    "model": "anthropic"
+  }'
+```
+
+### 2. 代码审查
+
+```bash
+# 使用默认模型
+curl -X POST "http://localhost:8080/api/ai/review-code" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "language=Java&code=public class Example { public void method() { String str = new String(); } }"
+
+# 指定使用DeepSeek模型（适合代码相关任务）
+curl -X POST "http://localhost:8080/api/ai/review-code" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "language=Java&code=public class Example { public void method() { String str = new String(); } }&model=deepseek"
+```
+
+### 3. 文档生成
+
+```bash
+# 使用默认模型
+curl -X POST "http://localhost:8080/api/ai/generate-docs" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "framework=Spring Boot&code=@RestController public class UserController { @GetMapping('/users') public List<User> getUsers() { return userService.findAll(); } }"
+
+# 指定使用Anthropic模型（适合文档生成）
+curl -X POST "http://localhost:8080/api/ai/generate-docs" \
+  -H "Content-Type: application/x-www-form-urlencoded" \
+  -d "framework=Spring Boot&code=@RestController public class UserController { @GetMapping('/users') public List<User> getUsers() { return userService.findAll(); } }&model=anthropic"
+```
+
+### 4. 获取可用模型列表
+
+```bash
+curl -X GET http://localhost:8080/api/ai/models
+```
+
+### 5. 获取特定模型信息
+
+```bash
+curl -X GET http://localhost:8080/api/ai/models/openai
+curl -X GET http://localhost:8080/api/ai/models/anthropic
+curl -X GET http://localhost:8080/api/ai/models/deepseek
+```
+
+### 6. 模型对比测试
+
+```bash
+curl -X POST http://localhost:8080/api/ai/chat/compare \
+  -H "Content-Type: application/json" \
+  -d '{
+    "message": "请用Java写一个快速排序算法"
+  }'
+```
+
+## 测试示例
+
+```java
+package com.example.springai;
+
+import com.example.springai.service.AiService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class AiServiceTest {
+    
+    @Autowired
+    private AiService aiService;
+    
+    @Test
+    void testChat() {
+        String response = aiService.chat("你好，请介绍一下Spring AI");
+        assertNotNull(response);
+        assertFalse(response.isEmpty());
+    }
+    
+    @Test
+    void testChatWithSpecificModel() {
+        String response = aiService.chat("你好，请介绍一下Spring AI", "openai");
+        assertNotNull(response);
+        assertFalse(response.isEmpty());
+    }
+    
+    @Test
+    void testCodeReview() {
+        String javaCode = """
+            public class Example {
+                public void method() {
+                    String str = new String();
+                }
+            }
+            """;
+        
+        String review = aiService.reviewCode("Java", javaCode);
+        assertNotNull(review);
+        assertTrue(review.contains("建议") || review.contains("改进"));
+    }
+    
+    @Test
+    void testCodeReviewWithDeepSeek() {
+        String javaCode = """
+            public class Example {
+                public void method() {
+                    String str = new String();
+                }
+            }
+            """;
+        
+        String review = aiService.reviewCode("Java", javaCode, "deepseek");
+        assertNotNull(review);
+        assertTrue(review.contains("建议") || review.contains("改进"));
+    }
+    
+    @Test
+    void testGetAvailableModels() {
+        List<String> models = aiService.getAvailableModels();
+        assertNotNull(models);
+        assertFalse(models.isEmpty());
+        assertTrue(models.contains("openai"));
+        assertTrue(models.contains("anthropic"));
+        assertTrue(models.contains("deepseek"));
+    }
+    
+    @Test
+    void testGetModelInfo() {
+        Map<String, Object> openaiInfo = aiService.getModelInfo("openai");
+        assertNotNull(openaiInfo);
+        assertEquals("OpenAI", openaiInfo.get("provider"));
+        
+        Map<String, Object> anthropicInfo = aiService.getModelInfo("anthropic");
+        assertNotNull(anthropicInfo);
+        assertEquals("Anthropic", anthropicInfo.get("provider"));
+    }
+}
+```
+
+## Docker部署
+
+### Dockerfile
+
+```dockerfile
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY target/spring-ai-demo-1.0.0.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+```
+
+### docker-compose.yml
+
+```yaml
+version: '3.8'
+
+services:
+  spring-ai-app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT}
+      - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME}
+    depends_on:
+      - postgres
+  
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: springai
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+```
+
+## 最佳实践
+
+### 1. 错误处理
+
+```java
+@ControllerAdvice
+public class AiExceptionHandler {
+    
+    @ExceptionHandler(AiException.class)
+    public ResponseEntity<ErrorResponse> handleAiException(AiException e) {
+        ErrorResponse error = new ErrorResponse(
+            "AI_SERVICE_ERROR",
+            e.getMessage(),
+            System.currentTimeMillis()
+        );
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                           .body(error);
+    }
+}
+```
+
+### 2. 缓存策略
+
+```java
+@Service
+public class CachedAiService {
+    
+    private final AiService aiService;
+    private final CacheManager cacheManager;
+    
+    @Cacheable(value = "ai-responses", key = "#message")
+    public String chat(String message) {
+        return aiService.chat(message);
+    }
+}
+```
+
+### 3. 监控和指标
+
+```java
+@Component
+public class AiMetrics {
+    
+    private final MeterRegistry meterRegistry;
+    
+    public AiMetrics(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+    }
+    
+    public void recordAiCall(String model, long duration) {
+        Timer.Sample sample = Timer.start(meterRegistry);
+        sample.stop(Timer.builder("ai.calls")
+                        .tag("model", model)
+                        .register(meterRegistry));
+    }
+}
+```
+
+## 总结
+
+Spring AI为Spring生态系统提供了强大的AI集成能力，通过统一的API和自动配置，大大简化了AI功能的集成。它支持多种AI服务商，提供了向量数据库集成、提示工程等高级功能，是构建AI增强应用的理想选择。
+
+### 模型切换功能亮点
+
+1. **多模型支持** - 支持OpenAI、Anthropic、DeepSeek等多种AI服务商
+2. **动态切换** - 可以在运行时指定使用不同的AI模型
+3. **模型对比** - 提供模型性能对比功能，帮助选择最适合的模型
+4. **灵活配置** - 每个模型可以独立配置参数和选项
+5. **向后兼容** - 保持原有API的兼容性，model参数为可选
+
+### 使用建议
+
+- **代码相关任务** - 推荐使用DeepSeek模型，其在代码理解和生成方面表现优秀
+- **文档生成任务** - 推荐使用Anthropic模型，其文档写作能力较强
+- **通用对话任务** - 可以根据需求选择OpenAI或Anthropic模型
+- **性能优化** - 使用模型对比功能测试不同模型的响应时间和质量
+
+通过本文的示例，你可以快速上手Spring AI，构建支持多模型切换的AI应用。记住要合理使用缓存、监控和错误处理，确保应用的稳定性和性能。 
