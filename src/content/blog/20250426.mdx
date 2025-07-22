@@ -125,6 +125,156 @@ public enum AiModel {
 }
 ```
 
+## 不同模型的 ChatClient 配置实践
+
+在实际项目中，通常需要根据不同的 AI 服务商（如 OpenAI、Anthropic、DeepSeek）分别配置 ChatClient，以便灵活切换和独立管理参数。下面详细介绍如何实现这一目标。
+
+### 1. 配置文件分离
+
+在 `application.yml` 中为每个模型单独配置参数：
+
+```yaml
+spring:
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      base-url: https://api.openai.com/v1
+      chat:
+        options:
+          model: gpt-4
+          temperature: 0.7
+          max-tokens: 2000
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      base-url: https://api.anthropic.com/v1
+      chat:
+        options:
+          model: claude-3-sonnet-20240229
+          temperature: 0.7
+          max-tokens: 2000
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY}
+      base-url: https://api.deepseek.com/v1
+      chat:
+        options:
+          model: deepseek-chat
+          temperature: 0.7
+          max-tokens: 2000
+```
+
+### 2. Java 配置类细化
+
+为每个模型注册独立的 ChatClient Bean，分别注入各自的配置：
+
+```java
+@Configuration
+public class AiConfig {
+
+    @Bean("openaiChatClient")
+    public ChatClient openaiChatClient(OpenAiChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
+    }
+
+    @Bean("anthropicChatClient")
+    public ChatClient anthropicChatClient(AnthropicChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
+    }
+
+    @Bean("deepseekChatClient")
+    public ChatClient deepseekChatClient(DeepSeekChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
+    }
+}
+```
+
+> 说明：  
+> `OpenAiChatClientProperties`、`AnthropicChatClientProperties`、`DeepSeekChatClientProperties` 是类型安全的配置类，分别映射到 `spring.ai.openai`、`spring.ai.anthropic`、`spring.ai.deepseek` 配置。你可以用 `@ConfigurationProperties` 注解实现自动绑定。
+
+### 3. Service 层动态选择
+
+在 Service 层通过 `@Qualifier` 注入不同的 ChatClient，实现动态切换：
+
+```java
+@Service
+public class AiService {
+
+    private final Map<String, ChatClient> modelClients;
+
+    public AiService(
+        @Qualifier("openaiChatClient") ChatClient openaiClient,
+        @Qualifier("anthropicChatClient") ChatClient anthropicClient,
+        @Qualifier("deepseekChatClient") ChatClient deepseekClient
+    ) {
+        this.modelClients = Map.of(
+            "openai", openaiClient,
+            "anthropic", anthropicClient,
+            "deepseek", deepseekClient
+        );
+    }
+
+    public String chat(String message, String model) {
+        ChatClient client = modelClients.getOrDefault(model, modelClients.get("openai"));
+        // 组装 Prompt 并调用 client ...
+    }
+}
+```
+
+### 4. 配置属性类建议
+
+以 OpenAI 为例：
+
+```java
+@ConfigurationProperties(prefix = "spring.ai.openai")
+public class OpenAiChatClientProperties {
+    private String apiKey;
+    private String baseUrl;
+    private Chat chat;
+    // getter/setter
+
+    public static class Chat {
+        private Options options;
+        // getter/setter
+
+        public static class Options {
+            private String model;
+            private double temperature;
+            private int maxTokens;
+            // getter/setter
+        }
+    }
+}
+```
+> 其他模型同理，分别建配置类。
+
+---
+
+### 实践总结
+
+- 每个模型单独配置参数，灵活独立。
+- 每个模型单独注册 ChatClient Bean。
+- Service 层通过 Map 动态选择 ChatClient。
+- 配置类用 `@ConfigurationProperties` 类型安全绑定。
+
+通过这种方式，可以实现真正的多模型独立配置和灵活切换，满足企业级应用对多 AI 服务商集成的需求。
+
 ## 项目结构示例
 
 ```
@@ -266,46 +416,49 @@ public class SpringAiApplication {
 
 ### 2. AI配置类
 
+在多模型场景下，推荐为每个模型注册独立的 ChatClient Bean，分别注入各自的配置，实现灵活切换和独立管理参数：
+
 ```java
-package com.example.springai.config;
-
-import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.embedding.EmbeddingClient;
-import org.springframework.ai.vectorstore.VectorStore;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-
 @Configuration
 public class AiConfig {
-    
-    @Bean
-    @Primary
-    public ChatClient chatClient(ChatClient.Builder builder) {
-        return builder.build();
-    }
-    
+
     @Bean("openaiChatClient")
-    public ChatClient openaiChatClient(ChatClient.Builder builder) {
-        return builder.build();
+    public ChatClient openaiChatClient(OpenAiChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
     }
-    
+
     @Bean("anthropicChatClient")
-    public ChatClient anthropicChatClient(ChatClient.Builder builder) {
-        return builder.build();
+    public ChatClient anthropicChatClient(AnthropicChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
     }
-    
+
     @Bean("deepseekChatClient")
-    public ChatClient deepseekChatClient(ChatClient.Builder builder) {
-        return builder.build();
-    }
-    
-    @Bean
-    public EmbeddingClient embeddingClient(EmbeddingClient.Builder builder) {
-        return builder.build();
+    public ChatClient deepseekChatClient(DeepSeekChatClientProperties properties) {
+        return ChatClient.builder()
+            .baseUrl(properties.getBaseUrl())
+            .apiKey(properties.getApiKey())
+            .model(properties.getChat().getOptions().getModel())
+            .temperature(properties.getChat().getOptions().getTemperature())
+            .maxTokens(properties.getChat().getOptions().getMaxTokens())
+            .build();
     }
 }
 ```
+
+> 说明：  
+> `OpenAiChatClientProperties`、`AnthropicChatClientProperties`、`DeepSeekChatClientProperties` 是类型安全的配置类，分别映射到 `spring.ai.openai`、`spring.ai.anthropic`、`spring.ai.deepseek` 配置。你可以用 `@ConfigurationProperties` 注解实现自动绑定。
 
 ### 3. AI服务类
 
