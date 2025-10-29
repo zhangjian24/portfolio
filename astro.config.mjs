@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 import rehypeToc from '@jsdevtools/rehype-toc'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeMermaid  from 'rehype-mermaid'
 
 import expressiveCode from 'astro-expressive-code';
 import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
@@ -20,6 +21,7 @@ export default defineConfig({
       rehypeSlug,
       [rehypeAutolinkHeadings, { behavior: 'prepend' }],
 			[rehypeToc, { headings: ['h1','h2', 'h3'] }],
+      rehypeMermaid,
 		],
 	},
 });
