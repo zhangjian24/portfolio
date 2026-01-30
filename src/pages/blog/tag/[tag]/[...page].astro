@@ -26,7 +26,7 @@ const params = Astro.params;
 
 <BaseLayout title={"Blog - " + params.tag} sideBarActiveItemID="blog">
   <div class="mb-5">
-    <div class="text-3xl w-full font-bold">Blog - {params.tag}</div>
+    <div class="text-3xl w-full font-bold"><a href="/blog/">博客</a> - {params.tag}</div>
   </div>
   {
     page.data.length === 0 ? (
@@ -54,10 +54,10 @@ const params = Astro.params;
     )
   }
 
-  <div class="flex justify-between">
+  <div class="flex justify-between items-center my-10 mx-5">
     {
       page.url.prev ? (
-        <a href={page.url.prev} class="btn btn-ghost my-10 mx-5">
+        <a href={page.url.prev} class="btn btn-ghost">
           {" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
@@ -74,9 +74,10 @@ const params = Astro.params;
         <div />
       )
     }
+    <div>{page.currentPage} / {page.lastPage}</div>
     {
       page.url.next ? (
-        <a href={page.url.next} class="btn btn-ghost my-10 mx-5">
+        <a href={page.url.next} class="btn btn-ghost">
           下一页{" "}
           <svg
             class="h-6 w-6 fill-current md:h-8 md:w-8"
