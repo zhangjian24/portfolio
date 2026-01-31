@@ -1,3 +1,11 @@
+---
+title: "如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
+description: "如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
+pubDate: 2026-01-31
+heroImage: '/image/logo.svg'
+tags: ["AI", "Qwen"]
+---
+
 # 如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用
 
 随着人工智能技术的快速发展，大语言模型已成为现代应用开发的重要组成部分。阿里云的通义千问（Qwen）系列模型凭借其卓越的性能和丰富的功能，受到了广泛关注。本文将详细介绍如何利用 Qwen 模型的 OpenAI 兼容 API 构建一个完整的 AI 聊天应用。
