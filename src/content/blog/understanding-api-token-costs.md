@@ -93,5 +93,7 @@ API费用与Token数量成正比。一个包含1000个Token的请求（输入+�
 
 - **GitHub仓库地址**：[https://github.com/jianzhang96/llm/tree/main/qwen-chatbot](https://github.com/jianzhang96/llm/tree/main/qwen-chatbot)
 
+[https://gitee.com/codehub/llm/tree/main/qwen-chatbot](https://gitee.com/codehub/llm/tree/main/qwen-chatbot)
+
 该项目展示了如何在实际应用中监控Token使用，为开发者提供了实用的成本优化参考。
 ![](https://img.jianzhang.cc/2026/01/6928ea31bb39ace945b15a9646e4406c.png)
