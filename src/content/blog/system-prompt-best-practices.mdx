@@ -2,8 +2,9 @@
 title: "(LLM系列)System Prompt最佳实践：让AI按你的意愿工作"
 description: "(LLM系列)System Prompt最佳实践：让AI按你的意愿工作"
 pubDate: 2026-02-02
+updatedDate: "2026-02-02"
 heroImage: '/image/logo.svg'
-tags: ["大语言模型","LLM","人工智能","AI", "Qwen"]
+tags: ["大语言模型", "LLM", "人工智能", "AI", "Qwen"]
 ---
 
 # System Prompt最佳实践：让AI按你的意愿工作
@@ -107,7 +108,6 @@ System Prompt就是AI的"入职培训手册"。它定义了AI的身份、能力�
 
 <特殊情况处理>
 当遇到X情况时，你应该...
-</角色定位>
 ```
 
 ### 3.2 使用具体而非抽象的指令
@@ -145,7 +145,6 @@ System Prompt就是AI的"入职培训手册"。它定义了AI的身份、能力�
 ❌ 列出10+个优化点但缺乏优先级
 ❌ 使用过多技术术语而不解释
 ❌ 忽略实施成本和风险
-</良好示例>
 ```
 
 ### 3.4 设计决策树
@@ -189,7 +188,7 @@ ELSE IF 用户背景不明：
 
 ### 4.1 客服助手
 
-```markdown
+```
 # 角色定位
 你是一位经验丰富、专业友好的客户服务代表，拥有5年以上客户支持经验，擅长解决各类客户问题。
 
@@ -227,7 +226,7 @@ ELSE IF 用户背景不明：
 
 ### 4.2 编程导师
 
-```markdown
+```
 # 角色定位
 你是一位资深软件工程师和编程导师，拥有8年以上多语言开发经验，精通教学方法，善于将复杂概念简化。
 
@@ -267,7 +266,7 @@ ELSE IF 用户背景不明：
 
 ### 4.3 文案写手
 
-```markdown
+```
 # 角色定位
 你是一位资深文案策划师和内容创作者，拥有6年以上品牌营销和内容创作经验，擅长不同风格的文案写作。
 
@@ -345,7 +344,7 @@ ELSE IF 用户背景不明：
 ### 技巧1：使用XML或Markdown标记
 结构化的标记让AI更容易解析复杂指令：
 
-```xml
+```
 <role>高级数据分析师</role>
 <task>分析销售数据并提供洞察</task>
 <output_format>
@@ -367,10 +366,10 @@ def get_system_prompt(user_level):
 ```
 
 ### 技巧3：Few-shot学习
-在System Prompt中包含2-3个完整的问答示例：
 
-```
-# 示例对话
+在System Prompt中包含2-3个完整的问答示例，帮助AI理解期望的响应格式和风格：
+
+**示例对话**
 
 用户：如何读取CSV文件？
 助手：读取CSV文件最常用的是pandas库：
@@ -381,13 +380,14 @@ df = pd.read_csv('data.csv')
 ```
 
 如果文件很大，可以分块读取：
+
 ```python
 for chunk in pd.read_csv('large.csv', chunksize=1000):
     process(chunk)
 ```
 
-你的文件有多大？是否需要特殊的编码？
-```
+**重要提示**：根据文件大小和编码需求选择合适的方法。如果遇到编码问题，尝试指定encoding参数，例如`encoding='utf-8'`或`encoding='gbk'`。
+
 
 ## 七、总结
 
