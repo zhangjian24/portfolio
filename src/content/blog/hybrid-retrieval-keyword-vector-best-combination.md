@@ -1,5 +1,5 @@
 ---
-title: "混合检索：关键词 + 向量的最佳组合"
+title: "RAG混合检索：关键词 + 向量的最佳组合"
 pubDate: "2026-03-01"
 updatedDate: "2026-03-01"
 heroImage: '/image/logo.svg'
