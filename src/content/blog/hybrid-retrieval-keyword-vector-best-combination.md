@@ -1,7 +1,7 @@
 ---
 title: "RAG混合检索：关键词 + 向量的最佳组合"
-pubDate: "2026-03-01"
-updatedDate: "2026-03-01"
+pubDate: "2026-03-23"
+updatedDate: "2026-03-23"
 heroImage: '/image/logo.svg'
 tags: ["RAG", "LangChain", "向量检索", "BM25", "混合检索", "Reranker", "LLM应用", "工程实践"]
 description: "在RAG系统中，没有哪一种检索方式是万能的。本文从原理出发，结合LangChain工程实践，深入拆解混合检索的架构设计与场景调参，带你找到关键词与向量的黄金配比。"
