@@ -190,3 +190,28 @@ Place images in `src/assets/` or use existing images from `public/`.
 5. Test with `pnpm dev` before building
 
 Build完成后运行 `pnpm build` 并用 `pnpm preview` 验证输出。
+
+---
+
+## Markdown to DOCX Conversion
+
+Convert markdown files to Word documents using the built-in script:
+
+```bash
+# Convert a single file (output name auto-generated from input)
+pnpm md2docx src/content/blog/article.md
+# Generates: src/content/blog/article.docx
+
+# Specify custom output path
+pnpm md2docx src/content/blog/article.md output.docx
+```
+
+The script (`scripts/md2docx.js`) supports:
+- Headings (H1-H4)
+- Bold, italic, inline code
+- Code blocks with monospace font
+- Tables with header highlighting
+- Blockquotes
+- Bullet and numbered lists
+- Horizontal rules
+- Links

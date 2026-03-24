@@ -10,7 +10,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "md2docx": "node scripts/md2docx.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.0.3",
@@ -22,6 +23,7 @@
     "astro-expressive-code": "^0.38.1",
     "daisyui": "^4.4.10",
     "dayjs": "^1.11.9",
+    "docx": "^8.5.0",
     "playwright": "^1.55.0",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-mermaid": "^3.0.0",
