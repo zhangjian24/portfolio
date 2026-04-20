@@ -1,217 +1,57 @@
-# AGENTS.md - Portfolio Development Guide
+# AGENTS.md - Portfolio
 
-## Project Overview
-
-This is an Astro-based personal portfolio website using:
-- **Framework**: Astro 4.x with TypeScript
-- **Styling**: TailwindCSS with DaisyUI
-- **Package Manager**: pnpm
-- **Type Checking**: TypeScript (strictNullChecks enabled)
-
----
-
-## Build Commands
+## Commands
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server (hot reload)
-pnpm dev
-pnpm start        # alias for astro dev
-
-# Build for production
-pnpm build        # outputs to dist/
-
-# Preview production build
-pnpm preview
-
-# Type check
-pnpm astro check  # runs astro with --check flag
+pnpm dev          # Dev server (hot reload)
+pnpm build        # Build to dist/
+pnpm preview      # Preview build
+pnpm astro check  # Type check
+pnpm md2docx <file>  # Convert MD/MDX to DOCX
 ```
 
-**Note**: This project has no test framework configured. To add tests, consider installing Vitest or Playwright.
+## Paths
 
----
+- **Images**: `public/image/` (NOT `src/assets/`)
+- **Site config**: `src/config.ts` (SITE, SITE_TITLE, SITE_DESCRIPTION)
+- **Content schemas**: `src/content/config.ts` (blog, store collections)
+- **Layouts**: `src/layouts/*.astro`
+- **Components**: `src/components/*.astro`
+- **Pages**: `src/pages/` (file-based routing)
 
-## Code Style Guidelines
+## Content Collections
 
-### General Rules
+Schema in `src/content/config.ts`:
+- `blog`: title, description, pubDate, heroImage, badge, tags
+- `store`: title, description, pricing, oldPricing, checkoutUrl, custom_link
 
-- Use 2 spaces for indentation
-- Use single quotes for strings in JavaScript/TypeScript
-- Use kebab-case for file names (e.g., `side-bar.astro`, not `SideBar.astro`)
-- Use PascalCase for component names in code (e.g., `Card.astro`)
-- Use trailing commas in arrays and objects
-- Maximum line length: 120 characters
+Add blog posts as `.md` or `.mdx` in `src/content/blog/`.
 
-### TypeScript
+## Layouts
 
-- Enable strictNullChecks in tsconfig (already enabled)
-- Use explicit types for function parameters and return types
-- Avoid `any` - use `unknown` when type is truly unknown
-- Use optional chaining (`?.`) and nullish coalescing (`??`) when appropriate
+- `BaseLayout`: Standard pages (includes SideBar, Header, Footer)
+- `PostLayout`: Blog articles (wraps content in `prose` class)
+- `StoreItemLayout`: Product pages
+- `CVLayout` / `CVLayout_en`: Resume pages (independent)
 
-```typescript
-// Good
-function getTitle(title: string | undefined): string {
-  return title ?? 'Default Title';
-}
-
-// Avoid
-function getTitle(title: string | undefined): string {
-  return title || 'Default Title';
-}
-```
-
-### Astro Components
-
-- Props interface should be defined using TypeScript
-- Frontmatter should come first in the file
-- Imports from `astro:assets` for images
+## Image Usage
 
 ```astro
----
-interface Props {
-  title: string;
-  img: ImageMetadata;
-  desc?: string;
-  url?: string;
-  badge?: string;
-  tags?: string[];
-  target?: string;
-}
+<!-- For images in public/image/ - direct path reference -->
+<img src="/image/logo.png" alt="Logo" />
 
-const { title, img, desc = '', url, badge, tags, target = '_blank' } = Astro.props;
+<!-- For Astro optimization - import from astro:assets -->
 import { Image } from 'astro:assets';
----
 ```
 
-### Imports
+## MDX Features
 
-Order imports consistently:
-1. Astro built-ins (`astro:assets`, `astro:content`, etc.)
-2. External libraries
-3. Internal aliases (`@components/*`, `@layouts/*`)
-4. Relative imports
+- Code highlighting: built-in via astro-expressive-code
+- Mermaid diagrams: use ` ```mermaid ` code blocks
+- TOC: auto-generated from h1-h3 headings
+- Styling: use `prose prose-lg` classes in PostLayout
 
-```typescript
-import { Image } from 'astro:assets';
-import type { CollectionEntry } from 'astro:content';
-import BaseHead from '../components/BaseHead.astro';
-```
+## Important URLs
 
-### TailwindCSS / DaisyUI
-
-- Use utility classes in component markup
-- Use DaisyUI components when available
-- Keep custom CSS minimal (use global.css for site-wide styles)
-
-```astro
-<!-- Good -->
-<div class="card bg-base-100 shadow-xl hover:scale-[102%] transition">
-  <div class="card-body">
-    <h2 class="card-title">{title}</h2>
-  </div>
-</div>
-```
-
-### File Organization
-
-```
-src/
-├── components/     # Reusable UI components (.astro)
-├── layouts/        # Page layouts (.astro)
-├── pages/          # Route-based pages (.astro)
-├── content/        # Markdown/MDX content (blog, store)
-├── lib/            # Utility functions (.ts)
-├── styles/         # Global styles
-└── config.ts       # Global site configuration
-```
-
-### Naming Conventions
-
-- **Components**: `ComponentName.astro` (PascalCase)
-- **Utilities**: `camelCase.ts`
-- **Constants**: `SCREAMING_SNAKE_CASE` in config.ts
-- **Props**: Use `camelCase` and type with interface
-
-### Error Handling
-
-- Use try/catch for async operations in API routes
-- Return appropriate error responses
-- Log errors for debugging
-- Handle edge cases gracefully with fallback UI
-
-### Content Collections
-
-- Define schemas in `src/content/config.ts`
-- Use Zod for validation (Astro built-in)
-- Follow frontmatter conventions in markdown files
-
----
-
-## TypeScript Path Aliases
-
-Configured in `tsconfig.json`:
-- `@components/*` -> `src/components/*`
-- `@layouts/*` -> `src/layouts/*`
-
-Use these instead of relative paths when possible.
-
----
-
-## Working with Images
-
-Use Astro's built-in image optimization:
-
-```astro
-import { Image } from 'astro:assets';
-
-<Image 
-  width={750} 
-  height={422} 
-  format="webp" 
-  src={img} 
-  alt={title} 
-/>
-```
-
-Place images in `src/assets/` or use existing images from `public/`.
-
----
-
-## Development Workflow
-
-1. Create new pages in `src/pages/`
-2. Create reusable components in `src/components/`
-3. Add content to `src/content/blog/` or `src/content/store/`
-4. Update `src/config.ts` for site-wide configuration
-5. Test with `pnpm dev` before building
-
-Build完成后运行 `pnpm build` 并用 `pnpm preview` 验证输出。
-
----
-
-## Markdown to DOCX Conversion
-
-Convert markdown files to Word documents using the built-in script:
-
-```bash
-# Convert a single file (output name auto-generated from input)
-pnpm md2docx src/content/blog/article.md
-# Generates: src/content/blog/article.docx
-
-# Specify custom output path
-pnpm md2docx src/content/blog/article.md output.docx
-```
-
-The script (`scripts/md2docx.js`) supports:
-- Headings (H1-H4)
-- Bold, italic, inline code
-- Code blocks with monospace font
-- Tables with header highlighting
-- Blockquotes
-- Bullet and numbered lists
-- Horizontal rules
-- Links
+- RSS: `/rss.xml`
+- Sitemap: `/sitemap-index.xml`
