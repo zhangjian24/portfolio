@@ -48,6 +48,8 @@ import { Image } from 'astro:assets';
 
 - Code highlighting: built-in via astro-expressive-code
 - Mermaid diagrams: use ` ```mermaid ` code blocks
+- Supported diagram types: flowchart, stateDiagram-v2, sequenceDiagram, pie, er, gantt, classDiagram
+- **NOT supported**: quadrantChart, tree, mindmap, gitgraph, xychart
 - TOC: auto-generated from h1-h3 headings
 - Styling: use `prose prose-lg` classes in PostLayout
 
