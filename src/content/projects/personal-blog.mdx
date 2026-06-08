@@ -1,0 +1,73 @@
+---
+title: "个人博客"
+description: "采用 Astro 框架搭建的静态博客，基于 TailwindCSS 与 DaisyUI 打造响应式阅读体验，支持 RSS 订阅、标签与全站搜索。技术栈：astro-expressive-code（代码高亮 + 行号）、rehype-mermaid（架构图渲染）、Playwright 终端录像。"
+pubDate: 2025-01-01
+order: 1
+projectSlug: "personal-blog"
+url: "/"
+urlLabel: "浏览博客"
+repoUrl: "https://github.com/zhangjian24/portfolio"
+repoUrlLabel: "源代码"
+badge: "持续更新"
+tags: ["Astro", "TailwindCSS", "DaisyUI", "静态博客"]
+---
+
+本博客（[portfolio.jianzhang.cc](https://portfolio.jianzhang.cc)）基于 **Astro** 框架搭建，底层使用 **TailwindCSS + DaisyUI** 实现响应式 UI，配合完整的 **rehype** 插件矩阵提供代码高亮、Mermaid 图表渲染、自动 TOC 等写作增强能力。
+
+## 架构流程
+
+```mermaid
+flowchart LR
+    subgraph Src[内容源]
+        MD[Markdown / MDX<br/>src/content/]
+    end
+    subgraph Astro[Astro 构建 / MDX 插件链]
+        MDX["@astrojs/mdx"]
+        CODE["astro-expressive-code<br/>行号 + 高亮"]
+        MER["rehype-mermaid<br/>流程图 / 时序图"]
+        TOC["rehype-toc + slug<br/>自动目录"]
+    end
+    subgraph Out["静态产物"]
+        HTML["HTML 页面"]
+        RSS["RSS 订阅 /rss.xml"]
+        SITEMAP["站点地图 /sitemap-index.xml"]
+    end
+    Src --> MDX
+    MDX --> CODE
+    MDX --> MER
+    MDX --> TOC
+    Astro --> Out
+```
+
+## 核心特性
+
+- **响应式阅读**：DaisyUI drawer 侧边栏 + 自适应排版，桌面 / 移动端一致体验
+- **代码展示**：Expressive Code 高亮，支持 diff 语法、行号、标题栏
+- **图文并茂**：rehype-mermaid 嵌入流程图、UML 时序图、饼图等
+- **TOC 导航**：文章 h1-h3 自动生成目录，rehype-slug 锚点快速跳转
+- **RSS / Sitemap**：自动生成 `/rss.xml` 与 `/sitemap-index.xml`
+- **一键部署**：Netlify CI —— git push 即发布
+
+## 内容生态
+
+| 分类 | 文章数 | 说明 |
+|---|---|---|
+| LLM / AI | 20+ | RAG 实战、提示词工程、模型评估 |
+| 技术教程 | 10+ | Next.js SSR、Astro 插件开发 |
+| 项目复盘 | 5+ | Java 升级、急救物资系统、开发工具链 |
+| 随笔 / 分享 | 若干 | 行业观察、读书笔记 |
+
+## 写作工作流
+
+通过 `pnpm md2docx <file>` 一键将 MDX 转换为 DOCX，方便导出存档或提交审阅。脚本位于 `scripts/md2docx.mjs`。
+
+```bash
+# 将一篇 MDX 文章导出为 Word 文档
+pnpm md2docx src/content/blog/example.mdx
+```
+
+## 后续规划
+
+- 集成评论系统（Giscus / Twikoo），支持读者互动
+- 接入访问统计（Umami / Plausible），了解内容偏好
+- 增加全站搜索（Pagefind），提升信息检索效率

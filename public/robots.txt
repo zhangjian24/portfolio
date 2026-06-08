@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /cv/
 
-Sitemap: https://portfolio.jianzhang.site/sitemap-index.xml
+Sitemap: https://portfolio.jianzhang.cc/sitemap-index.xml

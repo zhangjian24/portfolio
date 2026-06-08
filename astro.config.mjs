@@ -12,7 +12,10 @@ import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers'
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://portfolio.jianzhang.site',
+  site: 'https://portfolio.jianzhang.cc',
+  image: {
+    domains: ['img.jianzhang.cc'],
+  },
   integrations: [expressiveCode({
     plugins: [pluginLineNumbers()],
   }), mdx(), sitemap(), tailwind(), ],

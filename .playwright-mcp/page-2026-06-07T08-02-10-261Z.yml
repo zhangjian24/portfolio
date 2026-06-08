@@ -1,0 +1,73 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - checkbox
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - img [ref=e8] [cursor=pointer]
+        - link "健兼" [ref=e11] [cursor=pointer]:
+          - /url: /
+      - main [ref=e13]:
+        - main [ref=e14]:
+          - article [ref=e15]:
+            - img "个人博客" [ref=e16]
+            - heading "个人博客" [level=1] [ref=e17]
+            - generic [ref=e18]: 持续更新
+            - generic [ref=e19]: Astro
+            - generic [ref=e20]: TailwindCSS
+            - generic [ref=e21]: DaisyUI
+            - generic [ref=e22]: 静态博客
+            - navigation:
+              - list
+            - link "源代码" [ref=e26] [cursor=pointer]:
+              - /url: https://github.com/zhangjian24/portfolio
+              - img [ref=e27]
+              - text: 源代码
+      - contentinfo [ref=e29]:
+        - generic [ref=e30]: © 2026 Jian Zhang
+        - generic [ref=e31]:
+          - text: Developed by
+          - link "Jian Zhang" [ref=e32] [cursor=pointer]:
+            - /url: https://manuelernestog.github.io
+          - text: using
+          - link "Astrofy Template ⚡️" [ref=e33] [cursor=pointer]:
+            - /url: https://astrofy-template.netlify.app/
+    - generic:
+      - complementary:
+        - generic:
+          - link:
+            - /url: /
+        - list:
+          - listitem:
+            - link "首页":
+              - /url: /
+          - listitem:
+            - link "项目":
+              - /url: /projects
+          - listitem:
+            - link "博客":
+              - /url: /blog/
+        - generic:
+          - link "wechat":
+            - /url: /image/qrcode_for_gh_70a30ad66078_258.jpg
+            - img
+          - link "Github":
+            - /url: https://github.com/zhangjian24/portfolio
+            - img
+          - link "RSS Feed":
+            - /url: /rss.xml
+            - img
+  - generic [ref=e36]:
+    - button "Menu" [ref=e37]:
+      - img [ref=e39]
+      - generic: Menu
+    - button "Inspect" [ref=e43]:
+      - img [ref=e45]
+      - generic: Inspect
+    - button "Audit" [ref=e47]:
+      - generic [ref=e48]:
+        - img [ref=e49]
+        - img [ref=e52]
+      - generic: Audit
+    - button "Settings" [ref=e55]:
+      - img [ref=e57]
+      - generic: Settings

@@ -1,0 +1,1177 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - checkbox
+    - generic [ref=e3]:
+      - generic [ref=e5]:
+        - img [ref=e8] [cursor=pointer]
+        - link "健兼" [ref=e11] [cursor=pointer]:
+          - /url: /
+      - main [ref=e13]:
+        - main [ref=e14]:
+          - article [ref=e15]:
+            - img "闲置一张 RTX 4090，每月多赚 ¥500+：国内 GPU 接入 vast.ai 完整指南" [ref=e16]
+            - heading "闲置一张 RTX 4090，每月多赚 ¥500+：国内 GPU 接入 vast.ai 完整指南" [level=1] [ref=e17]
+            - time [ref=e18]: 2026-05-29
+            - link "vast.ai" [ref=e19] [cursor=pointer]:
+              - /url: /blog/tag/vast.ai
+            - link "GPU算力" [ref=e20] [cursor=pointer]:
+              - /url: /blog/tag/GPU算力
+            - link "被动收入" [ref=e21] [cursor=pointer]:
+              - /url: /blog/tag/被动收入
+            - link "FRP" [ref=e22] [cursor=pointer]:
+              - /url: /blog/tag/FRP
+            - link "Mihomo" [ref=e23] [cursor=pointer]:
+              - /url: /blog/tag/Mihomo
+            - link "Clash Meta" [ref=e24] [cursor=pointer]:
+              - /url: /blog/tag/Clash Meta
+            - link "网络代理" [ref=e25] [cursor=pointer]:
+              - /url: /blog/tag/网络代理
+            - link "Shadowsocks" [ref=e26] [cursor=pointer]:
+              - /url: /blog/tag/Shadowsocks
+            - link "Linux运维" [ref=e27] [cursor=pointer]:
+              - /url: /blog/tag/Linux运维
+            - link "闲置变现" [ref=e28] [cursor=pointer]:
+              - /url: /blog/tag/闲置变现
+            - navigation [ref=e30]:
+              - list [ref=e31]:
+                - listitem [ref=e32]:
+                  - link "一、这生意划不划算？先算经济账" [ref=e33] [cursor=pointer]:
+                    - /url: "#一这生意划不划算先算经济账"
+                - listitem [ref=e34]:
+                  - link "二、为什么你的 GPU 连不上 vast.ai？" [ref=e35] [cursor=pointer]:
+                    - /url: "#二为什么你的-gpu-连不上-vastai"
+                - listitem [ref=e36]:
+                  - link "三、整体架构" [ref=e37] [cursor=pointer]:
+                    - /url: "#三整体架构"
+                - listitem [ref=e38]:
+                  - link "四、核心技术拆解" [ref=e39] [cursor=pointer]:
+                    - /url: "#四核心技术拆解"
+                  - list [ref=e40]:
+                    - listitem [ref=e41]:
+                      - link "4.1 FRP 隧道——内网没公网 IP 怎么暴露端口？" [ref=e42] [cursor=pointer]:
+                        - /url: "#41-frp-隧道内网没公网-ip-怎么暴露端口"
+                    - listitem [ref=e43]:
+                      - link "4.2 Shadowsocks——出站流量不被识别为代理" [ref=e44] [cursor=pointer]:
+                        - /url: "#42-shadowsocks出站流量不被识别为代理"
+                    - listitem [ref=e45]:
+                      - link "4.3 TUN 透明代理——Docker 容器也走代理" [ref=e46] [cursor=pointer]:
+                        - /url: "#43-tun-透明代理docker-容器也走代理"
+                    - listitem [ref=e47]:
+                      - link "4.4 Docker daemon 代理——镜像拉取的最后一公里" [ref=e48] [cursor=pointer]:
+                        - /url: "#44-docker-daemon-代理镜像拉取的最后一公里"
+                - listitem [ref=e49]:
+                  - link "五、部署实战" [ref=e50] [cursor=pointer]:
+                    - /url: "#五部署实战"
+                  - list [ref=e51]:
+                    - listitem [ref=e52]:
+                      - link "5.1 先决条件" [ref=e53] [cursor=pointer]:
+                        - /url: "#51-先决条件"
+                    - listitem [ref=e54]:
+                      - link "5.2 配置" [ref=e55] [cursor=pointer]:
+                        - /url: "#52-配置"
+                    - listitem [ref=e56]:
+                      - link "5.3 部署顺序" [ref=e57] [cursor=pointer]:
+                        - /url: "#53-部署顺序"
+                    - listitem [ref=e58]:
+                      - link "5.4 幂等——跑错了？再跑一次" [ref=e59] [cursor=pointer]:
+                        - /url: "#54-幂等跑错了再跑一次"
+                - listitem [ref=e60]:
+                  - link "六、上线运营——怎样让机器租出去" [ref=e61] [cursor=pointer]:
+                    - /url: "#六上线运营怎样让机器租出去"
+                  - list [ref=e62]:
+                    - listitem [ref=e63]:
+                      - link "6.1 创建 Offer" [ref=e64] [cursor=pointer]:
+                        - /url: "#61-创建-offer"
+                    - listitem [ref=e65]:
+                      - link "6.2 定价策略" [ref=e66] [cursor=pointer]:
+                        - /url: "#62-定价策略"
+                    - listitem [ref=e67]:
+                      - link "6.3 Self-test——自己先租一次" [ref=e68] [cursor=pointer]:
+                        - /url: "#63-self-test自己先租一次"
+                    - listitem [ref=e69]:
+                      - link "6.4 运营建议" [ref=e70] [cursor=pointer]:
+                        - /url: "#64-运营建议"
+                - listitem [ref=e71]:
+                  - link "七、FAQ" [ref=e72] [cursor=pointer]:
+                    - /url: "#七faq"
+                  - list [ref=e73]:
+                    - listitem [ref=e74]:
+                      - link "Q1：一张卡能稳定赚多少？" [ref=e75] [cursor=pointer]:
+                        - /url: "#q1一张卡能稳定赚多少"
+                    - listitem [ref=e76]:
+                      - link "Q2：中继服务器需要什么配置？" [ref=e77] [cursor=pointer]:
+                        - /url: "#q2中继服务器需要什么配置"
+                    - listitem [ref=e78]:
+                      - link "Q3：TUN 透明代理会不会影响我正常使用？" [ref=e79] [cursor=pointer]:
+                        - /url: "#q3tun-透明代理会不会影响我正常使用"
+                    - listitem [ref=e80]:
+                      - link "Q4：机器掉线了怎么办？" [ref=e81] [cursor=pointer]:
+                        - /url: "#q4机器掉线了怎么办"
+                    - listitem [ref=e82]:
+                      - link "Q5：vast.ai 怎么提现？" [ref=e83] [cursor=pointer]:
+                        - /url: "#q5vastai-怎么提现"
+                    - listitem [ref=e84]:
+                      - link "Q6：国内电费这么高，还值得吗？" [ref=e85] [cursor=pointer]:
+                        - /url: "#q6国内电费这么高还值得吗"
+                - listitem [ref=e86]:
+                  - link "八、局限与建议" [ref=e87] [cursor=pointer]:
+                    - /url: "#八局限与建议"
+            - paragraph [ref=e88]:
+              - text: 2026 年 5 月，Blackwell GPU 的租赁价格两个月涨了 48%，H100 合约价半年涨了 40%。全球 AI 公司基础设施支出超过
+              - strong [ref=e89]: 6000 亿美元
+              - text: ，NVIDIA 削减了 40% 的游戏卡产能来供应数据中心——高端 GPU 交付周期已排到
+              - strong [ref=e90]: 2027 年
+              - text: 。
+            - paragraph [ref=e91]:
+              - text: 算力租赁市场正在经历一场供需失衡的历史级行情。中国信通院数据显示，2026 年 Q1 国内算力租赁市场规模达
+              - strong [ref=e92]: 680 亿元
+              - text: ，同比增长 62%。
+            - paragraph [ref=e93]: 而你可能有一张 RTX 4090，每天跑 4-6 小时训练任务，剩下 18 小时在空转。电费照付，折旧照算，一分钱没收回来。
+            - paragraph [ref=e94]:
+              - strong [ref=e95]: 一张 RTX 4090，在 vast.ai 上出租，扣除电费和平台抽成后，每月净收入约 ¥350-600
+              - text: 。如果你有 4 张卡，就是 ¥1400-2400/月。
+            - paragraph [ref=e96]: 但有个现实问题：国内的 GPU 服务器连不上 vast.ai。出站被墙，入站没公网 IP。
+            - paragraph [ref=e97]:
+              - text: 本文提供一套
+              - strong [ref=e98]: 已验证的方案
+              - text: ：通过一台 ¥30/月的公网 VPS 做中继，用 FRP 建立端口隧道 + Mihomo TUN 透明代理，让内网 GPU 服务器正常注册到 vast.ai 并开始出租。两条命令，30 分钟部署。
+            - separator [ref=e99]
+            - heading "一、这生意划不划算？先算经济账" [level=2] [ref=e100]
+            - paragraph [ref=e101]: 在动手之前，先搞清楚能赚多少。这不是空口估算——以下是 2026 年 5 月 vast.ai 平台上消费级 GPU 的实际市场数据：
+            - table [ref=e102]:
+              - rowgroup [ref=e103]:
+                - row "GPU 型号 显存 市场时薪 月总收入¹ 月电费² 折旧³ 平台费(20%) 月净利润" [ref=e104]:
+                  - columnheader "GPU 型号" [ref=e105]
+                  - columnheader "显存" [ref=e106]
+                  - columnheader "市场时薪" [ref=e107]
+                  - columnheader "月总收入¹" [ref=e108]
+                  - columnheader "月电费²" [ref=e109]
+                  - columnheader "折旧³" [ref=e110]
+                  - columnheader "平台费(20%)" [ref=e111]
+                  - columnheader "月净利润" [ref=e112]:
+                    - strong [ref=e113]: 月净利润
+              - rowgroup [ref=e114]:
+                - row "RTX 3060 12 GB $0.06-0.10 ~¥200 ~¥100 ~¥80 ~¥40 ~-¥20" [ref=e115]:
+                  - cell "RTX 3060" [ref=e116]
+                  - cell "12 GB" [ref=e117]
+                  - cell "$0.06-0.10" [ref=e118]
+                  - cell "~¥200" [ref=e119]
+                  - cell "~¥100" [ref=e120]
+                  - cell "~¥80" [ref=e121]
+                  - cell "~¥40" [ref=e122]
+                  - cell "~-¥20" [ref=e123]:
+                    - strong [ref=e124]: ~-¥20
+                - row "RTX 3080 10 GB $0.10-0.15 ~¥380 ~¥130 ~¥120 ~¥76 ~¥54" [ref=e125]:
+                  - cell "RTX 3080" [ref=e126]
+                  - cell "10 GB" [ref=e127]
+                  - cell "$0.10-0.15" [ref=e128]
+                  - cell "~¥380" [ref=e129]
+                  - cell "~¥130" [ref=e130]
+                  - cell "~¥120" [ref=e131]
+                  - cell "~¥76" [ref=e132]
+                  - cell "~¥54" [ref=e133]:
+                    - strong [ref=e134]: ~¥54
+                - row "RTX 3090 24 GB $0.20-0.35 ~¥780 ~¥180 ~¥150 ~¥156 ~¥294" [ref=e135]:
+                  - cell "RTX 3090" [ref=e136]
+                  - cell "24 GB" [ref=e137]
+                  - cell "$0.20-0.35" [ref=e138]
+                  - cell "~¥780" [ref=e139]
+                  - cell "~¥180" [ref=e140]
+                  - cell "~¥150" [ref=e141]
+                  - cell "~¥156" [ref=e142]
+                  - cell "~¥294" [ref=e143]:
+                    - strong [ref=e144]: ~¥294
+                - row "RTX 4090 24 GB $0.25-0.50 ~¥1050 ~¥190 ~¥270 ~¥210 ~¥380" [ref=e145]:
+                  - cell "RTX 4090" [ref=e146]:
+                    - strong [ref=e147]: RTX 4090
+                  - cell "24 GB" [ref=e148]
+                  - cell "$0.25-0.50" [ref=e149]:
+                    - strong [ref=e150]: $0.25-0.50
+                  - cell "~¥1050" [ref=e151]:
+                    - strong [ref=e152]: ~¥1050
+                  - cell "~¥190" [ref=e153]:
+                    - strong [ref=e154]: ~¥190
+                  - cell "~¥270" [ref=e155]:
+                    - strong [ref=e156]: ~¥270
+                  - cell "~¥210" [ref=e157]:
+                    - strong [ref=e158]: ~¥210
+                  - cell "~¥380" [ref=e159]:
+                    - strong [ref=e160]: ~¥380
+                - row "RTX 5090 32 GB $0.40-0.70 ~¥1520 ~¥220 ~¥380 ~¥304 ~¥616" [ref=e161]:
+                  - cell "RTX 5090" [ref=e162]
+                  - cell "32 GB" [ref=e163]
+                  - cell "$0.40-0.70" [ref=e164]
+                  - cell "~¥1520" [ref=e165]
+                  - cell "~¥220" [ref=e166]
+                  - cell "~¥380" [ref=e167]
+                  - cell "~¥304" [ref=e168]
+                  - cell "~¥616" [ref=e169]:
+                    - strong [ref=e170]: ~¥616
+            - blockquote [ref=e171]:
+              - paragraph [ref=e172]:
+                - text: ¹ 按 55% 利用率（消费级卡稳态）、30 天、¥7.2/$ 汇率估算
+                - text: ² 电费按 ¥0.8/kWh，含系统功耗（CPU + 主板 + 风扇约 150W）
+                - text: ³ 折旧按 3 年线性分摊
+            - paragraph [ref=e173]:
+              - strong [ref=e174]: 电费是最大变量
+              - text: 。不同的电价，净利润差很大：
+            - table [ref=e175]:
+              - rowgroup [ref=e176]:
+                - row "电价 ¥0.4/kWh ¥0.6/kWh ¥0.8/kWh ¥1.0/kWh" [ref=e177]:
+                  - columnheader "电价" [ref=e178]
+                  - columnheader "¥0.4/kWh" [ref=e179]
+                  - columnheader "¥0.6/kWh" [ref=e180]
+                  - columnheader "¥0.8/kWh" [ref=e181]
+                  - columnheader "¥1.0/kWh" [ref=e182]
+              - rowgroup [ref=e183]:
+                - row "RTX 4090 月净利 ~¥530 ~¥450 ~¥380 ~¥300" [ref=e184]:
+                  - cell "RTX 4090 月净利" [ref=e185]
+                  - cell "~¥530" [ref=e186]
+                  - cell "~¥450" [ref=e187]
+                  - cell "~¥380" [ref=e188]
+                  - cell "~¥300" [ref=e189]
+                - row "回本周期 ~8 个月 ~10 个月 ~12 个月 ~15 个月" [ref=e190]:
+                  - cell "回本周期" [ref=e191]
+                  - cell "~8 个月" [ref=e192]
+                  - cell "~10 个月" [ref=e193]
+                  - cell "~12 个月" [ref=e194]
+                  - cell "~15 个月" [ref=e195]
+            - paragraph [ref=e196]:
+              - strong [ref=e197]: 关键结论
+              - text: ：
+            - list [ref=e198]:
+              - listitem [ref=e199]:
+                - strong [ref=e200]: RTX 3080 以下不值得折腾
+                - text: ——勉强覆盖电费
+              - listitem [ref=e201]:
+                - strong [ref=e202]: RTX 4090 是甜点卡
+                - text: ——费率够高、折旧可控
+              - listitem [ref=e203]:
+                - strong [ref=e204]: 电费超过 ¥1.0/kWh，利润大幅缩水
+                - text: ——注意你的机房电费
+              - listitem [ref=e205]:
+                - strong [ref=e206]: 第一月收益是稳态的 30-40%
+                - text: ——新 Host 需要积累信誉分，别被首月数据劝退
+            - paragraph [ref=e207]:
+              - text: 成本方面，你需要一台
+              - strong [ref=e208]: 中继 VPS
+              - text: （有公网 IP，¥30-70/月，搬瓦工或其他便宜 VPS 即可），这是唯一的额外投入，首月利润就能回本。
+            - separator [ref=e209]
+            - heading "二、为什么你的 GPU 连不上 vast.ai？" [level=2] [ref=e210]
+            - paragraph [ref=e211]: 国内 GPU 服务器注册 vast.ai 要过两道关：
+            - figure [ref=e213]:
+              - code [ref=e215]:
+                - generic [ref=e216]:
+                  - generic [ref=e217]:
+                    - generic: "1"
+                  - generic [ref=e218]: 你的 GPU 服务器 → [出站：被墙] → vast.ai API
+                - generic [ref=e219]:
+                  - generic [ref=e220]:
+                    - generic: "2"
+                  - generic [ref=e221]: vast.ai 租户 → [入站：无公网 IP] → 你的 GPU
+              - button "Copy to clipboard" [ref=e223] [cursor=pointer]
+            - paragraph [ref=e225]:
+              - strong [ref=e226]: 出站问题
+              - text: ：vast.ai 的 agent 需要访问外网 API 进行注册、心跳、拉取容器镜像等操作。国内服务器直接访问会被阻断。
+            - paragraph [ref=e227]:
+              - strong [ref=e228]: 入站问题
+              - text: ：vast.ai 的计费模型是：租户通过 SSH 连接到你的 GPU 服务器上的容器。如果服务器没有公网 IP，租户连不进来，平台就不会让你上线。
+            - paragraph [ref=e229]: 以下是几种常见方案的对比：
+            - table [ref=e230]:
+              - rowgroup [ref=e231]:
+                - row "方案 出站 入站 稳定性 成本 维护" [ref=e232]:
+                  - columnheader "方案" [ref=e233]
+                  - columnheader "出站" [ref=e234]
+                  - columnheader "入站" [ref=e235]
+                  - columnheader "稳定性" [ref=e236]
+                  - columnheader "成本" [ref=e237]
+                  - columnheader "维护" [ref=e238]
+              - rowgroup [ref=e239]:
+                - row "VPN/WireGuard ✅ ❌ 需额外配置 ⚠️ IP 易被封 低 高" [ref=e240]:
+                  - cell "VPN/WireGuard" [ref=e241]
+                  - cell "✅" [ref=e242]
+                  - cell "❌ 需额外配置" [ref=e243]
+                  - cell "⚠️ IP 易被封" [ref=e244]
+                  - cell "低" [ref=e245]
+                  - cell "高" [ref=e246]
+                - row "机场代理 + FRP ⚠️ 机场不稳 ✅ FRP ❌ 机场延迟波动 中 中" [ref=e247]:
+                  - cell "机场代理 + FRP" [ref=e248]
+                  - cell "⚠️ 机场不稳" [ref=e249]
+                  - cell "✅ FRP" [ref=e250]
+                  - cell "❌ 机场延迟波动" [ref=e251]
+                  - cell "中" [ref=e252]
+                  - cell "中" [ref=e253]
+                - row "本方案：SS+TUN+FRP ✅ SS 加密 ✅ FRP TLS ✅ 自建节点可控 低 低" [ref=e254]:
+                  - cell "本方案：SS+TUN+FRP" [ref=e255]:
+                    - strong [ref=e256]: 本方案：SS+TUN+FRP
+                  - cell "✅ SS 加密" [ref=e257]
+                  - cell "✅ FRP TLS" [ref=e258]
+                  - cell "✅ 自建节点可控" [ref=e259]
+                  - cell "低" [ref=e260]
+                  - cell "低" [ref=e261]:
+                    - strong [ref=e262]: 低
+                - row "直接买公网 IP ✅ ✅ ✅ 极高 低" [ref=e263]:
+                  - cell "直接买公网 IP" [ref=e264]
+                  - cell "✅" [ref=e265]
+                  - cell "✅" [ref=e266]
+                  - cell "✅" [ref=e267]
+                  - cell "极高" [ref=e268]
+                  - cell "低" [ref=e269]
+            - paragraph [ref=e270]:
+              - strong [ref=e271]: 本方案的优势
+              - text: ：出站用 Shadowsocks 加密（无特征，不会被 DPI 识别），入站用 FRP 端口隧道（TLS 加密，容器级粒度），全部自建 systemd 服务管理，断线自动重连。
+            - separator [ref=e272]
+            - heading "三、整体架构" [level=2] [ref=e273]
+            - document [ref=e274]:
+              - generic [ref=e276]:
+                - generic [ref=e277]:
+                  - paragraph [ref=e284]: GPU 服务器（内网/防火墙后）
+                  - paragraph [ref=e291]: 中继服务器（公网 VPS，¥30-70/月）
+                - generic [ref=e295]:
+                  - paragraph [ref=e301]: TLS 加密隧道
+                  - paragraph [ref=e307]: 注册 / 心跳
+                  - paragraph [ref=e313]: HTTP_PROXY
+                  - paragraph [ref=e319]: Shadowsocks 加密
+                - generic [ref=e320]:
+                  - paragraph [ref=e327]:
+                    - text: frps（FRP 服务端）
+                    - text: 端口映射 40000-40100
+                  - paragraph [ref=e334]:
+                    - text: Mihomo Shadowsocks 服务端
+                    - text: 加密通信 :8388
+                  - paragraph [ref=e341]:
+                    - text: frpc（FRP 客户端）
+                    - text: 101 路 TCP 隧道
+                  - paragraph [ref=e348]:
+                    - text: Mihomo TUN 透明代理
+                    - text: 接管所有出站流量
+                  - paragraph [ref=e355]:
+                    - text: Docker 引擎
+                    - text: daemon 代理 → Mihomo
+                  - paragraph [ref=e362]:
+                    - text: kaalia（vast.ai agent）
+                    - text: 注册 + 心跳
+                  - paragraph [ref=e369]: vast.ai 平台
+                  - paragraph [ref=e376]: 外网
+            - paragraph [ref=e377]:
+              - strong [ref=e378]: 两条链路，各司其职
+              - text: ：
+            - table [ref=e379]:
+              - rowgroup [ref=e380]:
+                - row "链路 方向 技术 职责" [ref=e381]:
+                  - columnheader "链路" [ref=e382]
+                  - columnheader "方向" [ref=e383]
+                  - columnheader "技术" [ref=e384]
+                  - columnheader "职责" [ref=e385]
+              - rowgroup [ref=e386]:
+                - row "出站 GPU → 外网 Shadowsocks + TUN 透明代理 agent 注册、心跳、docker pull" [ref=e387]:
+                  - cell "出站" [ref=e388]:
+                    - strong [ref=e389]: 出站
+                  - cell "GPU → 外网" [ref=e390]
+                  - cell "Shadowsocks + TUN 透明代理" [ref=e391]
+                  - cell "agent 注册、心跳、docker pull" [ref=e392]
+                - row "入站 外网 → GPU FRP 端口隧道 租户 SSH 连接容器" [ref=e393]:
+                  - cell "入站" [ref=e394]:
+                    - strong [ref=e395]: 入站
+                  - cell "外网 → GPU" [ref=e396]
+                  - cell "FRP 端口隧道" [ref=e397]
+                  - cell "租户 SSH 连接容器" [ref=e398]
+            - paragraph [ref=e399]: 互不依赖，任意一条链路出问题不影响另一条。
+            - separator [ref=e400]
+            - heading "四、核心技术拆解" [level=2] [ref=e401]
+            - heading "4.1 FRP 隧道——内网没公网 IP 怎么暴露端口？" [level=3] [ref=e402]
+            - paragraph [ref=e403]:
+              - strong [ref=e404]: 一句话原理
+              - text: ：frpc（客户端）主动连接 frps（服务端），建立一条长连接 TCP 隧道。外部请求到达 frps 后，通过这条隧道转发到内网。
+            - figure [ref=e406]:
+              - code [ref=e408]:
+                - generic [ref=e409]:
+                  - generic [ref=e410]:
+                    - generic: "1"
+                  - generic [ref=e411]: 外网请求 → frps(公网:40000) → [TLS 隧道] → frpc(内网) → localhost:40000
+              - button "Copy to clipboard" [ref=e413] [cursor=pointer]
+            - paragraph [ref=e415]:
+              - text: frpc 是
+              - strong [ref=e416]: 主动方
+              - text: ，所以内网机器不需要公网 IP 也能暴露端口。
+            - paragraph [ref=e417]:
+              - strong [ref=e418]: 为什么选 FRP 而不是 WireGuard？
+              - text: WireGuard 是三层 VPN，虚拟网卡会暴露 GPU 服务器的整个网络，安全风险高。FRP 是四层端口代理，粒度精确到单个端口。vast.ai 的模型是
+              - strong [ref=e419]: 每个租户一个独立端口
+              - text: （40000-40100），FRP 天然匹配。而且 FRP 的 TLS 加密不影响租户的 SSH 密钥认证流程。
+            - heading "4.2 Shadowsocks——出站流量不被识别为代理" [level=3] [ref=e420]
+            - paragraph [ref=e421]:
+              - strong [ref=e422]: 一句话原理
+              - text: ：数据用 AEAD 算法（aes-256-gcm）加密后发送，外形和随机数据无异，不会被 DPI 设备识别为代理流量。
+            - table [ref=e423]:
+              - rowgroup [ref=e424]:
+                - row "层 组件" [ref=e425]:
+                  - columnheader "层" [ref=e426]
+                  - columnheader "组件" [ref=e427]
+              - rowgroup [ref=e428]:
+                - row "应用层 用户数据（HTTP/HTTPS/任意）" [ref=e429]:
+                  - cell "应用层" [ref=e430]
+                  - cell "用户数据（HTTP/HTTPS/任意）" [ref=e431]
+                - row "加密层 AEAD，每个包独立 IV，无协议特征" [ref=e432]:
+                  - cell "加密层" [ref=e433]
+                  - cell "AEAD，每个包独立 IV，无协议特征" [ref=e434]
+                - row "传输层 TCP/UDP，Shadowsocks 协议封装" [ref=e435]:
+                  - cell "传输层" [ref=e436]
+                  - cell "TCP/UDP，Shadowsocks 协议封装" [ref=e437]
+            - paragraph [ref=e438]:
+              - strong [ref=e439]: 为什么选 SS 不选 V2Ray？
+              - text: V2Ray 功能多但配置复杂。SS 服务端只需一个
+              - code [ref=e440]: listeners
+              - text: 块，一行
+              - code [ref=e441]: password
+              - text: 一行
+              - code [ref=e442]: cipher
+              - text: ，维护成本最低。在这个场景里，GPU 只做一件事——出站访问，SS 足够且最稳定。
+            - heading "4.3 TUN 透明代理——Docker 容器也走代理" [level=3] [ref=e443]
+            - paragraph [ref=e444]:
+              - strong [ref=e445]: 一句话原理
+              - text: ：Mihomo 在系统创建一个 TUN 虚拟网卡，所有 IP 层流量（无论来自哪个进程、哪个 Docker 容器）都被送入这个虚拟网卡，由 Mihomo 做代理决策。
+            - document [ref=e446]:
+              - generic [ref=e448]:
+                - generic [ref=e454]:
+                  - paragraph [ref=e460]: 代理
+                  - paragraph [ref=e466]: 直连
+                - generic [ref=e467]:
+                  - paragraph [ref=e474]:
+                    - text: 进程 A
+                    - text: curl https://vast.ai
+                  - paragraph [ref=e481]: 系统网络栈
+                  - paragraph [ref=e488]:
+                    - text: Docker 容器
+                    - text: docker pull
+                  - paragraph [ref=e495]: TUN 虚拟网卡
+                  - paragraph [ref=e502]: Mihomo 用户态
+                  - paragraph [ref=e509]: 规则匹配
+                  - paragraph [ref=e516]: Shadowsocks → 中继 → 外网
+                  - paragraph [ref=e523]: 中继 IP/内网段 → 直连
+            - paragraph [ref=e524]: 三种代理方式的覆盖范围对比：
+            - table [ref=e525]:
+              - rowgroup [ref=e526]:
+                - row "方式 覆盖范围 局限" [ref=e527]:
+                  - columnheader "方式" [ref=e528]
+                  - columnheader "覆盖范围" [ref=e529]
+                  - columnheader "局限" [ref=e530]
+              - rowgroup [ref=e531]:
+                - row "HTTP_PROXY 环境变量 单个进程 Docker 容器不继承宿主变量" [ref=e532]:
+                  - cell "HTTP_PROXY 环境变量" [ref=e533]
+                  - cell "单个进程" [ref=e534]
+                  - cell "Docker 容器不继承宿主变量" [ref=e535]
+                - row "SOCKS5 代理 支持 SOCKS 的进程 很多命令行工具不支持" [ref=e536]:
+                  - cell "SOCKS5 代理" [ref=e537]
+                  - cell "支持 SOCKS 的进程" [ref=e538]
+                  - cell "很多命令行工具不支持" [ref=e539]
+                - row "TUN 透明代理 整个系统所有流量 Docker 容器自动走代理" [ref=e540]:
+                  - cell "TUN 透明代理" [ref=e541]:
+                    - strong [ref=e542]: TUN 透明代理
+                  - cell "整个系统所有流量" [ref=e543]:
+                    - strong [ref=e544]: 整个系统所有流量
+                  - cell "Docker 容器自动走代理" [ref=e545]
+            - paragraph [ref=e546]:
+              - text: 在 TUN 模式下，无论是
+              - code [ref=e547]: kaalia agent
+              - text: 的注册请求，还是
+              - code [ref=e548]: docker pull
+              - text: 的镜像拉取，都自动走代理——不需要为每个组件单独配置代理地址。
+            - heading "4.4 Docker daemon 代理——镜像拉取的最后一公里" [level=3] [ref=e549]
+            - paragraph [ref=e550]: 虽然 TUN 已经能接管 Docker 容器流量，但 Docker daemon 本身的网络行为（拉取镜像）走的是宿主机网络栈，不经过 TUN。因此需要额外配置：
+            - figure "/etc/systemd/system/docker.service.d/proxy.conf" [ref=e552]:
+              - generic [ref=e554]: /etc/systemd/system/docker.service.d/proxy.conf
+              - code [ref=e556]:
+                - generic [ref=e557]:
+                  - generic [ref=e558]:
+                    - generic: "1"
+                  - generic [ref=e559]: "[Service]"
+                - generic [ref=e560]:
+                  - generic [ref=e561]:
+                    - generic: "2"
+                  - generic [ref=e562]: Environment="HTTP_PROXY=http://127.0.0.1:7892/"
+                - generic [ref=e563]:
+                  - generic [ref=e564]:
+                    - generic: "3"
+                  - generic [ref=e565]: Environment="HTTPS_PROXY=http://127.0.0.1:7892/"
+                - generic [ref=e566]:
+                  - generic [ref=e567]:
+                    - generic: "4"
+                  - generic [ref=e568]: Environment="NO_PROXY=localhost,127.0.0.1,<中继IP>,10.0.0.0/8,..."
+              - button "Copy to clipboard" [ref=e570] [cursor=pointer]
+            - paragraph [ref=e572]:
+              - text: Host 模式，而是作为系统 systemd 服务的环境变量注入。这决定了安装顺序
+              - strong [ref=e573]: 必须先装 Docker，再配置代理，再重启 daemon
+              - text: 。
+            - separator [ref=e574]
+            - paragraph [ref=e575]: 上面这些原理不需要你全部理解才能用。但理解了，遇到问题就有方向——比如 frpc 连不上，你知道去查 TLS 握手；TUN 起不来，你知道去排查端口 53 是否被占用。
+            - heading "五、部署实战" [level=2] [ref=e576]
+            - paragraph [ref=e577]:
+              - text: 部署脚本全部开源，只需编辑一个
+              - code [ref=e578]: config.env
+              - text: ，然后两条命令。
+            - heading "5.1 先决条件" [level=3] [ref=e579]
+            - table [ref=e580]:
+              - rowgroup [ref=e581]:
+                - row "条件 说明" [ref=e582]:
+                  - columnheader "条件" [ref=e583]
+                  - columnheader "说明" [ref=e584]
+              - rowgroup [ref=e585]:
+                - row "GPU 服务器 x86_64 Linux，NVIDIA GPU，8 GB+ 显存（RTX 3060 或更新）" [ref=e586]:
+                  - cell "GPU 服务器" [ref=e587]
+                  - cell "x86_64 Linux，NVIDIA GPU，8 GB+ 显存（RTX 3060 或更新）" [ref=e588]
+                - row "中继 VPS 公网 IP，1C1G 足够，¥30-70/月" [ref=e589]:
+                  - cell "中继 VPS" [ref=e590]
+                  - cell "公网 IP，1C1G 足够，¥30-70/月" [ref=e591]
+                - row "操作系统 Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/Fedora/Alibaba Cloud Linux" [ref=e592]:
+                  - cell "操作系统" [ref=e593]
+                  - cell "Ubuntu/Debian/CentOS/RHEL/Rocky/AlmaLinux/Fedora/Alibaba Cloud Linux" [ref=e594]
+                - row "权限 两台机器都需要 root" [ref=e595]:
+                  - cell "权限" [ref=e596]
+                  - cell "两台机器都需要 root" [ref=e597]
+                - row "防火墙 中继需开放 7000（FRP）、8388（SS）、40000-40100（端口池）" [ref=e598]:
+                  - cell "防火墙" [ref=e599]
+                  - cell "中继需开放 7000（FRP）、8388（SS）、40000-40100（端口池）" [ref=e600]
+            - heading "5.2 配置" [level=3] [ref=e601]
+            - paragraph [ref=e602]: 项目目录结构：
+            - figure [ref=e604]:
+              - code [ref=e606]:
+                - generic [ref=e607]:
+                  - generic [ref=e608]:
+                    - generic: "1"
+                  - generic [ref=e609]: vastai-host-setup/
+                - generic [ref=e610]:
+                  - generic [ref=e611]:
+                    - generic: "2"
+                  - generic [ref=e612]: ├── config.env 全局配置（两台机器共用）
+                - generic [ref=e613]:
+                  - generic [ref=e614]:
+                    - generic: "3"
+                  - generic [ref=e615]: ├── utils.sh 公共函数库（日志/校验/安装）
+                - generic [ref=e616]:
+                  - generic [ref=e617]:
+                    - generic: "4"
+                  - generic [ref=e618]: ├── setup-server.sh 中继服务器部署脚本
+                - generic [ref=e619]:
+                  - generic [ref=e620]:
+                    - generic: "5"
+                  - generic [ref=e621]: ├── setup-client.sh GPU 服务器部署脚本
+                - generic [ref=e622]:
+                  - generic [ref=e623]:
+                    - generic: "6"
+                  - generic [ref=e624]: └── vast_host_installer.py vast.ai 官方安装器
+              - button "Copy to clipboard" [ref=e626] [cursor=pointer]
+            - paragraph [ref=e628]:
+              - text: 编辑
+              - code [ref=e629]: config.env
+              - text: ，填入你的配置：
+            - figure "Terminal window" [ref=e631]:
+              - generic [ref=e634]: Terminal window
+              - code [ref=e636]:
+                - generic [ref=e637]:
+                  - generic [ref=e638]:
+                    - generic: "1"
+                  - generic [ref=e639]: "# 中继服务器公网 IP（必填）"
+                - generic [ref=e640]:
+                  - generic [ref=e641]:
+                    - generic: "2"
+                  - generic [ref=e642]: TUNNEL_SERVER_IP="<你的中继IP>"
+                - generic [ref=e644]:
+                  - generic: "3"
+                - generic [ref=e646]:
+                  - generic [ref=e647]:
+                    - generic: "4"
+                  - generic [ref=e648]: "# FRP 隧道认证令牌（必填，自行生成）"
+                - generic [ref=e649]:
+                  - generic [ref=e650]:
+                    - generic: "5"
+                  - generic [ref=e651]: TUNNEL_TOKEN="openssl rand -hex 32 生成的随机字符串"
+                - generic [ref=e653]:
+                  - generic: "6"
+                - generic [ref=e655]:
+                  - generic [ref=e656]:
+                    - generic: "7"
+                  - generic [ref=e657]: "# Shadowsocks 密码（必填，自行生成）"
+                - generic [ref=e658]:
+                  - generic [ref=e659]:
+                    - generic: "8"
+                  - generic [ref=e660]: MIHOMO_PASSWORD="openssl rand -base64 32 生成的随机密码"
+                - generic [ref=e662]:
+                  - generic: "9"
+                - generic [ref=e664]:
+                  - generic [ref=e665]:
+                    - generic: "10"
+                  - generic [ref=e666]: "# vast.ai API Token（必填，从 https://console.vast.ai 获取）"
+                - generic [ref=e667]:
+                  - generic [ref=e668]:
+                    - generic: "11"
+                  - generic [ref=e669]: VAST_TOKEN="<你的vast.ai token>"
+                - generic [ref=e671]:
+                  - generic: "12"
+                - generic [ref=e673]:
+                  - generic [ref=e674]:
+                    - generic: "13"
+                  - generic [ref=e675]: "# === 以下保持默认即可 ==="
+                - generic [ref=e676]:
+                  - generic [ref=e677]:
+                    - generic: "14"
+                  - generic [ref=e678]: FRP_BIND_PORT=7000
+                - generic [ref=e679]:
+                  - generic [ref=e680]:
+                    - generic: "15"
+                  - generic [ref=e681]: PORT_RANGE_START=40000
+                - generic [ref=e682]:
+                  - generic [ref=e683]:
+                    - generic: "16"
+                  - generic [ref=e684]: PORT_RANGE_END=40100
+                - generic [ref=e685]:
+                  - generic [ref=e686]:
+                    - generic: "17"
+                  - generic [ref=e687]: MIHOMO_SERVER_PORT=8388
+                - generic [ref=e688]:
+                  - generic [ref=e689]:
+                    - generic: "18"
+                  - generic [ref=e690]: MIHOMO_METHOD="aes-256-gcm"
+                - generic [ref=e691]:
+                  - generic [ref=e692]:
+                    - generic: "19"
+                  - generic [ref=e693]: MIHOMO_TUN_STACK="gvisor"
+                - generic [ref=e694]:
+                  - generic [ref=e695]:
+                    - generic: "20"
+                  - generic [ref=e696]: DOCKER_VERSION="28.0.4"
+                - generic [ref=e697]:
+                  - generic [ref=e698]:
+                    - generic: "21"
+                  - generic [ref=e699]: FRP_VERSION="0.68.1"
+                - generic [ref=e700]:
+                  - generic [ref=e701]:
+                    - generic: "22"
+                  - generic [ref=e702]: "AGENT_NO_DRIVER=true # 跳过 NVIDIA 驱动安装（不用重复装）"
+              - button "Copy to clipboard" [ref=e704] [cursor=pointer]
+            - heading "5.3 部署顺序" [level=3] [ref=e706]
+            - blockquote [ref=e707]:
+              - paragraph [ref=e708]:
+                - strong [ref=e709]: 必须先部署中继服务器，再部署 GPU 服务器。
+            - document [ref=e710]:
+              - generic [ref=e713]:
+                - paragraph [ref=e720]:
+                  - text: 阶段一
+                  - text: 中继服务器
+                - paragraph [ref=e727]:
+                  - text: ① mihomo 服务端
+                  - text: Shadowsocks 加密入口
+                - paragraph [ref=e734]:
+                  - text: ② frps
+                  - text: FRP 端口映射服务端
+                - paragraph [ref=e741]:
+                  - text: 阶段二
+                  - text: GPU 服务器
+                - paragraph [ref=e748]:
+                  - text: ① Docker 引擎
+                  - text: 锁定版本安装
+                - paragraph [ref=e755]:
+                  - text: ② mihomo 客户端
+                  - text: TUN 透明代理
+                - paragraph [ref=e762]:
+                  - text: ③ frpc
+                  - text: FRP 客户端隧道
+                - paragraph [ref=e769]:
+                  - text: ④ kaalia agent
+                  - text: vast.ai 注册
+            - heading "阶段一：中继服务器" [level=4] [ref=e770]
+            - figure "Terminal window" [ref=e772]:
+              - generic [ref=e775]: Terminal window
+              - code [ref=e777]:
+                - generic [ref=e778]:
+                  - generic [ref=e779]:
+                    - generic: "1"
+                  - generic [ref=e780]: ssh root@<中继IP>
+                - generic [ref=e781]:
+                  - generic [ref=e782]:
+                    - generic: "2"
+                  - generic [ref=e783]: bash setup-server.sh all
+              - button "Copy to clipboard" [ref=e785] [cursor=pointer]
+            - paragraph [ref=e787]: 这条命令会完成：
+            - list [ref=e788]:
+              - listitem [ref=e789]: 安装 Mihomo，配置 Shadowsocks 服务端（监听 :8388）
+              - listitem [ref=e790]: 启用 IP 转发
+              - listitem [ref=e791]: 安装 frps，配置 TLS 加密的端口映射（:7000，端口池 40000-40100）
+              - listitem [ref=e792]: 注册 systemd 服务，设为开机自启
+            - paragraph [ref=e793]:
+              - strong [ref=e794]: 中继服务器防火墙需放行
+              - text: ：
+            - table [ref=e795]:
+              - rowgroup [ref=e796]:
+                - row "端口 用途 说明" [ref=e797]:
+                  - columnheader "端口" [ref=e798]
+                  - columnheader "用途" [ref=e799]
+                  - columnheader "说明" [ref=e800]
+              - rowgroup [ref=e801]:
+                - row "7000 FRP 绑定端口 GPU 服务器会连接" [ref=e802]:
+                  - cell "7000" [ref=e803]
+                  - cell "FRP 绑定端口" [ref=e804]
+                  - cell "GPU 服务器会连接" [ref=e805]
+                - row "8388 Shdowsocks 服务端 GPU 服务器的代理出口" [ref=e806]:
+                  - cell "8388" [ref=e807]
+                  - cell "Shdowsocks 服务端" [ref=e808]
+                  - cell "GPU 服务器的代理出口" [ref=e809]
+                - row "40000-40100 FRP 端口池 vast.ai 租户连接容器" [ref=e810]:
+                  - cell "40000-40100" [ref=e811]
+                  - cell "FRP 端口池" [ref=e812]
+                  - cell "vast.ai 租户连接容器" [ref=e813]
+            - heading "阶段二：GPU 服务器" [level=4] [ref=e814]
+            - figure "Terminal window" [ref=e816]:
+              - generic [ref=e819]: Terminal window
+              - code [ref=e821]:
+                - generic [ref=e822]:
+                  - generic [ref=e823]:
+                    - generic: "1"
+                  - generic [ref=e824]: "# SSH 进 GPU 服务器，建议用 tmux/screen 执行（TUN 启用后网络重建可能断连）"
+                - generic [ref=e825]:
+                  - generic [ref=e826]:
+                    - generic: "2"
+                  - generic [ref=e827]: ssh root@<GPU服务器>
+                - generic [ref=e828]:
+                  - generic [ref=e829]:
+                    - generic: "3"
+                  - generic [ref=e830]: bash setup-client.sh all
+              - button "Copy to clipboard" [ref=e832] [cursor=pointer]
+            - paragraph [ref=e834]:
+              - text: 这条命令按顺序执行：
+              - code [ref=e835]: docker → mihomo → frpc → agent
+              - text: 。
+            - paragraph [ref=e836]:
+              - strong [ref=e837]: 各步骤的关键配置
+              - text: ：
+            - paragraph [ref=e838]:
+              - text: Mihomo TUN 客户端配置（
+              - code [ref=e839]: /etc/mihomo/config.yaml
+              - text: ）：
+            - figure [ref=e841]:
+              - code [ref=e843]:
+                - generic [ref=e844]:
+                  - generic [ref=e845]:
+                    - generic: "1"
+                  - generic [ref=e846]: "mixed-port: 7892"
+                - generic [ref=e847]:
+                  - generic [ref=e848]:
+                    - generic: "2"
+                  - generic [ref=e849]: "mode: rule"
+                - generic [ref=e851]:
+                  - generic: "3"
+                - generic [ref=e853]:
+                  - generic [ref=e854]:
+                    - generic: "4"
+                  - generic [ref=e855]: "tun:"
+                - generic [ref=e856]:
+                  - generic [ref=e857]:
+                    - generic: "5"
+                  - generic [ref=e858]: "enable: true"
+                - generic [ref=e859]:
+                  - generic [ref=e860]:
+                    - generic: "6"
+                  - generic [ref=e861]: "stack: gvisor # 用户态 TCP/IP 栈，不受防火墙影响"
+                - generic [ref=e862]:
+                  - generic [ref=e863]:
+                    - generic: "7"
+                  - generic [ref=e864]: "dns-hijack:"
+                - generic [ref=e865]:
+                  - generic [ref=e866]:
+                    - generic: "8"
+                  - generic [ref=e867]: "- any:53 # 劫持 DNS，防污染"
+                - generic [ref=e869]:
+                  - generic [ref=e870]:
+                    - generic: "9"
+                  - generic [ref=e871]: "auto-route: true"
+                - generic [ref=e873]:
+                  - generic: "10"
+                - generic [ref=e875]:
+                  - generic [ref=e876]:
+                    - generic: "11"
+                  - generic [ref=e877]: "dns:"
+                - generic [ref=e878]:
+                  - generic [ref=e879]:
+                    - generic: "12"
+                  - generic [ref=e880]: "enable: true"
+                - generic [ref=e881]:
+                  - generic [ref=e882]:
+                    - generic: "13"
+                  - generic [ref=e883]: "listen: 0.0.0.0:53"
+                - generic [ref=e884]:
+                  - generic [ref=e885]:
+                    - generic: "14"
+                  - generic [ref=e886]: "nameserver:"
+                - generic [ref=e887]:
+                  - generic [ref=e888]:
+                    - generic: "15"
+                  - generic [ref=e889]: "- https://doh.pub/dns-query # 国内 DoH"
+                - generic [ref=e891]:
+                  - generic [ref=e892]:
+                    - generic: "16"
+                  - generic [ref=e893]: "- https://dns.alidns.com/dns-query"
+                - generic [ref=e896]:
+                  - generic: "17"
+                - generic [ref=e898]:
+                  - generic [ref=e899]:
+                    - generic: "18"
+                  - generic [ref=e900]: "proxies:"
+                - generic [ref=e901]:
+                  - generic [ref=e902]:
+                    - generic: "19"
+                  - generic [ref=e903]: "- name: relay"
+                - generic [ref=e905]:
+                  - generic [ref=e906]:
+                    - generic: "20"
+                  - generic [ref=e907]: "type: ss"
+                - generic [ref=e908]:
+                  - generic [ref=e909]:
+                    - generic: "21"
+                  - generic [ref=e910]: "server: \"<中继IP>\""
+                - generic [ref=e911]:
+                  - generic [ref=e912]:
+                    - generic: "22"
+                  - generic [ref=e913]: "port: 8388"
+                - generic [ref=e914]:
+                  - generic [ref=e915]:
+                    - generic: "23"
+                  - generic [ref=e916]: "password: \"<MIHOMO_PASSWORD>\""
+                - generic [ref=e917]:
+                  - generic [ref=e918]:
+                    - generic: "24"
+                  - generic [ref=e919]: "cipher: aes-256-gcm"
+                - generic [ref=e921]:
+                  - generic: "25"
+                - generic [ref=e923]:
+                  - generic [ref=e924]:
+                    - generic: "26"
+                  - generic [ref=e925]: "rules:"
+                - generic [ref=e926]:
+                  - generic [ref=e927]:
+                    - generic: "27"
+                  - generic [ref=e928]: "- IP-CIDR,<中继IP>/32,DIRECT # 中继直连"
+                - generic [ref=e930]:
+                  - generic [ref=e931]:
+                    - generic: "28"
+                  - generic [ref=e932]: "- IP-CIDR,10.0.0.0/8,DIRECT # 内网直连"
+                - generic [ref=e934]:
+                  - generic [ref=e935]:
+                    - generic: "29"
+                  - generic [ref=e936]: "- IP-CIDR,192.168.0.0/16,DIRECT"
+                - generic [ref=e938]:
+                  - generic [ref=e939]:
+                    - generic: "30"
+                  - generic [ref=e940]: "- MATCH,PROXY # 其余走代理"
+              - button "Copy to clipboard" [ref=e943] [cursor=pointer]
+            - paragraph [ref=e945]: 部署完成后，验证代理连通：
+            - figure "Terminal window" [ref=e947]:
+              - generic [ref=e950]: Terminal window
+              - code [ref=e952]:
+                - generic [ref=e953]:
+                  - generic [ref=e954]:
+                    - generic: "1"
+                  - generic [ref=e955]: "# TUN 模式下所有流量自动代理，直接用 curl 测试"
+                - generic [ref=e956]:
+                  - generic [ref=e957]:
+                    - generic: "2"
+                  - generic [ref=e958]: curl -I https://google.com
+                - generic [ref=e960]:
+                  - generic: "3"
+                - generic [ref=e962]:
+                  - generic [ref=e963]:
+                    - generic: "4"
+                  - generic [ref=e964]: "# 也可通过混合端口单独测试"
+                - generic [ref=e965]:
+                  - generic [ref=e966]:
+                    - generic: "5"
+                  - generic [ref=e967]: export http_proxy=http://127.0.0.1:7892
+                - generic [ref=e968]:
+                  - generic [ref=e969]:
+                    - generic: "6"
+                  - generic [ref=e970]: curl -I https://google.com
+              - button "Copy to clipboard" [ref=e972] [cursor=pointer]
+            - paragraph [ref=e974]:
+              - text: 然后登录
+              - link "cloud.vast.ai" [ref=e975] [cursor=pointer]:
+                - /url: https://cloud.vast.ai
+              - text: → 切换到 Host 账号 → 确认机器出现在 Machines 列表中。
+            - heading "5.4 幂等——跑错了？再跑一次" [level=3] [ref=e976]
+            - paragraph [ref=e977]:
+              - text: 所有操作设计为
+              - strong [ref=e978]: 可重复执行
+              - text: ，不会破坏已有系统：
+            - table [ref=e979]:
+              - rowgroup [ref=e980]:
+                - row "组件 幂等方式" [ref=e981]:
+                  - columnheader "组件" [ref=e982]
+                  - columnheader "幂等方式" [ref=e983]
+              - rowgroup [ref=e984]:
+                - row "Docker 检测版本匹配则跳过安装" [ref=e985]:
+                  - cell "Docker" [ref=e986]
+                  - cell "检测版本匹配则跳过安装" [ref=e987]
+                - row "二进制（Mihomo/FRP） 检测版本匹配则跳过下载" [ref=e988]:
+                  - cell "二进制（Mihomo/FRP）" [ref=e989]
+                  - cell "检测版本匹配则跳过下载" [ref=e990]
+                - row "systemd 服务 服务 active 且配置无变化则跳过" [ref=e991]:
+                  - cell "systemd 服务" [ref=e992]
+                  - cell "服务 active 且配置无变化则跳过" [ref=e993]
+                - row "配置文件 diff 检测内容无变化则不写" [ref=e994]:
+                  - cell "配置文件" [ref=e995]
+                  - cell "diff 检测内容无变化则不写" [ref=e996]:
+                    - code [ref=e997]: diff
+                    - text: 检测内容无变化则不写
+                - row "kaalia agent 服务 active 则跳过重装" [ref=e998]:
+                  - cell "kaalia agent" [ref=e999]
+                  - cell "服务 active 则跳过重装" [ref=e1000]
+            - paragraph [ref=e1001]: 核心脚本逻辑：
+            - figure "Terminal window" [ref=e1003]:
+              - generic [ref=e1006]: Terminal window
+              - code [ref=e1008]:
+                - generic [ref=e1009]:
+                  - generic [ref=e1010]:
+                    - generic: "1"
+                  - generic [ref=e1011]: "safe_write_file() {"
+                - generic [ref=e1012]:
+                  - generic [ref=e1013]:
+                    - generic: "2"
+                  - generic [ref=e1014]: local file=$1 content=$2
+                - generic [ref=e1015]:
+                  - generic [ref=e1016]:
+                    - generic: "3"
+                  - generic [ref=e1017]: if config_changed "$file" "$content"; then
+                - generic [ref=e1018]:
+                  - generic [ref=e1019]:
+                    - generic: "4"
+                  - generic [ref=e1020]: "# 有变化才写，写前先备份"
+                - generic [ref=e1021]:
+                  - generic [ref=e1022]:
+                    - generic: "5"
+                  - generic [ref=e1023]: "cp \"$file\" \"${file}.bak.$(date +%s)\""
+                - generic [ref=e1024]:
+                  - generic [ref=e1025]:
+                    - generic: "6"
+                  - generic [ref=e1026]: echo "$content" > "$file"
+                - generic [ref=e1027]:
+                  - generic [ref=e1028]:
+                    - generic: "7"
+                  - generic [ref=e1029]: else
+                - generic [ref=e1030]:
+                  - generic [ref=e1031]:
+                    - generic: "8"
+                  - generic [ref=e1032]: log_info "配置无变化，跳过"
+                - generic [ref=e1033]:
+                  - generic [ref=e1034]:
+                    - generic: "9"
+                  - generic [ref=e1035]: fi
+                - generic [ref=e1036]:
+                  - generic [ref=e1037]:
+                    - generic: "10"
+                  - generic [ref=e1038]: "}"
+              - button "Copy to clipboard" [ref=e1040] [cursor=pointer]
+            - paragraph [ref=e1042]:
+              - text: 这意味着如果机器掉线、系统重启、配置文件损坏，重新跑一遍脚本即可恢复，
+              - strong [ref=e1043]: 不影响正在运行的出租任务
+              - text: 。
+            - separator [ref=e1044]
+            - heading "六、上线运营——怎样让机器租出去" [level=2] [ref=e1045]
+            - paragraph [ref=e1046]: 部署上线只是第一步。以下是从实操中总结的运营要点。
+            - heading "6.1 创建 Offer" [level=3] [ref=e1047]
+            - paragraph [ref=e1048]: 登录 vast.ai Host 控制台：
+            - list [ref=e1049]:
+              - listitem [ref=e1050]: 确认 GPU 出现在 Machines 列表
+              - listitem [ref=e1051]: 点击 Create Offer → 选择 Verification Level
+              - listitem [ref=e1052]:
+                - strong [ref=e1053]: 建议从 Intermittent 起步
+                - text: ——审核门槛低，上线快
+              - listitem [ref=e1054]: 机器稳定后可以升级到 Verified（更高优先级）
+            - heading "6.2 定价策略" [level=3] [ref=e1055]
+            - paragraph [ref=e1056]: vast.ai 是纯市场定价，Host 自己设时薪：
+            - table [ref=e1057]:
+              - rowgroup [ref=e1058]:
+                - row "策略 做法 适合场景" [ref=e1059]:
+                  - columnheader "策略" [ref=e1060]
+                  - columnheader "做法" [ref=e1061]
+                  - columnheader "适合场景" [ref=e1062]
+              - rowgroup [ref=e1063]:
+                - row "渗透定价 设市场最低价起步 新 Host，快速积累信誉和评分" [ref=e1064]:
+                  - cell "渗透定价" [ref=e1065]:
+                    - strong [ref=e1066]: 渗透定价
+                  - cell "设市场最低价起步" [ref=e1067]
+                  - cell "新 Host，快速积累信誉和评分" [ref=e1068]
+                - row "跟随定价 设略低于同类卡均价 有评分后，平衡收益和利用率" [ref=e1069]:
+                  - cell "跟随定价" [ref=e1070]:
+                    - strong [ref=e1071]: 跟随定价
+                  - cell "设略低于同类卡均价" [ref=e1072]
+                  - cell "有评分后，平衡收益和利用率" [ref=e1073]
+                - row "溢价定价 比均价高 10-20% 高评分 + 低延迟 + 高带宽" [ref=e1074]:
+                  - cell "溢价定价" [ref=e1075]:
+                    - strong [ref=e1076]: 溢价定价
+                  - cell "比均价高 10-20%" [ref=e1077]
+                  - cell "高评分 + 低延迟 + 高带宽" [ref=e1078]
+            - paragraph [ref=e1079]:
+              - text: 查看同型号卡的当前市场价：
+              - link "https://vast.ai/pricing" [ref=e1080] [cursor=pointer]:
+                - /url: https://vast.ai/pricing
+            - paragraph [ref=e1081]:
+              - strong [ref=e1082]: 建议
+              - text: ：第一个月设低于均价 10-15%，快速拉高评分和运行时长。vast.ai 的搜索排名算法会优先展示评分高、在线率高的 Host。
+            - heading "6.3 Self-test——自己先租一次" [level=3] [ref=e1083]
+            - paragraph [ref=e1084]: 用另一个 vast.ai 账号（租户视角）搜索并租用自己的机器：
+            - list [ref=e1085]:
+              - listitem [ref=e1086]: SSH 连通性
+              - listitem [ref=e1087]:
+                - text: CUDA 可用性（
+                - code [ref=e1088]: nvidia-smi
+                - text: ）
+              - listitem [ref=e1089]:
+                - text: 下载速度（
+                - code [ref=e1090]: wget
+                - text: 一个大文件测试带宽）
+              - listitem [ref=e1091]: PyTorch 推理跑通
+            - paragraph [ref=e1092]: 这一步很重要——很多租户租到机器后发现 SSH 慢、带宽低，直接差评走人。一个差评需要 10 个好评才能冲回来。
+            - heading "6.4 运营建议" [level=3] [ref=e1093]
+            - table [ref=e1094]:
+              - rowgroup [ref=e1095]:
+                - row "事项 建议" [ref=e1096]:
+                  - columnheader "事项" [ref=e1097]
+                  - columnheader "建议" [ref=e1098]
+              - rowgroup [ref=e1099]:
+                - row "最低租用时 设置 1 小时起租，避免频繁切租户" [ref=e1100]:
+                  - cell "最低租用时" [ref=e1101]
+                  - cell "设置 1 小时起租，避免频繁切租户" [ref=e1102]
+                - row "驱动版本 保持 CUDA 12.x+，PyTorch 租户最多" [ref=e1103]:
+                  - cell "驱动版本" [ref=e1104]
+                  - cell "保持 CUDA 12.x+，PyTorch 租户最多" [ref=e1105]
+                - row "在线率监控 crontab 定时 curl -I https://vast.ai，掉线自动重跑脚本" [ref=e1106]:
+                  - cell "在线率监控" [ref=e1107]
+                  - cell "crontab 定时 curl -I https://vast.ai，掉线自动重跑脚本" [ref=e1108]:
+                    - text: crontab 定时
+                    - code [ref=e1109]: curl -I https://vast.ai
+                    - text: ，掉线自动重跑脚本
+                - row "月初定价 月初需求旺，可适当提价" [ref=e1110]:
+                  - cell "月初定价" [ref=e1111]
+                  - cell "月初需求旺，可适当提价" [ref=e1112]
+                - row "竞争监控 定期查看同型号卡价格，保持竞争力" [ref=e1113]:
+                  - cell "竞争监控" [ref=e1114]
+                  - cell "定期查看同型号卡价格，保持竞争力" [ref=e1115]
+            - separator [ref=e1116]
+            - heading "七、FAQ" [level=2] [ref=e1117]
+            - heading "Q1：一张卡能稳定赚多少？" [level=3] [ref=e1118]
+            - paragraph [ref=e1119]: 取决于利用率和电费。RTX 4090 稳态月净利约 ¥350-600。首月偏低（30-40%），3 个月后进入稳态。
+            - heading "Q2：中继服务器需要什么配置？" [level=3] [ref=e1120]
+            - paragraph [ref=e1121]: 1C1G 足够，带宽建议 100Mbps+。搬瓦工或同类便宜 VPS 即可，¥30-70/月。一台中继可带 1-2 台 GPU 服务器。
+            - heading "Q3：TUN 透明代理会不会影响我正常使用？" [level=3] [ref=e1122]
+            - paragraph [ref=e1123]:
+              - text: TUN 接管所有流量，但
+              - strong [ref=e1124]: 不会降低国内访问速度
+              - text: ——中继 IP 和所有内网段都配了直连规则，只有出站流量才走代理。
+            - heading "Q4：机器掉线了怎么办？" [level=3] [ref=e1125]
+            - paragraph [ref=e1126]:
+              - text: SSH 连进去，重新跑
+              - code [ref=e1127]: bash setup-client.sh all
+              - text: 。脚本幂等，不影响已经跑着的任务。
+            - heading "Q5：vast.ai 怎么提现？" [level=3] [ref=e1128]
+            - paragraph [ref=e1129]: 支持加密货币（Coinbase、Crypto.com）和银行转账。最低 $5 起提，无手续费。
+            - heading "Q6：国内电费这么高，还值得吗？" [level=3] [ref=e1130]
+            - paragraph [ref=e1131]: 按 ¥0.8/kWh 算，RTX 4090 月净利 ~¥380。减去中继 VPS ¥50，净剩 ~¥330。一年约 ¥4000，大约覆盖卡价的 25%。如果卡已经在手用来跑自己的训练，那出租空余时间就是纯增量收入。
+            - separator [ref=e1132]
+            - heading "八、局限与建议" [level=2] [ref=e1133]
+            - paragraph [ref=e1134]: 这套方案不是银弹，有几点需要考虑：
+            - paragraph [ref=e1135]:
+              - strong [ref=e1136]: 中继带宽是瓶颈
+              - text: frps 的出口带宽直接影响租户的 SSH 体验和下载速度。建议单台中继匹配 1-2 台 GPU 服务器，避免链路拥塞。
+            - paragraph [ref=e1137]:
+              - strong [ref=e1138]: 电费敏感度很高
+              - text: 如果机房电费超过 ¥1.0/kWh，消费级显卡的出租利润会被严重压缩。建议先用电表和你的实际电价算清楚再动手。
+            - paragraph [ref=e1139]:
+              - strong [ref=e1140]: 首月要有耐心
+              - text: vast.ai 的新 Host 需要时间积累信誉分，第一个月的利用率和价格都不太理想。坚持 3 个月，数据会逐渐改善。
+            - paragraph [ref=e1141]:
+              - strong [ref=e1142]: 规模扩大的上限
+              - text: 如果手上有 4 卡以上，建议考虑升级中继配置，或者采用多中继 + 负载均衡的架构。
+            - separator [ref=e1143]
+            - paragraph [ref=e1144]: 2026 年的 GPU 租赁市场正在经历供不应求的黄金期。高端卡交付周期排到 2027 年，AI 公司的算力需求看不到天花板。对于手上有闲置 GPU 的人来说，这是一个低门槛、高确定性的增量收入来源。
+            - paragraph [ref=e1145]: 你的 GPU 每天工作几小时？剩下的时间，它本可以为你赚钱。
+            - paragraph [ref=e1146]:
+              - text: 或者换个问法——你买的，到底是显卡，还是一台
+              - strong [ref=e1147]: 印钞机
+              - text: ？
+            - separator [ref=e1148]
+            - paragraph [ref=e1149]:
+              - strong [ref=e1150]: 附录：部署脚本与资源
+            - table [ref=e1151]:
+              - rowgroup [ref=e1152]:
+                - row "资源 地址" [ref=e1153]:
+                  - columnheader "资源" [ref=e1154]
+                  - columnheader "地址" [ref=e1155]
+              - rowgroup [ref=e1156]:
+                - row "部署脚本 项目仓库（详见 README）" [ref=e1157]:
+                  - cell "部署脚本" [ref=e1158]
+                  - cell "项目仓库（详见 README）" [ref=e1159]
+                - row "vast.ai Host Console https://cloud.vast.ai" [ref=e1160]:
+                  - cell "vast.ai Host Console" [ref=e1161]
+                  - cell "https://cloud.vast.ai" [ref=e1162]:
+                    - link "https://cloud.vast.ai" [ref=e1163] [cursor=pointer]:
+                      - /url: https://cloud.vast.ai
+                - row "实时 GPU 定价 https://vast.ai/pricing" [ref=e1164]:
+                  - cell "实时 GPU 定价" [ref=e1165]
+                  - cell "https://vast.ai/pricing" [ref=e1166]:
+                    - link "https://vast.ai/pricing" [ref=e1167] [cursor=pointer]:
+                      - /url: https://vast.ai/pricing
+                - row "FRP 项目 https://github.com/fatedier/frp" [ref=e1168]:
+                  - cell "FRP 项目" [ref=e1169]
+                  - cell "https://github.com/fatedier/frp" [ref=e1170]:
+                    - link "https://github.com/fatedier/frp" [ref=e1171] [cursor=pointer]:
+                      - /url: https://github.com/fatedier/frp
+                - row "Mihomo 项目 https://github.com/MetaCubeX/mihomo" [ref=e1172]:
+                  - cell "Mihomo 项目" [ref=e1173]
+                  - cell "https://github.com/MetaCubeX/mihomo" [ref=e1174]:
+                    - link "https://github.com/MetaCubeX/mihomo" [ref=e1175] [cursor=pointer]:
+                      - /url: https://github.com/MetaCubeX/mihomo
+      - contentinfo [ref=e1176]:
+        - generic [ref=e1177]: © 2026 Jian Zhang
+        - generic [ref=e1178]:
+          - text: Developed by
+          - link "Jian Zhang" [ref=e1179] [cursor=pointer]:
+            - /url: https://manuelernestog.github.io
+          - text: using
+          - link "Astrofy Template ⚡️" [ref=e1180] [cursor=pointer]:
+            - /url: https://astrofy-template.netlify.app/
+    - generic:
+      - complementary:
+        - generic:
+          - link:
+            - /url: /
+        - list:
+          - listitem:
+            - link "首页":
+              - /url: /
+          - listitem:
+            - link "项目":
+              - /url: /projects
+          - listitem:
+            - link "博客":
+              - /url: /blog/
+        - generic:
+          - link "wechat":
+            - /url: /image/qrcode_for_gh_70a30ad66078_258.jpg
+            - img
+          - link "Github":
+            - /url: https://github.com/zhangjian24/portfolio
+            - img
+          - link "RSS Feed":
+            - /url: /rss.xml
+            - img
+  - generic [ref=e1183]:
+    - button "Menu" [ref=e1184]:
+      - img [ref=e1186]
+      - generic: Menu
+    - button "Inspect" [ref=e1190]:
+      - img [ref=e1192]
+      - generic: Inspect
+    - button "Audit" [ref=e1194]:
+      - img [ref=e1196]
+      - generic: Audit
+    - button "Settings" [ref=e1199]:
+      - img [ref=e1201]
+      - generic: Settings

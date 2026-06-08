@@ -6,35 +6,36 @@ import { getCollection } from "astro:content";
 const posts = (await getCollection("blog")).sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 
 const last_posts = posts.slice(0, 3);
+
+const projects = (await getCollection("projects")).sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+const featured_projects = projects.slice(0, 3);
 ---
 
 <BaseLayout sideBarActiveItemID="home">
-  <!-- <div>
-    <div class="text-3xl w-full font-bold mb-2">My last projects {"</>"}</div>
+  <div class="flex justify-between w-full mb-5">
+    <div class="text-3xl font-bold">项目</div>
+    <div class=""><a href="/projects/">更多&gt;&gt;</a></div>
   </div>
 
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  /> -->
+  {
+    featured_projects.map((p) => (
+      <>
+        <HorizontalCard
+          title={p.data.title}
+          img={p.data.heroImage}
+          desc={p.data.description}
+          projectSlug={p.data.projectSlug}
+          badge={p.data.badge}
+          tags={p.data.tags}
+          repoUrl={p.data.repoUrl}
+          repoUrlLabel={p.data.repoUrlLabel}
+          demoUrl={p.data.demoUrl}
+          demoUrlLabel={p.data.demoUrlLabel}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
 
   <div class="flex justify-between w-full mb-5 mt-10">
     <div class="text-3xl font-bold ">博客</div>

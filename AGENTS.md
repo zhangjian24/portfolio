@@ -63,4 +63,4 @@ Add blog posts as `.md` or `.mdx` in `src/content/blog/`.
 
 - RSS: `/rss.xml`
 - Sitemap: `/sitemap-index.xml`
-- Site: `https://portfolio.jianzhang.site`
+- Site: `https://portfolio.jianzhang.cc`

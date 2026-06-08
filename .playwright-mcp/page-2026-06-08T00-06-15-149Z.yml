@@ -1,0 +1,180 @@
+- generic [ref=e2]:
+  - checkbox
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - img [ref=e8] [cursor=pointer]
+      - link "健兼" [ref=e11] [cursor=pointer]:
+        - /url: /
+    - main [ref=e13]:
+      - main [ref=e14]:
+        - article [ref=e15]:
+          - img "个人博客" [ref=e16]
+          - heading "个人博客" [level=1] [ref=e17]
+          - generic [ref=e18]: 持续更新
+          - generic [ref=e19]: Astro
+          - generic [ref=e20]: TailwindCSS
+          - generic [ref=e21]: DaisyUI
+          - generic [ref=e22]: 静态博客
+          - navigation [ref=e24]:
+            - list [ref=e25]:
+              - listitem [ref=e26]:
+                - link "架构流程" [ref=e27] [cursor=pointer]:
+                  - /url: "#架构流程"
+              - listitem [ref=e28]:
+                - link "核心特性" [ref=e29] [cursor=pointer]:
+                  - /url: "#核心特性"
+              - listitem [ref=e30]:
+                - link "内容生态" [ref=e31] [cursor=pointer]:
+                  - /url: "#内容生态"
+              - listitem [ref=e32]:
+                - link "写作工作流" [ref=e33] [cursor=pointer]:
+                  - /url: "#写作工作流"
+              - listitem [ref=e34]:
+                - link "后续规划" [ref=e35] [cursor=pointer]:
+                  - /url: "#后续规划"
+          - paragraph [ref=e36]:
+            - text: 本博客（
+            - link "portfolio.jianzhang.cc" [ref=e37] [cursor=pointer]:
+              - /url: https://portfolio.jianzhang.cc
+            - text: ）基于
+            - strong [ref=e38]: Astro
+            - text: 框架搭建，底层使用
+            - strong [ref=e39]: TailwindCSS + DaisyUI
+            - text: 实现响应式 UI，配合完整的
+            - strong [ref=e40]: rehype
+            - text: 插件矩阵提供代码高亮、Mermaid 图表渲染、自动 TOC 等写作增强能力。
+          - heading "架构流程" [level=2] [ref=e41]
+          - document [ref=e42]:
+            - generic [ref=e44]:
+              - paragraph [ref=e52]: Astro 构建 / MDX 插件链
+              - generic [ref=e58]:
+                - generic [ref=e59]:
+                  - paragraph [ref=e67]: 静态产物
+                  - generic [ref=e68]:
+                    - paragraph [ref=e75]: HTML 页面
+                    - paragraph [ref=e82]: RSS 订阅 /rss.xml
+                    - paragraph [ref=e89]: 站点地图 /sitemap-index.xml
+                - generic [ref=e90]:
+                  - paragraph [ref=e98]: 内容源
+                  - paragraph [ref=e106]:
+                    - text: Markdown / MDX
+                    - text: src/content/
+                - paragraph [ref=e113]: "@astrojs/mdx"
+                - paragraph [ref=e120]:
+                  - text: astro-expressive-code
+                  - text: 行号 + 高亮
+                - paragraph [ref=e127]:
+                  - text: rehype-mermaid
+                  - text: 流程图 / 时序图
+                - paragraph [ref=e134]:
+                  - text: rehype-toc + slug
+                  - text: 自动目录
+          - heading "核心特性" [level=2] [ref=e135]
+          - list [ref=e136]:
+            - listitem [ref=e137]:
+              - strong [ref=e138]: 响应式阅读
+              - text: ：DaisyUI drawer 侧边栏 + 自适应排版，桌面 / 移动端一致体验
+            - listitem [ref=e139]:
+              - strong [ref=e140]: 代码展示
+              - text: ：Expressive Code 高亮，支持 diff 语法、行号、标题栏
+            - listitem [ref=e141]:
+              - strong [ref=e142]: 图文并茂
+              - text: ：rehype-mermaid 嵌入流程图、UML 时序图、饼图等
+            - listitem [ref=e143]:
+              - strong [ref=e144]: TOC 导航
+              - text: ：文章 h1-h3 自动生成目录，rehype-slug 锚点快速跳转
+            - listitem [ref=e145]:
+              - strong [ref=e146]: RSS / Sitemap
+              - text: ：自动生成
+              - code [ref=e147]: /rss.xml
+              - text: 与
+              - code [ref=e148]: /sitemap-index.xml
+            - listitem [ref=e149]:
+              - strong [ref=e150]: 一键部署
+              - text: ：Netlify CI —— git push 即发布
+          - heading "内容生态" [level=2] [ref=e151]
+          - table [ref=e152]:
+            - rowgroup [ref=e153]:
+              - row "分类 文章数 说明" [ref=e154]:
+                - columnheader "分类" [ref=e155]
+                - columnheader "文章数" [ref=e156]
+                - columnheader "说明" [ref=e157]
+            - rowgroup [ref=e158]:
+              - row "LLM / AI 20+ RAG 实战、提示词工程、模型评估" [ref=e159]:
+                - cell "LLM / AI" [ref=e160]
+                - cell "20+" [ref=e161]
+                - cell "RAG 实战、提示词工程、模型评估" [ref=e162]
+              - row "技术教程 10+ Next.js SSR、Astro 插件开发" [ref=e163]:
+                - cell "技术教程" [ref=e164]
+                - cell "10+" [ref=e165]
+                - cell "Next.js SSR、Astro 插件开发" [ref=e166]
+              - row "项目复盘 5+ Java 升级、急救物资系统、开发工具链" [ref=e167]:
+                - cell "项目复盘" [ref=e168]
+                - cell "5+" [ref=e169]
+                - cell "Java 升级、急救物资系统、开发工具链" [ref=e170]
+              - row "随笔 / 分享 若干 行业观察、读书笔记" [ref=e171]:
+                - cell "随笔 / 分享" [ref=e172]
+                - cell "若干" [ref=e173]
+                - cell "行业观察、读书笔记" [ref=e174]
+          - heading "写作工作流" [level=2] [ref=e175]
+          - paragraph [ref=e176]:
+            - text: 通过
+            - code [ref=e177]: pnpm md2docx <file>
+            - text: 一键将 MDX 转换为 DOCX，方便导出存档或提交审阅。脚本位于
+            - code [ref=e178]: scripts/md2docx.mjs
+            - text: 。
+          - figure "Terminal window" [ref=e180]:
+            - generic [ref=e183]: Terminal window
+            - code [ref=e185]:
+              - generic [ref=e186]:
+                - generic [ref=e187]:
+                  - generic: "1"
+                - generic [ref=e188]: "# 将一篇 MDX 文章导出为 Word 文档"
+              - generic [ref=e189]:
+                - generic [ref=e190]:
+                  - generic: "2"
+                - generic [ref=e191]: pnpm md2docx src/content/blog/example.mdx
+            - button "Copy to clipboard" [ref=e193] [cursor=pointer]
+          - heading "后续规划" [level=2] [ref=e195]
+          - list [ref=e196]:
+            - listitem [ref=e197]: 集成评论系统（Giscus / Twikoo），支持读者互动
+            - listitem [ref=e198]: 接入访问统计（Umami / Plausible），了解内容偏好
+            - listitem [ref=e199]: 增加全站搜索（Pagefind），提升信息检索效率
+          - link "源代码" [ref=e202] [cursor=pointer]:
+            - /url: https://github.com/zhangjian24/portfolio
+            - img [ref=e203]
+            - text: 源代码
+    - contentinfo [ref=e205]:
+      - generic [ref=e206]: © 2026 Jian Zhang
+      - generic [ref=e207]:
+        - text: Developed by
+        - link "Jian Zhang" [ref=e208] [cursor=pointer]:
+          - /url: https://manuelernestog.github.io
+        - text: using
+        - link "Astrofy Template ⚡️" [ref=e209] [cursor=pointer]:
+          - /url: https://astrofy-template.netlify.app/
+  - generic:
+    - complementary:
+      - generic:
+        - link:
+          - /url: /
+      - list:
+        - listitem:
+          - link "首页":
+            - /url: /
+        - listitem:
+          - link "项目":
+            - /url: /projects
+        - listitem:
+          - link "博客":
+            - /url: /blog/
+      - generic:
+        - link "wechat":
+          - /url: /image/qrcode_for_gh_70a30ad66078_258.jpg
+          - img
+        - link "Github":
+          - /url: https://github.com/zhangjian24/portfolio
+          - img
+        - link "RSS Feed":
+          - /url: /rss.xml
+          - img

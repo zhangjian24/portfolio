@@ -1,13 +1,14 @@
 ---
-const { title, img, desc, url, badge, tags, target = "_blank" } = Astro.props;
+const { title, img, desc, projectSlug, badge, tags, url, target = "_self", repoUrl, repoUrlLabel = "源代码", demoUrl, demoUrlLabel = "在线演示" } = Astro.props;
 import { Image } from "astro:assets";
-const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
+const cardUrl = projectSlug ? `/projects/${projectSlug}/` : url;
+const cardTarget = projectSlug ? "_self" : target;
 ---
 
 <div
   class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
 >
-  <a href={url} target={target}>
+  <a href={cardUrl} target={cardTarget} class="block">
     <div class="hero-content flex-col md:flex-row">
       {
         img && (
@@ -17,24 +18,63 @@ const tag_url = url.split("/").slice(0, -1).join("/") + "/tag";
             height={422}
             format="webp"
             alt={title}
-            class="max-w-full h-[4rem] object-scale-down"
+            class="w-20 h-20 object-cover flex-shrink-0"
           />
         )
       }
-      <div class="grow w-full">
+      <div class="flex-1 min-w-0">
         <h1 class="text-xl font-bold">
           {title}
           {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
         </h1>
         <p class="py-1 text-1xl">{desc}</p>
-        <div class="card-actions justify-end">
+        <div class="card-actions justify-end items-center">
           {
-            tags &&
-              tags.map((tag) => (
-                <a href={`${tag_url}/${tag}`} class="badge badge-outline">
-                  {tag}
-                </a>
-              ))
+            tags && tags.map((tag) => (
+              <span class="badge badge-outline">{tag}</span>
+            ))
+          }
+          {
+            demoUrl && (
+              <a
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-xs btn-ghost gap-1"
+                title={demoUrlLabel}
+                aria-label={demoUrlLabel}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                <span>{demoUrlLabel}</span>
+              </a>
+            )
+          }
+          {
+            repoUrl && (
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-xs btn-ghost gap-1"
+                title={repoUrlLabel}
+                aria-label={repoUrlLabel}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.18c-3.2.69-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18.92-.26 1.91-.39 2.89-.39.98 0 1.97.13 2.89.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.35.78 1.05.78 2.12v3.14c0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"
+                  />
+                </svg>
+                <span>{repoUrlLabel}</span>
+              </a>
+            )
           }
         </div>
       </div>
