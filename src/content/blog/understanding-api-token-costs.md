@@ -1,8 +1,9 @@
 ---
-title: "(LLM系列)理解Token：为什么我的API费用这么高？"
-description: "(LLM系列)理解Token：为什么我的API费用这么高？"
+title: "理解Token：为什么我的API费用这么高？"
+description: "理解Token：为什么我的API费用这么高？"
 pubDate: 2026-02-01
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["大语言模型","LLM","人工智能","AI", "Qwen"]
 ---
 

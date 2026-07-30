@@ -4,6 +4,7 @@ description: "2026年最新版LangChain核心概念详解：Model I/O、Chain、
 pubDate: 2026-03-23
 updatedDate: "2026-03-23"
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["LangChain", "LLM", "教程", "入门"]
 ---
 

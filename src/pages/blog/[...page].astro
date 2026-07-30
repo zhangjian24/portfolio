@@ -10,11 +10,14 @@ export async function getStaticPaths({ paginate }: { paginate: (data: any[], opt
 }
 
 const { page } = Astro.props;
+const allPosts = await getCollection("blog");
+const totalCount = allPosts.length;
 ---
 
 <BaseLayout title="博客" sideBarActiveItemID="blog">
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">博客</div>
+    <p class="text-base-content/60 mt-1">共 {totalCount} 篇文章</p>
   </div>
 
   {
@@ -35,6 +38,7 @@ const { page } = Astro.props;
               target="_self"
               badge={post.data.badge}
               tags={post.data.tags}
+              series={post.data.series}
             />
             <div class="divider my-0" />
           </>

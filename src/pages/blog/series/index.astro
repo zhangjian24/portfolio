@@ -1,0 +1,57 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import dayjs from "dayjs";
+
+const posts = await getCollection("blog");
+const seriesMap = new Map<string, { count: number; latestDate: Date }>();
+
+for (const post of posts) {
+  const s = post.data.series;
+  if (!s) continue;
+  const existing = seriesMap.get(s);
+  const postDate = new Date(post.data.pubDate);
+  if (!existing) {
+    seriesMap.set(s, { count: 1, latestDate: postDate });
+  } else {
+    existing.count++;
+    if (postDate > existing.latestDate) existing.latestDate = postDate;
+  }
+}
+
+const seriesList = [...seriesMap.entries()]
+  .map(([name, info]) => ({ name, count: info.count, latestDate: info.latestDate }))
+  .sort((a, b) => b.latestDate.getTime() - a.latestDate.getTime());
+---
+
+<BaseLayout title="系列" sideBarActiveItemID="series">
+  <div class="mb-6">
+    <div class="text-3xl w-full font-bold"><a href="/blog/">博客</a> - 系列</div>
+    <p class="text-base-content/60 mt-1">共 {seriesList.reduce((sum, s) => sum + s.count, 0)} 篇文章，按系列归类</p>
+  </div>
+
+  {
+    seriesList.length === 0 ? (
+      <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+        <p class="font-bold">暂无系列</p>
+      </div>
+    ) : (
+      <div class="w-full max-w-3xl mx-auto space-y-3">
+        {seriesList.map((s) => (
+          <a
+            href={`/blog/series/${encodeURIComponent(s.name)}/`}
+            class="block p-5 rounded-xl bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%] border-l-4 border-primary"
+          >
+            <div class="flex items-center justify-between gap-4">
+              <span class="text-xl font-bold min-w-0 truncate">{s.name}</span>
+              <div class="flex items-center gap-2 shrink-0">
+                <span class="text-xs md:text-sm text-base-content/60 hidden sm:inline">最近更新：{dayjs(s.latestDate).format("YYYY-MM-DD")}</span>
+                <span class="badge badge-primary badge-lg">{s.count} 篇</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>

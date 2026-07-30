@@ -1,8 +1,9 @@
 ---
-title: "(LLM系列)向量数据库深度对比：Pinecone vs Weaviate vs Chroma 技术选型指南"
+title: "向量数据库深度对比：Pinecone vs Weaviate vs Chroma 技术选型指南"
 pubDate: "2026-02-12"
 updatedDate: "2026-02-12"
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["向量数据库", "Pinecone", "Weaviate", "Chroma", "技术选型", "AI开发", "RAG", "语义搜索"]
 description: 向量数据库是AI应用的核心基础设施。本文深度对比Pinecone、Weaviate、Chroma三款主流方案，从性能、功能、成本、部署等维度分析，并提供实际场景选型建议，帮助开发者快速做出明智决策。
 ---

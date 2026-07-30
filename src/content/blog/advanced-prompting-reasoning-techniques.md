@@ -1,8 +1,9 @@
 ---
-title: "(LLM系列)让大模型“深思熟虑”：ReAct、Self-Consistency 与 Tree-of-Thought 全解析"
-description: "(LLM系列)让大模型“深思熟虑”：ReAct、Self-Consistency 与 Tree-of-Thought 全解析"
+title: "让大模型“深思熟虑”：ReAct、Self-Consistency 与 Tree-of-Thought 全解析"
+description: "让大模型“深思熟虑”：ReAct、Self-Consistency 与 Tree-of-Thought 全解析"
 pubDate: 2026-02-05
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["大语言模型","LLM","prompt-engineering","AI", "reasoning"]
 ---
 

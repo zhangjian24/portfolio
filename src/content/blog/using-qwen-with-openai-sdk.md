@@ -1,8 +1,9 @@
 ---
-title: "(LLM系列)如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
-description: "(LLM系列)如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
+title: "如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
+description: "如何使用通义千问（Qwen）大模型的 OpenAI 兼容 API 构建 AI 聊天应用"
 pubDate: 2026-01-31
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["大语言模型","LLM","人工智能","AI", "Qwen"]
 ---
 

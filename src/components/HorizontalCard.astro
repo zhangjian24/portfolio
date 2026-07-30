@@ -1,5 +1,5 @@
 ---
-const { title, img, desc, projectSlug, badge, tags, url, target = "_self", repoUrl, repoUrlLabel = "源代码", demoUrl, demoUrlLabel = "在线演示" } = Astro.props;
+const { title, img, desc, projectSlug, badge, tags, series, url, target = "_self", repoUrl, repoUrlLabel = "源代码", demoUrl, demoUrlLabel = "在线演示" } = Astro.props;
 import { Image } from "astro:assets";
 const cardUrl = projectSlug ? `/projects/${projectSlug}/` : url;
 const cardTarget = projectSlug ? "_self" : target;
@@ -9,7 +9,7 @@ const cardTarget = projectSlug ? "_self" : target;
   class="rounded-lg bg-base-100 hover:shadow-xl transition ease-in-out hover:scale-[102%]"
 >
   <a href={cardUrl} target={cardTarget} class="block">
-    <div class="hero-content flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row w-full gap-4 items-center">
       {
         img && (
           <Image
@@ -26,6 +26,7 @@ const cardTarget = projectSlug ? "_self" : target;
         <h1 class="text-xl font-bold">
           {title}
           {badge && <div class="badge badge-secondary mx-2">{badge}</div>}
+          {series && <a href={`/blog/series/${encodeURIComponent(series)}/`} class="badge badge-accent badge-sm mx-1 no-underline">{series}</a>}
         </h1>
         <p class="py-1 text-1xl">{desc}</p>
         <div class="card-actions justify-end items-center">

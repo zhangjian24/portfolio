@@ -1,8 +1,9 @@
 ---
-title: "(LLM系列)LLM参数详解：temperature/top_p/max_tokens"
-description: "(LLM系列)LLM参数详解：temperature/top_p/max_tokens"
+title: "LLM参数详解：temperature/top_p/max_tokens"
+description: "LLM参数详解：temperature/top_p/max_tokens"
 pubDate: 2026-02-01
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["大语言模型","LLM","人工智能","AI", "Qwen"]
 ---
 

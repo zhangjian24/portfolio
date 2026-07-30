@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+
+export interface Props {
+  series: string;
+  slug: string;
+}
+
+const { series, slug } = Astro.props;
+
+const allPosts = await getCollection("blog");
+const seriesPosts = allPosts
+  .filter((post) => post.data.series === series)
+  .sort((a, b) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime());
+
+const currentIndex = seriesPosts.findIndex((p) => p.slug === slug);
+const total = seriesPosts.length;
+const prevPost = currentIndex > 0 ? seriesPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < total - 1 ? seriesPosts[currentIndex + 1] : null;
+const progress = total > 0 ? ((currentIndex + 1) / total) * 100 : 0;
+---
+
+{
+  total > 0 && (
+    <div class="mt-8 p-5 rounded-xl border border-base-300 bg-base-100">
+      <div class="flex items-center justify-between mb-2">
+        <span class="font-semibold">{series}</span>
+        <span class="badge badge-sm badge-primary">第 {currentIndex + 1}/{total} 篇</span>
+      </div>
+      <div class="w-full bg-base-200 rounded-full h-1.5 mb-4">
+        <div class="bg-primary rounded-full h-1.5 transition-all" style={`width: ${progress}%`}></div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+        {prevPost ? (
+          <a href={`/blog/${prevPost.slug}/`} title={prevPost.data.title} class="flex-1 btn btn-ghost btn-sm justify-start text-left truncate order-1 sm:order-none">
+            <span class="truncate min-w-0">← {prevPost.data.title}</span>
+          </a>
+        ) : <div class="flex-1 hidden sm:block" />}
+        <div class="flex justify-center order-first sm:order-none mb-2 sm:mb-0 shrink-0">
+          <a href={`/blog/series/${encodeURIComponent(series)}/`} class="btn btn-outline btn-sm">
+            系列概览
+          </a>
+        </div>
+        {nextPost ? (
+          <a href={`/blog/${nextPost.slug}/`} title={nextPost.data.title} class="flex-1 btn btn-ghost btn-sm justify-end text-right truncate order-3 sm:order-none">
+            <span class="truncate min-w-0">{nextPost.data.title} →</span>
+          </a>
+        ) : <div class="flex-1 hidden sm:block" />}
+      </div>
+    </div>
+  )
+}

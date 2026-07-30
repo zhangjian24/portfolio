@@ -1,9 +1,10 @@
 ---
-title: "(LLM系列)Prompt工程完全指南：从零到高手"
-description: "(LLM系列)Prompt工程完全指南：从零到高手"
+title: "Prompt工程完全指南：从零到高手"
+description: "Prompt工程完全指南：从零到高手"
 pubDate: 2026-02-05
 updatedDate: "2026-02-05"
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["AI", "prompt", "few-shot-learning", "chain-of-thought", "LLM"]
 ---
 

@@ -1,0 +1,111 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import HorizontalCard from "@components/HorizontalCard.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allPosts = await getCollection("blog");
+  const seriesSet = new Set<string>();
+  for (const post of allPosts) {
+    if (post.data.series) seriesSet.add(post.data.series);
+  }
+
+  return [...seriesSet].flatMap((series) => {
+    const filtered = allPosts
+      .filter((post) => post.data.series === series)
+      .sort((a, b) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime());
+
+    return paginate(filtered, {
+      params: { series },
+      pageSize: 10,
+    });
+  });
+}
+
+const { page } = Astro.props;
+const params = Astro.params;
+
+const allPosts = await getCollection("blog");
+const totalCount = allPosts.filter((p) => p.data.series === params.series).length;
+const pageSize = 10;
+const start = (page.currentPage - 1) * pageSize + 1;
+const end = Math.min(start + pageSize - 1, totalCount);
+const progress = (end / totalCount) * 100;
+---
+
+<BaseLayout title={"系列 - " + params.series} sideBarActiveItemID="series">
+  <div class="w-full max-w-3xl mx-auto">
+  <div class="mb-6 text-sm breadcrumbs">
+    <ul>
+      <li><a href="/blog/" class="text-base-content/60">博客</a></li>
+      <li><span class="text-base-content/60">系列</span></li>
+    </ul>
+  </div>
+
+  <div class="mb-6 p-5 rounded-xl bg-base-200">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-2xl font-bold min-w-0 truncate">{params.series}</h2>
+      <span class="badge badge-primary badge-lg">{totalCount} 篇</span>
+    </div>
+    <div class="w-full bg-base-300 rounded-full h-2 mb-2">
+      <div class="bg-primary rounded-full h-2 transition-all" style={`width: ${progress}%`}></div>
+    </div>
+    <div class="text-sm text-base-content/60">
+      共 {totalCount} 篇 · 当前显示第 {start}-{end} 篇
+    </div>
+  </div>
+
+  {
+    page.data.length === 0 ? (
+      <div class="bg-base-200 border-l-4 border-secondary w-full p-4 min-w-full">
+        <p class="font-bold">没有更多文章!</p>
+      </div>
+    ) : (
+      <ul>
+        {page.data.map((post: CollectionEntry<"blog">) => (
+          <>
+            <HorizontalCard
+              title={post.data.title}
+              img={post.data.heroImage}
+              desc={post.data.description}
+              url={"/blog/" + post.slug}
+              target="_self"
+              badge={post.data.badge}
+              tags={post.data.tags}
+            />
+            <div class="divider my-0" />
+          </>
+        ))}
+      </ul>
+    )
+  }
+
+  <div class="flex justify-between items-center my-10 mx-5">
+    {
+      page.url.prev ? (
+        <a href={page.url.prev} class="btn btn-ghost">
+          <svg class="h-6 w-6 fill-current md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" />
+          </svg>
+          上一页
+        </a>
+      ) : (
+        <div />
+      )
+    }
+    <div>{page.currentPage} / {page.lastPage}</div>
+    {
+      page.url.next ? (
+        <a href={page.url.next} class="btn btn-ghost">
+          下一页
+          <svg class="h-6 w-6 fill-current md:h-8 md:w-8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
+          </svg>
+        </a>
+      ) : (
+        <div />
+      )
+    }
+  </div>
+  </div>
+</BaseLayout>

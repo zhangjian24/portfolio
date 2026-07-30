@@ -1,9 +1,10 @@
 ---
-title: "(LLM系列)RAG(检索增强生成)原理与实践"
-description: "(LLM系列)RAG(检索增强生成)原理与实践"
+title: "RAG(检索增强生成)原理与实践"
+description: "RAG(检索增强生成)原理与实践"
 pubDate: 2026-02-11
 updatedDate: "2026-02-11"
 heroImage: '/image/logo.svg'
+series: 'LLM系列'
 tags: ["AI", "RAG", "向量检索", "Embedding", "LLM"]
 ---
 

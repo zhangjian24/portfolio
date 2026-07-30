@@ -1,12 +1,15 @@
 ---
 import { type BlogSchema } from "../content/config";
 import BaseLayout from "./BaseLayout.astro";
+import SeriesNavigation from "../components/SeriesNavigation.astro";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
-export interface Props extends BlogSchema {}
+export interface Props extends BlogSchema {
+  slug: string;
+}
 
-const { title, description, pubDate, updatedDate, heroImage, badge, tags = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, badge, tags = [], series, slug } = Astro.props;
 dayjs.extend(localizedFormat);
 const displayDate = dayjs(pubDate).format("YYYY-MM-DD")
 import { Image } from "astro:assets";
@@ -16,6 +19,13 @@ import { Image } from "astro:assets";
   <main class="md:flex md:justify-center">
     <article class="prose prose-lg max-w-[750px] prose-img:mx-auto">
       {heroImage && <Image width={750} height={422} format="webp" src={heroImage} alt={title} class="max-w-full mb-6 object-scale-down" />}
+      {series && (
+        <div class="mb-2">
+          <a href={`/blog/series/${encodeURIComponent(series)}/`} class="badge badge-outline no-underline">
+            系列：{series}
+          </a>
+        </div>
+      )}
       <h1 class="title my-2 font-bold">{title}</h1>
       {pubDate && <time>{displayDate}</time>}
       <br />
@@ -38,6 +48,7 @@ import { Image } from "astro:assets";
       }
       <div class="divider my-2"></div>
       <slot />
+      {series && <SeriesNavigation series={series} slug={slug} />}
     </article>
   </main>
 </BaseLayout>

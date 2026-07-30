@@ -9,6 +9,7 @@ const projects = (await getCollection("projects")).sort((a, b) => (a.data.order 
 <BaseLayout title="项目" sideBarActiveItemID="projects">
   <div class="mb-5">
     <div class="text-3xl w-full font-bold">项目</div>
+    <p class="text-base-content/60 mt-1">共 {projects.length} 个项目</p>
   </div>
 
   {
