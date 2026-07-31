@@ -36,7 +36,7 @@ const seriesList = [...seriesMap.entries()]
         <p class="font-bold">暂无系列</p>
       </div>
     ) : (
-      <div class="w-full max-w-3xl mx-auto space-y-3">
+      <div class="w-full space-y-3">
         {seriesList.map((s) => (
           <a
             href={`/blog/series/${encodeURIComponent(s.name)}/`}
