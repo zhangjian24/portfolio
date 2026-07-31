@@ -15,9 +15,13 @@ badge: "FOSS"
 tags: ["Qwen", "OpenAI SDK", "Next.js", "SSE", "流式输出", "LLM"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 [Qwen Chatbot](https://qwen-chatbot.jianzhang.cc) 是一个基于 **Next.js** 全栈架构的 AI 对话应用，通过兼容 **OpenAI SDK** 的方式接入阿里云 **DashScope** 平台上的通义千问（Qwen）大模型，实现了与 OpenAI 产品一致的使用体验。项目集成了流式输出、多模型路由、可配置角色预设与 LLM 参数调优面板等功能，同时提供实时 Token 用量监控，帮助开发者直观理解和控制 API 调用成本。
 
-![Qwen Chatbot 主界面](https://img.jianzhang.cc/2026/06/0eb9cdd8b888a4fd7e111566eb17738f.png)
+<ImageGallery images={[
+  { src: 'https://img.jianzhang.cc/2026/06/0eb9cdd8b888a4fd7e111566eb17738f.png', caption: 'Qwen Chatbot 主界面' },
+]} />
 
 ## 架构流程
 

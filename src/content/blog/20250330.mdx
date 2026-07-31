@@ -6,6 +6,8 @@ heroImage: '/image/logo.svg'
 tags: ["AI"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 简介
 
 n8n 是一个开源的**工作流程自动化工具**，允许用户通过可视化界面连接不同的应用程序、服务和 API，构建复杂的自动化流程。它的名字源自“nodemation”（节点化自动化），核心设计理念是提供高度灵活、可扩展且透明的自动化解决方案。
@@ -73,18 +75,16 @@ volumes:
 
 # 定义抓取页面的工作流
 1. 创建工作流
-![](/image/Snipaste_2025-03-31_11-34-36.png)
-2. 添加HTTP Request
-![](/image/Snipaste_2025-03-31_00-08-15.png)
-添加URL 点击test step 
-![](/image/Snipaste_2025-03-31_00-31-59.png)
-3. 添加HTML解析器
-![](/image/Snipaste_2025-03-31_00-33-50.png)
-![](/image/Snipaste_2025-03-31_00-34-08.png)
-填入css选择器
-![](/image/Snipaste_2025-03-31_00-35-49.png)
-4. 可以将内容发送到EMAIL
-![](/image/Snipaste_2025-03-31_00-38-02.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-31_11-34-36.png', caption: '1. 创建工作流' },
+  { src: '/image/Snipaste_2025-03-31_00-08-15.png', caption: '2. 添加HTTP Request' },
+  { src: '/image/Snipaste_2025-03-31_00-31-59.png', caption: '添加URL 点击test step' },
+  { src: '/image/Snipaste_2025-03-31_00-33-50.png', caption: '3. 添加HTML解析器' },
+  { src: '/image/Snipaste_2025-03-31_00-34-08.png' },
+  { src: '/image/Snipaste_2025-03-31_00-35-49.png', caption: '填入css选择器' },
+  { src: '/image/Snipaste_2025-03-31_00-38-02.png', caption: '4. 可以将内容发送到EMAIL' },
+]} />
 
 # 定义代码解析
 
@@ -152,7 +152,9 @@ ht('li.module-list-item').each((i, elem) => {
 return results;
 ```
 
-![](/image/Snipaste_2025-03-31_11-36-31.png)
-![](/image/Snipaste_2025-03-31_11-45-07.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-31_11-36-31.png' },
+  { src: '/image/Snipaste_2025-03-31_11-45-07.png' },
+]} />
 
 通过以上步骤，您应能在 n8n 的 Function 节点中成功引入并使用 Cheerio 库进行 HTML 解析。

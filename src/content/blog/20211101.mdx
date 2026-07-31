@@ -6,6 +6,8 @@ heroImage: '/image/mybatis-logo.svg'
 tags: ["后端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 配置加载
 
 通过 `XMLConfigBuilder.parse` 解析`configuration.xml` 和 `mapper.xml` 生成`org.apache.ibatis.session.Configuration`，生成 `SqlSessionFactory` 
@@ -42,7 +44,9 @@ tags: ["后端"]
 
 `MapperScan` 注解引入了 `MapperScannerRegistrar` 的bean
 
-![image-20211110152624776](/image/20240611001011.png)
+<ImageGallery images={[
+  { src: '/image/20240611001011.png', caption: 'MapperScannerRegistrar' },
+]} />
 
  `MapperScannerRegistrar`  实现了接口 `ImportBeanDefinitionRegistrar.registerBeanDefinitions` ，注册了MapperScannerConfigurer 的bean
 
@@ -85,7 +89,9 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 }
 ```
 
-![image-20211110154806612](/image/20240611001050.png)
+<ImageGallery images={[
+  { src: '/image/20240611001050.png', caption: 'MapperScannerConfigurer' },
+]} />
 
 `MapperScannerConfigurer` 实现了 `BeanDefinitionRegistryPostProcessor` 接口，扫描mapper 包
 
@@ -143,7 +149,9 @@ public class ClassPathMapperScanner extends ClassPathBeanDefinitionScanner {
 }
 ```
 
-![image-20211111170030530](/image/20240611001128.png)
+<ImageGallery images={[
+  { src: '/image/20240611001128.png', caption: 'ClassPathMapperScanner' },
+]} />
 
 ```java
 public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements FactoryBean<T> {
@@ -185,7 +193,9 @@ public class MapperFactoryBean<T> extends SqlSessionDaoSupport implements Factor
 }
 ```
 
-![image-20211110164204151](/image/20240611001151.png)
+<ImageGallery images={[
+  { src: '/image/20240611001151.png', caption: 'MapperFactoryBean' },
+]} />
 
 `checkDaoConfig` 方法会在bean初始化后在`afterPropertiesSet` 里被调用，实际上是调用 `MapperRegistry.addMapper` ，添加代理工厂`MapperProxyFactory` 
 
@@ -267,7 +277,9 @@ public class SqlSessionTemplate implements SqlSession, DisposableBean {
 
 ```
 
-![image-20211111165335234](/image/20240611001253.png)
+<ImageGallery images={[
+  { src: '/image/20240611001253.png', caption: 'sqlSessionFactory 创建' },
+]} />
 
 # Sql 执行
 
@@ -290,7 +302,9 @@ public class DefaultSqlSession implements SqlSession {
 }
 ```
 
-![image-20211112190831641](/image/20240611001220.png)
+<ImageGallery images={[
+  { src: '/image/20240611001220.png', caption: 'DefaultSqlSession 查询' },
+]} />
 
 ```java
 public class CachingExecutor implements Executor {
@@ -306,7 +320,9 @@ public class CachingExecutor implements Executor {
 }
 ```
 
-![image-20211112190917737](/image/20240611001403.png)
+<ImageGallery images={[
+  { src: '/image/20240611001403.png', caption: 'CachingExecutor 查询' },
+]} />
 
 ```java
 public class SimpleExecutor extends BaseExecutor {
@@ -330,7 +346,9 @@ public class SimpleExecutor extends BaseExecutor {
 }
 ```
 
-![image-20211112191256092](/image/20240611001434.png)
+<ImageGallery images={[
+  { src: '/image/20240611001434.png', caption: 'SimpleExecutor 查询' },
+]} />
 
 ```java
 public class PreparedStatementHandler extends BaseStatementHandler {
@@ -345,4 +363,6 @@ public class PreparedStatementHandler extends BaseStatementHandler {
 }
 ```
 
-![image-20211112191323057](/image/20240611001450.png)
+<ImageGallery images={[
+  { src: '/image/20240611001450.png', caption: 'PreparedStatementHandler 查询' },
+]} />

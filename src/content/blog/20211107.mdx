@@ -6,10 +6,14 @@ heroImage: '/image/MySQL.svg'
 tags: ["后端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 
 # 架构
 
-![al475-2epfc](/image/20240616203224.png)
+<ImageGallery images={[
+  { src: '/image/20240616203224.png', caption: 'MySQL 架构' },
+]} />
 
 每一个连接，在单独的线程中执行，进行验证后，先判断如果在查询缓存中，直接返回结果，否则通过解析器解析优化，然后发送存储引擎查询数据返回。
 
@@ -55,9 +59,10 @@ SELECT sleep(4);
 show global status like '%slow_queries%';
 ```
 
-![image-20211108125933253](/image/20240616203531.png)
-
-![image-20211108130409359](/image/20240616203547.png)
+<ImageGallery images={[
+  { src: '/image/20240616203531.png', caption: '开启慢日志' },
+  { src: '/image/20240616203547.png', caption: '测试慢日志' },
+]} />
 
 永久生效，`vim /etc/mysql/my.cnf`
 
@@ -87,7 +92,9 @@ mysqldumpslow [option] logfile
   -g PATTERN   正则表达式
 ```
 
-![image-20211108130836609](/image/20240616203713.png)
+<ImageGallery images={[
+  { src: '/image/20240616203713.png', caption: '慢日志分析结果' },
+]} />
 
 ## 用 show profile 进行 sql 分析
 
@@ -106,7 +113,9 @@ set profiling = on;
 show profiles
 ```
 
-![image-20211108131041891](/image/20240616203755.png)
+<ImageGallery images={[
+  { src: '/image/20240616203755.png', caption: 'show profiles 记录列表' },
+]} />
 
 ### 使用
 
@@ -130,7 +139,9 @@ Memory：显示内存相关开销
 Source：显示和source_function,source_file,source_line相关的开销信息
 ```
 
-![image-20211108131210239](/image/20240616203841.png)
+<ImageGallery images={[
+  { src: '/image/20240616203841.png', caption: 'show profile 分析结果' },
+]} />
 
 ## explain 执行计划
 
@@ -232,12 +243,14 @@ https://dev.mysql.com/doc/refman/5.7/en/explain-output.html](https://dev.mysql.c
       binlog_ignore_db	= mysql
       binlog_ignore_db       = sys
 
-     log-slave-updates = 1
-     ```
+      log-slave-updates = 1
+      ```
 
-     ![image-20211108124941708](/image/20240616204124.png)
+      <ImageGallery images={[
+        { src: '/image/20240616204124.png', caption: 'show master status 检查主库配置' },
+      ]} />
 
-  4. 在备库上，配置二进制日志和唯一的服务器 ID，运行`change master to`，通过`show slave status`检查备库状态
+   4. 在备库上，配置二进制日志和唯一的服务器 ID，运行`change master to`，通过`show slave status`检查备库状态
 
      ```
       server-id		= 2
@@ -251,14 +264,18 @@ https://dev.mysql.com/doc/refman/5.7/en/explain-output.html](https://dev.mysql.c
      ```
 
      ```bash
-     change master to master_host='172.17.0.2',master_user='sla',master_password='123456',master_log_file='mysql-bin.000001',master_log_pos=0;
-     ```
+      change master to master_host='172.17.0.2',master_user='sla',master_password='123456',master_log_file='mysql-bin.000001',master_log_pos=0;
+      ```
 
-     ![image-20211108125051521](/image/20240616204157.png)
+      <ImageGallery images={[
+        { src: '/image/20240616204157.png', caption: 'show slave status 检查备库状态' },
+      ]} />
 
-  5. 在备库上，执行`start slave` 开始复制
+   5. 在备库上，执行`start slave` 开始复制
 
-     ![image-20211108125449627](/image/20240616204225.png)
+      <ImageGallery images={[
+        { src: '/image/20240616204225.png', caption: 'start slave 开始复制' },
+      ]} />
 
   6.
 
@@ -468,7 +485,9 @@ public class MainAppTest {
 
 效果
 
-![image-20211109202042532](/image/20240616204443.png)
+<ImageGallery images={[
+  { src: '/image/20240616204443.png', caption: '分库分表效果' },
+]} />
 
 ## sharding-jdbc 框架读写分离配置
 
@@ -573,7 +592,9 @@ public class MainAppTest {
 
 结果
 
-![image-20211109214538879](/image/20240616204539.png)
+<ImageGallery images={[
+  { src: '/image/20240616204539.png', caption: '读写分离效果' },
+]} />
 
 # 备份与恢复
 

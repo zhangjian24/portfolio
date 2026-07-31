@@ -6,11 +6,15 @@ heroImage: '/image/redis.svg'
 tags: ["后端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 数据结构
 
 ## 简单动态字符串
 
-![image-20211206144025070](/image/20240610235904.png)
+<ImageGallery images={[
+  { src: '/image/20240610235904.png', caption: '简单动态字符串' },
+]} />
 
 与C字符串的区别：
 
@@ -25,25 +29,35 @@ tags: ["后端"]
 
 节点结构，包含前驱指针、后继指针、节点数据
 
-![image-20211206160801876](/image/20240610235943.png)
+<ImageGallery images={[
+  { src: '/image/20240610235943.png', caption: '链表节点结构' },
+]} />
 
 链表结构，包含头节点、尾节点、节点数量、具体数据类型的处理函数指针，支持多态
 
-![image-20211206161042661](/image/20240611000001.png)
+<ImageGallery images={[
+  { src: '/image/20240611000001.png', caption: '链表结构' },
+]} />
 
 ## 字典
 
 哈希表
 
-![image-20211206162932497](/image/20240611000022.png)
+<ImageGallery images={[
+  { src: '/image/20240611000022.png', caption: '哈希表' },
+]} />
 
 哈希表节点，保存了键、值和指向下一个节点的指针，通过链表解决哈希冲突
 
-![image-20211206163113826](/image/20240611000038.png)
+<ImageGallery images={[
+  { src: '/image/20240611000038.png', caption: '哈希表节点' },
+]} />
 
 字典包含着两个哈希表、私有数据和类型特定的函数
 
-![image-20211206163736112](/image/20240611000054.png)
+<ImageGallery images={[
+  { src: '/image/20240611000054.png', caption: '字典结构' },
+]} />
 
 字典在扩容和收缩过程中，为了提高性能使用渐进式rehash：
 
@@ -60,21 +74,29 @@ rehash期间，新增操作都在ht[1]上操作，其它操作先在ht[0]上，�
 
 ### 结构
 
-![image-20211206183745938](/image/20240611000127.png)
+<ImageGallery images={[
+  { src: '/image/20240611000127.png', caption: '跳跃表结构' },
+]} />
 
 表节点中保存着后退指针、分值、成员对象，还包括多个层，每层中保存前进指针和跨度
 
-![image-20211206183441934](/image/20240611000200.png)
+<ImageGallery images={[
+  { src: '/image/20240611000200.png', caption: '跳跃表节点' },
+]} />
 
 跳跃表
 
-![image-20211206183609826](/image/20240611000211.png)
+<ImageGallery images={[
+  { src: '/image/20240611000211.png', caption: '跳跃表' },
+]} />
 
 ## 压缩列表
 
 压缩列表是为了节约内存，由一定规则编码的连续内存块组成的顺序结构。
 
-![image-20211206185935819](/image/20240611000245.png)
+<ImageGallery images={[
+  { src: '/image/20240611000245.png', caption: '压缩列表' },
+]} />
 
 各部分的含义：
 
@@ -86,7 +108,9 @@ rehash期间，新增操作都在ht[1]上操作，其它操作先在ht[0]上，�
 
 节点结构
 
-![image-20211206200626192](/image/20240611000301.png)
+<ImageGallery images={[
+  { src: '/image/20240611000301.png', caption: '压缩列表节点结构' },
+]} />
 
 - previous_entry_length 前一个节点的字节数，pre_ptr+previous_entry_length=curent_ptr；
   如果前一个节点长度小于254，就用一个字节；如果前一个节点长度大于254，第一个字节为0xFE，用后面4个字节
@@ -99,7 +123,9 @@ rehash期间，新增操作都在ht[1]上操作，其它操作先在ht[0]上，�
 
 redis 中键和值都使用对象，对象底层使用上面的数据结构
 
-![image-20211206204541667](/image/20240611000320.png)
+<ImageGallery images={[
+  { src: '/image/20240611000320.png', caption: '对象' },
+]} />
 
 类型有字符串、列表、哈希、集合、有序集合
 
@@ -111,7 +137,9 @@ redis服务器是事件驱动的，分为文件事件和时间事件。
 
 ## 文件事件处理器
 
-![image-20211207134351163](/image/20240611000338.png)
+<ImageGallery images={[
+  { src: '/image/20240611000338.png', caption: '文件事件处理器' },
+]} />
 
 文件事件处理器包括套接字、IO多路复用程序、事件派发器和处理器。IO多路复用程序监听套接字，将产生事件的套接字放在队列里，每次发送一个套接字给派发器，上一个处理完再发下一个；事件派发器根据事件类型选择不同的处理器处理。
 
@@ -125,7 +153,9 @@ redis服务器是事件驱动的，分为文件事件和时间事件。
 
 时间事件创建时头插法放到链表中，每当时间执行器执行时，遍历链表针对已经到达的事件，调用处理函数。
 
-![image-20211207142847916](/image/20240611000403.png)
+<ImageGallery images={[
+  { src: '/image/20240611000403.png', caption: '时间事件处理器' },
+]} />
 
 # 持久化
 
@@ -143,7 +173,9 @@ bgsave 在子进程中操作，服务器仍然可以处理客户端请求。
 
 服务器执行完写命令后，追加到AOF_BUF缓冲区中，每次事件循环结束时将缓存区内容刷新到操作系统的文件缓冲区，在写入磁盘。
 
-![image-20211207154448485](/image/20240611000421.png)
+<ImageGallery images={[
+  { src: '/image/20240611000421.png', caption: 'AOF持久化' },
+]} />
 
 # 单机数据库
 
@@ -163,15 +195,18 @@ db结构中，包含字典类型的键空间dict，而expires字典中存着每�
 - 惰性删除，获取键时，如果过期时就删除
 - 定期删除，每隔一段时间，扫描键，删掉过期的键
 
-![image-20211206213346465](/image/20240611000447.png)
-
-![image-20211206213431234](/image/20240611000507.png)
+<ImageGallery images={[
+  { src: '/image/20240611000447.png', caption: '数据库结构' },
+  { src: '/image/20240611000507.png', caption: '过期时间与键空间' },
+]} />
 
 ## 客户端
 
 服务器中为每个客户端创建了RedisClient结构
 
-![image-20211207181217975](/image/20240611000759.png)
+<ImageGallery images={[
+  { src: '/image/20240611000759.png', caption: '客户端结构' },
+]} />
 
 ```c++
 typedef struct redisClient{

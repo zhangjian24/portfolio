@@ -7,6 +7,8 @@ heroImage: '/image/logo.svg'
 tags: ["AI工具", "代码助手", "IntelliJ IDEA", "编程效率", "技术教程"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # Windsurf - 你的智能代码助手
 
 ## 什么是 Windsurf？
@@ -102,7 +104,11 @@ Windsurf 可以：
    - 语言设置
    - 响应速度
    - 代码风格
-![image](/image/微信图片_20250727193857_118.png)
+
+<ImageGallery images={[
+  { src: '/image/微信图片_20250727193857_118.png', alt: 'image' },
+]} />
+
 ### 使用方法
 
 1. **代码补全**

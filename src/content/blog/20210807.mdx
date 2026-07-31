@@ -6,6 +6,8 @@ heroImage: '/image/Plantuml_Logo.svg'
 tags: ["后端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 优势
 
 通过 `PlantUML` 可以用文本绘制 `uml` 图，可以进行 `git` 版本管理和差异对比。
@@ -18,7 +20,9 @@ tags: ["后端"]
 
 安装vscode插件
 
-![Snipaste_2020-11-09_11-38-45](/image/20240616221420.png)
+<ImageGallery images={[
+  { src: '/image/20240616221420.png', caption: '安装 vscode 插件' },
+]} />
 
 新建代码文件 `test.puml` ；
 
@@ -28,13 +32,17 @@ Alt+D开启预览
 
 `ctrl + shift + p`  打开命令行面板，输入 `plantuml`  导出文件为图片。
 
-![Snipaste_2020-11-09_11-39-32](/image/20240616221445.png)
+<ImageGallery images={[
+  { src: '/image/20240616221445.png', caption: '导出图片' },
+]} />
 
 
 
 idea 安装插件
 
-![Snipaste_2020-11-17_14-14-59](/image/20240616221504.png)
+<ImageGallery images={[
+  { src: '/image/20240616221504.png', caption: 'IDEA 安装插件' },
+]} />
 
 ------
 

@@ -7,6 +7,8 @@ series: 'java面试'
 tags: ["Java"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 ### **什么是线程和进程?**
 进程是程序的一次执行过程，是系统运行程序的基本单位。
 一个进程在其执行的过程中可以产生多个线程，与进程不同的是同类的多个线程共享进程的**堆**和**方法区**资源，但每个线程有自己的**程序计数器**、**虚拟机栈**和**本地方法栈**，所以系统在产生一个线程，或是在各个线程之间做切换工作时，负担要比进程小得多，也正因为如此，线程也被称为轻量级进程。
@@ -134,7 +136,9 @@ tags: ["Java"]
 
 如果已达到最大线程数，就执行拒绝策略。
 
-![image.png](https://oss.jianzhang.cc/images/20250422161139344.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422161139344.png', caption: '线程池的运作流程' },
+]} />
 
 ### **线程池有哪些拒绝策略？**
 
@@ -184,7 +188,9 @@ CAS就是对比交换，确定某个变量的值与预期一致，才更新，�
 
 ### **AQS底层原理**
 
-![image.png](https://oss.jianzhang.cc/images/20250422170210032.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422170210032.png', caption: 'AQS 底层原理' },
+]} />
 
 `AQS` 中的数据包含，一个代表共享资源的 `state`，双向链表结构的同步队列，队列节点包含代表的线程、线程等待状态以及前驱后继节点引用；`AQS` 的核心操作为 `Acquire()` 方法和 `Release()` 方法。
 
@@ -202,9 +208,10 @@ CAS就是对比交换，确定某个变量的值与预期一致，才更新，�
 
 ### **Synchronized 的底层原理**
 
-![image.png](https://oss.jianzhang.cc/images/20250422170337963.png)
-
-![image.png](https://oss.jianzhang.cc/images/20250422170422112.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422170337963.png', caption: '对象的内存布局' },
+  { src: 'https://oss.jianzhang.cc/images/20250422170422112.png', caption: '锁升级过程' },
+]} />
 
 对象的内存布局分为对象头、实例数据、对齐填充。对象头包含 `MarkWord` 和类型数据指针。`MarkWord` 中存储着对象锁相关的信息，其中锁状态分为无锁、偏向锁、轻量级锁、重量级锁。
 
@@ -222,7 +229,9 @@ CAS就是对比交换，确定某个变量的值与预期一致，才更新，�
 
 ### **`Condition`的`await`/`signal`的底层原理**
 
-![image.png](https://oss.jianzhang.cc/images/20250422191704535.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422191704535.png', caption: 'Condition 的底层原理' },
+]} />
 
 `await()` 方法的流程：
 
@@ -286,7 +295,9 @@ hash冲突时，若桶为空，`CAS` 方式插入节点；非空就，`Synchroni
 
 ###  **volatile、synchronized与硬件内存模型**
 
-![image.png](https://oss.jianzhang.cc/images/20250422200807263.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422200807263.png', caption: '硬件内存模型' },
+]} />
 
 现在的计算机处理器一般都有多个CPU，这些CPU除了公用主内存外，还有各自私有的缓存，如果一个CPU对一个变量的更改保存在自己的缓存中，而没有及时刷新到主存，其他CPU就会读取到脏数据，Java中 `volatile` 关键字确保变量被CPU处理完立即写回主存，对变量的读取直接从主存读取，从而保证变量在多个CPU之间的一致性；
 

@@ -6,6 +6,8 @@ heroImage: '/image/astro-logo-dark.svg'
 tags: ["前端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 了解Astro
 
 Astro 是最适合构建像博客、营销网站、电子商务网站这样的以内容驱动的网站的 Web 框架。
@@ -114,7 +116,10 @@ Astro 支持 src/pages/ 目录中的以下文件类型：
 ### 内容集合
 
 一个内容集合是保留在 src/content 目录中的任何顶级目录，一旦有了一个集合，你就可以使用 Astro 的内置内容 API 开始查询集合,内容集合帮助管理你的文档，校验 frontmatter，并为所有内容提供自动 TypeScript 类型安全。
-![](/image/20240618104603.png)
+
+<ImageGallery images={[
+  { src: '/image/20240618104603.png', caption: '内容集合目录结构' },
+]} />
 
 # 初始化项目
 

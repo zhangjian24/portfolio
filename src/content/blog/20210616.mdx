@@ -6,23 +6,30 @@ heroImage: '/image/Logo-ubuntu_cof-orange-hex.svg'
 tags: ["后端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 在`virtualbox` 中安装了 `ubutnu20.04` 之后，想设置静态ip，并能够上外网，所以采用了 `网络地址转换(NAT)` 和 `仅主机(host-only)网路` 双网卡的形式。
 
 网卡1：
 
-![image-20210616221635160](/image/20240616221743.png)
+<ImageGallery images={[
+  { src: '/image/20240616221743.png', caption: '网卡1 配置' },
+]} />
 
 网卡2：
 
-![image-20210616221701407](/image/20240616221757.png)
-
-![image-20210616225140704](/image/20240616221811.png)
+<ImageGallery images={[
+  { src: '/image/20240616221757.png', caption: '网卡2 配置' },
+  { src: '/image/20240616221811.png', caption: '网卡2 配置结果' },
+]} />
 
 ubuntu20.04 改成了使用 `netplan` 管理网络；配置文件在`/etc/netplan/*.yaml` 。
 
 首先查看虚拟机中网卡名：
 
-![image-20210616225045650](/image/20240616221829.png)
+<ImageGallery images={[
+  { src: '/image/20240616221829.png', caption: '查看虚拟机网卡名' },
+]} />
 
 然后配置静态ip，`sudo vim /etc/netplan/*.yaml`
 

@@ -6,6 +6,8 @@ heroImage: '/image/logo.svg'
 tags: ["AIGC","ComfyUI"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 简介
 ComfyUI 是一个开源的、基于节点的用户界面工具，专为控制和自定义扩散模型（如 Stable Diffusion）而设计。它的主要特点和优势包括：
 - ***节点化操作***：ComfyUI 采用直观的节点编辑方式，用户可以将各种处理功能（如图像输入、预处理、模型推理、后处理等）以节点形式组合成工作流。这种方式降低了对编程知识的要求，使得用户能够轻松构建和调整复杂的生成流程。
@@ -32,8 +34,11 @@ Google Colab（全称 Google Colaboratory）是 Google 提供的一个基于 Jup
 2. 新建笔记本
 
 登录后，在主页面点击“打开笔记本”，然后选择从github打开，输入ipynb文件路径搜索，然后点击相应的链接。这将为你创建一个 Jupyter Notebook 环境。
-![](/image/Snipaste_2025-04-01_10-41-35.png)
-![](/image/Snipaste_2025-04-01_10-42-41.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_10-41-35.png', caption: '从 GitHub 打开笔记本' },
+  { src: '/image/Snipaste_2025-04-01_10-42-41.png', caption: '搜索并打开 ipynb 文件' },
+]} />
 
 3. 编辑和运行代码
 
@@ -49,8 +54,11 @@ ipynb文件可以参照此文件[comfyui_colab.ipynb](https://github.com/zhangji
 - “运行时” → “更改运行时类型”
 - 在“硬件加速器”选项中选择 GPU 
 这样，笔记本将获得对应的硬件资源支持。
-![](/image/Snipaste_2025-04-01_11-23-33.png)
-![](/image/Snipaste_2025-04-01_11-23-55.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_11-23-33.png', caption: '切换硬件加速器' },
+  { src: '/image/Snipaste_2025-04-01_11-23-55.png', caption: '选择 GPU' },
+]} />
 
 ## 方式二、Kaggle 平台搭建
 ### Kaggle简介
@@ -73,11 +81,16 @@ Kaggle 是一个专为数据科学和机器学习爱好者设计的平台，主�
 >    1. 安装comfyui，并安装依赖，安装Node Manager及其依赖。
 >    2. 启动comfyui，通过pinggy内网穿透，给出访问链接。
 
-![](/image/Snipaste_2025-04-01_11-27-31.png)
-![](/image/Snipaste_2025-04-01_11-28-14.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_11-27-31.png', caption: '从 GitHub 导入笔记本' },
+  { src: '/image/Snipaste_2025-04-01_11-28-14.png', caption: '新建笔记本' },
+]} />
 
 3. 更改加速器
-![](/image/Snipaste_2025-04-01_11-41-44.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_11-41-44.png', caption: '更改加速器' },
+]} />
 
 ## 方式三、Featurize平台搭建
 
@@ -106,21 +119,35 @@ Kaggle 是一个专为数据科学和机器学习爱好者设计的平台，主�
 1. 租用服务器
 
 访问[featurize](https://featurize.cn?s=0fc7e89b7f8948739ad3e86f268ebafb)网站并注册登录，筛选实例类型为GPU，选择想要租用的服务器并点击开始使用。
-![](/image/Snipaste_2025-04-01_12-39-42.png)
-![](/image/Snipaste_2025-04-01_12-41-27.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_12-39-42.png', caption: '租用 GPU 服务器' },
+  { src: '/image/Snipaste_2025-04-01_12-41-27.png', caption: '选择实例并开始使用' },
+]} />
+
 2. 上传并打开notebook文件
 
 打开工作空间，选择文件夹，上传[comfyui_featurize.ipynb](https://github.com/zhangjian24/JupyterNotebook/blob/main/notebooks/comfyui_featurize.ipynb)
-![](/image/Snipaste_2025-04-01_12-57-38.png)
-![](/image/Snipaste_2025-04-01_13-01-03.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_12-57-38.png', caption: '打开工作空间' },
+  { src: '/image/Snipaste_2025-04-01_13-01-03.png', caption: '上传 notebook 文件' },
+]} />
 
 # 界面使用
 ## 安装Custom Node
 点击"Manager->node manager", 安装ComfyUI_StoryDiffusion
-![](/image/Snipaste_2025-03-26_20-14-38.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-26_20-14-38.png', caption: '安装 Custom Node' },
+]} />
+
 ## 安装模型
 点击"Manager->model manager", 安装sd_xl_base_1.0.safetensors
-![](/image/Snipaste_2025-03-26_20-17-54.png)
+
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-26_20-17-54.png', caption: '安装模型' },
+]} />
 ## 执行工作流
 点击 "工作流->打开"，打开如下工作流，然后点击下面"执行"
 ```json title = "storydiffusion.json"
@@ -196,7 +223,9 @@ Kaggle 是一个专为数据科学和机器学习爱好者设计的平台，主�
 }
 ```
 
-![](/image/Snipaste_2025-03-26_20-21-47.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-26_20-21-47.png', caption: '执行工作流' },
+]} />
 
 
 # api使用
@@ -206,7 +235,10 @@ ComfyUI有三个API可用：
 - `GET /view` 下载生成文件
 
 搭建java项目，通过HTTP创建工作流，定时任务同步结果，MongoDB存储JSON，Minio存储生成的图片
-![](/image/photo_2025-04-01_13-54-13.jpg)
+
+<ImageGallery images={[
+  { src: '/image/photo_2025-04-01_13-54-13.jpg', caption: 'API 使用架构' },
+]} />
 
 ## 安装配置依赖的服务
 利用Docker Compose启动MongoDB和Minio服务
@@ -241,12 +273,11 @@ services:
       timeout: 5s
       retries: 5
 ```
-访问minio，创建专门的bucket
-![](/image/Snipaste_2025-04-01_15-56-39.png)
-访问策略设置为public
-![](/image/Snipaste_2025-04-01_15-57-00.png)
-创建accesskey
-![](/image/Snipaste_2025-04-01_15-57-32.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_15-56-39.png', caption: '创建专门的 bucket' },
+  { src: '/image/Snipaste_2025-04-01_15-57-00.png', caption: '访问策略设置为 public' },
+  { src: '/image/Snipaste_2025-04-01_15-57-32.png', caption: '创建 accesskey' },
+]} />
 
 ## 配置java项目
 
@@ -650,13 +681,12 @@ public class WorkflowController {
 
 ## 测试
 
-提交工作流
-![](/image/Snipaste_2025-04-01_15-21-05.png)
-查看生成的图片链接
-![](/image/Snipaste_2025-04-01_15-28-00.png)
-![](/image/Snipaste_2025-04-01_15-28-20.png)
-下载生成的文件压缩包
-![](/image/Snipaste_2025-04-01_15-28-53.png)
-![](/image/Snipaste_2025-04-01_15-29-55.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-04-01_15-21-05.png', caption: '提交工作流' },
+  { src: '/image/Snipaste_2025-04-01_15-28-00.png', caption: '查看生成的图片链接' },
+  { src: '/image/Snipaste_2025-04-01_15-28-20.png', caption: '查看生成的图片链接' },
+  { src: '/image/Snipaste_2025-04-01_15-28-53.png', caption: '下载生成的文件压缩包' },
+  { src: '/image/Snipaste_2025-04-01_15-29-55.png', caption: '下载生成的文件压缩包' },
+]} />
 
 **完整代码示例**: [Github](https://github.com/zhangjian24/comfyuiapi)

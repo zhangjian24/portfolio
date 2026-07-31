@@ -6,7 +6,11 @@ heroImage: '/image/rust-logo-blk.svg'
 tags: ["后端"]
 ---
 
-![rust入门.png](/image/20240609124740.png)
+import ImageGallery from '@components/ImageGallery.astro'
+
+<ImageGallery images={[
+  { src: '/image/20240609124740.png', caption: 'rust入门' },
+]} />
 
 # 简介
 
@@ -664,7 +668,9 @@ cargo 是rust 的包管理系统，遵循如下惯例：
 
 可以有多个binary crate ，默认的对应src/main.rs，名字与package 名字相同；其余的在src/bin目录下，每个文件对应一个crate;
 
-![图片](/image/20240609124917.png)
+<ImageGallery images={[
+  { src: '/image/20240609124917.png', caption: '代码组织' },
+]} />
 
 
 **模块**

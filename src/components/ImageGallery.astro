@@ -1,0 +1,110 @@
+---
+import sharp from 'sharp'
+import path from 'path'
+
+interface Image {
+  src: string
+  alt?: string
+  caption?: string
+}
+
+export interface Props {
+  images: Image[]
+}
+
+const { images: raw } = Astro.props
+
+async function dims(src: string) {
+  if (src.startsWith('http') || src.startsWith('//')) return null
+  try {
+    const fp = path.join(process.cwd(), 'public', src.replace(/^\//, ''))
+    const meta = await sharp(fp).metadata()
+    return meta.width && meta.height ? { w: meta.width, h: meta.height } : null
+  } catch {
+    return null
+  }
+}
+
+const items = await Promise.all(
+  raw.map(async (img) => ({ ...img, ...(await dims(img.src)) }))
+)
+---
+
+{items.length > 0 && (
+  <div
+    class="gallery-stack not-prose my-6"
+    data-gallery
+  >
+    {items.map(({ src, alt, caption, w, h }) => (
+      <a
+        href={src}
+        data-pswp-width={w || undefined}
+        data-pswp-height={h || undefined}
+        data-caption={caption || undefined}
+        class="group relative block rounded-xl bg-base-200 overflow-hidden"
+      >
+        <img
+          src={src}
+          alt={alt ?? ''}
+          class="w-auto max-w-full max-h-96 mx-auto object-contain transition-all duration-300 group-hover:opacity-90"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none">
+          <span class="flex items-center gap-2 rounded-full bg-black/50 px-4 py-2 text-white text-sm font-medium backdrop-blur">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <line x1="11" y1="8" x2="11" y2="14"></line>
+              <line x1="8" y1="11" x2="14" y2="11"></line>
+            </svg>
+            点击放大
+          </span>
+        </div>
+        {caption && (
+          <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 pt-8">
+            <span class="text-white text-sm font-medium">{caption}</span>
+          </div>
+        )}
+      </a>
+    ))}
+  </div>
+)}
+
+<style>
+  .gallery-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+</style>
+
+<script>
+import PhotoSwipeLightbox from 'photoswipe/lightbox'
+import 'photoswipe/dist/photoswipe.css'
+
+let lb: PhotoSwipeLightbox | null = null
+
+function init() {
+  if (!document.querySelector('[data-gallery]')) return
+  lb = new PhotoSwipeLightbox({
+    gallery: '[data-gallery]',
+    children: 'a',
+    pswpModule: () => import('photoswipe'),
+    wheelToZoom: true,
+    bgOpacity: 0.92,
+    spacing: 0.12,
+    loop: true,
+    pinchToClose: false,
+    closeOnVerticalDrag: true,
+    showHideAnimationType: 'zoom',
+  })
+  lb.init()
+}
+
+function destroy() {
+  if (lb) { lb.destroy(); lb = null }
+}
+
+document.addEventListener('astro:page-load', () => { destroy(); init() })
+</script>

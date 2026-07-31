@@ -7,6 +7,8 @@ series: 'java面试'
 tags: ["Java"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 ### **面向对象的基本特征？**
 
 面向对象的基本特征有三个：封装、继承、多态；
@@ -91,7 +93,9 @@ final 修饰类，类不能被继承；修饰方法，方法不能被子类覆�
 
 ### **下面两个代码块能正常执行吗？**
 
-![image.png](https://oss.jianzhang.cc/images/20250421122646934.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250421122646934.png', caption: '两个代码块' },
+]} />
 
 代码块1，`s1+1` 是整形，赋值给`short` 会有损失，报错；
 
@@ -277,7 +281,9 @@ System.out.println(s1 == s4); // true
 - 浅拷贝：对象会被拷贝，但对象内引用的对象不会拷贝；
 - 深拷贝：对象及其引用的对象都会被拷贝；
 
-![image.png](https://oss.jianzhang.cc/images/20250421135800700.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250421135800700.png', caption: '深拷贝和浅拷贝' },
+]} />
 
 ### **构造方法有哪些特点？是否可被 重写(override)? 可以没有构造方法吗？？**
 特点：
@@ -303,7 +309,9 @@ System.out.println(s1 == s4); // true
 
 ### **初始化考察，请给出下面程序的运行结果**
 
-![image.png](https://oss.jianzhang.cc/images/20250421122935434.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250421122935434.png', caption: '初始化考察程序' },
+]} />
 
 
 答案是 ABabab
@@ -513,14 +521,14 @@ public class com/zhangjian/SimpleTesta {
 
 ### **try，catch，finally考察2，指出下面的运行结果？**
 
-![image.png](https://oss.jianzhang.cc/images/20250421123026853.png)
-
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250421123026853.png', caption: '运行结果考察' },
+  { src: 'https://oss.jianzhang.cc/images/20250421123058167.png', caption: 'return 的字节码' },
+]} />
 
 答案为 2
 
 return 的字节码，会先暂存变量i到栈，再执行finally中的语句，最后return 的是暂存的变量值为2。
-
-![image.png](https://oss.jianzhang.cc/images/20250421123058167.png)
 
 ### **finally 中的代码一定会执行吗？**
 程序所在的线程死亡，就不会执行

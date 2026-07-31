@@ -6,6 +6,8 @@ heroImage: '/image/logo.svg'
 tags: ["前端"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 # 安装软件包管理器pnpm
 windows 下安装Chocolatey
 ```bash
@@ -88,4 +90,6 @@ pnpm i -D weapp-tailwindcss
 
 完整示例，[github](https://github.com/zhangjian24/jianjianApp)
 
-![](/image/Snipaste_2025-03-17_13-16-11.png)
+<ImageGallery images={[
+  { src: '/image/Snipaste_2025-03-17_13-16-11.png', caption: '完整示例' },
+]} />

@@ -7,6 +7,8 @@ series: 'java面试'
 tags: ["Java"]
 ---
 
+import ImageGallery from '@components/ImageGallery.astro'
+
 ### **List、Set、Map三者的区别?**
 
 `List` 存储 不唯一 但有序的一组数据；
@@ -75,7 +77,9 @@ tags: ["Java"]
 
 第四个步骤，如果节点总数超过一定阈值就进行扩容。其中放置数据的过程中，不管存储冲突数据的结构是红黑树还是链表，都遍历所有节点，如果节点的key 和传入数据的key 相等，就更新对应节点，放置数据的过程结束，如果找不到key 相同的节点，就新建节点，如果结构是红黑树，则需要重新平衡，如果结构是链表，并且链表节点数大于8，就将链表转换成红黑树。
 
-![image.png](https://oss.jianzhang.cc/images/20250422102525249.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422102525249.png', caption: 'HashMap 插入流程' },
+]} />
 
 ### **`HashMap` 的扩容流程**
 
@@ -85,4 +89,6 @@ tags: ["Java"]
 
 第三步，针对某个位置下的所有节点，将其hash值与旧容量值进行位与运算，结果等于0的节点，形成一个链表放置到新数组的旧位置，如果链表长度大于8，就转换成红黑树；将其hash值与旧容量值进行位与运算，结果等于1的节点，形成一个链表放置到新数组的新位置，新位置=旧位置+旧容量，如果链表长度大于8，就转换成红黑树；
 
-![image.png](https://oss.jianzhang.cc/images/20250422103037289.png)
+<ImageGallery images={[
+  { src: 'https://oss.jianzhang.cc/images/20250422103037289.png', caption: 'HashMap 扩容流程' },
+]} />
